@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tetris</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="asset-controller.js"></script>
+  <script src="boilerplate.js"></script>
+  <script src="game.js"></script>
+</head>
+
+<body>
+  <h1 id="gameTitle">Tetris</h1>
+  <div id="welcomeBtns">
+    <!--put image of game characters here-->
+    <button onclick="initialiseGame()">Start</button>
+    <br><br>
+    <button>Scores</button>
+    <br><br>
+    <button>Instructions</button>
+  </div>
+  <div id="scoreAndNextShape">
+    <table>
+      <thead>
+        <tr>
+          <td>Score</td>
+          <td>Next Shape</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="score">0</td>
+          <td id="nextShape"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="grid" class="grid-container"></div>
+  <div id="overlay">
+    <p id="countdown"></p>
+  </div>
+</body>
+
+</html>
