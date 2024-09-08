@@ -1,27 +1,5 @@
 "use strict";
 
-var columnSize = 10;
-var rowSize = 20;
-
-var countdownDuration = 5;
-
-var currentShape = [
-  {
-    rotationPhase: 0
-  },
-  {
-    coordinates: [
-      { id: "s1", row: null, column: null }, 
-      { id: "s2", row: null, column: null }, 
-      { id: "s3", row: null, column: null }, 
-      { id: "s4", row: null, column: null }
-    ]
-  },
-  {
-    pivotCoordinate: { id: "s4", row: null, column: null },
-  }
-];
-
 /**
  * Grid data structure: grid[row][column]
  * 
@@ -41,6 +19,20 @@ var currentShape = [
  */
 var grid = [];
 
+var currentShape = {
+  rotationPhase: 1,
+  coordinates: [
+    { id: "", row: null, column: null }, 
+    { id: "", row: null, column: null }, 
+    { id: "", row: null, column: null }, 
+    { id: "", row: null, column: null }
+  ]
+}
+
+var colorIndex = 0;
+var rotationDirection = "";
+
+
 function initialiseGame() {
   //Hide game title and welcome buttons, and display score and lives
   document.getElementById("gameTitle").style.display = "none";
@@ -57,12 +49,12 @@ function initialiseGame() {
  */
 function loadGrid(){
   let grid = document.getElementById("grid");
-  grid.style.setProperty("grid-template-columns", `repeat(${columnSize}, 2vw)`);
-  grid.style.setProperty("grid-template-rows", `repeat(${rowSize}, 4.2vh)`);
+  grid.style.setProperty("grid-template-columns", `repeat(${columnWidth}, 2vw)`);
+  grid.style.setProperty("grid-template-rows", `repeat(${rowHeight}, 4.2vh)`);
 
   //Grid dimensions
-  for (let row = rowSize; row > 0; row--) {
-    for (let column = 1; column <= columnSize; column++) {
+  for (let row = rowHeight; row > 0; row--) {
+    for (let column = 1; column <= columnWidth; column++) {
       let gridItem = document.createElement("div");
       gridItem.classList.add("grid-item");
       gridItem.setAttribute("id", `grid-${row}-${column}`);
@@ -112,63 +104,133 @@ function countdown() {
  */
 function startGame() {
   let currentShapeIndex = Math.floor(Math.random() * 7);
+  let middleColumn = Math.floor(columnWidth / 2);
+  let shapeColor = getColor(colorIndex);
 
-  let middleColumn = Math.floor(columnSize / 2);
-  let pointOfGeneration = document.getElementById(`grid-${rowSize}-${middleColumn}`);
-  pointOfGeneration.style.backgroundColor = "yellow";
-  
   //Generate shape
   if (currentShapeIndex == 0) {
-    document.getElementById(`grid-${rowSize}-${middleColumn + 1}`).style.backgroundColor = "yellow";
-    document.getElementById(`grid-${rowSize - 1}-${middleColumn}`).style.backgroundColor = "yellow";
-    document.getElementById(`grid-${rowSize - 1}-${middleColumn + 1}`).style.backgroundColor = "yellow";
+    //O shape
+    document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
 
-    currentShape = [
-      {
-        rotationPhase: null
-      },
-      {
-        pivotCoordinate: null
-      },
-      {
-        coordinates: [
-          { id: "o1", row: rowSize, column: middleColumn }, 
-          { id: "o2", row: rowSize, column: middleColumn + 1 }, 
-          { id: "o3", row: rowSize - 1, column: middleColumn }, 
-          { id: "o4", row: rowSize - 1, column: middleColumn + 1 }
-        ]
-      }
-    ];
+    currentShape = {
+      rotationPhase: 1,
+      coordinates: [
+        { id: "o-1", row: rowHeight, column: middleColumn }, 
+        { id: "o-2", row: rowHeight, column: middleColumn + 1 }, 
+        { id: "o-3", row: rowHeight - 1, column: middleColumn }, 
+        { id: "o-4", row: rowHeight - 1, column: middleColumn + 1 }
+      ]
+    };
     
   } else if (currentShapeIndex == 1) {
+    //I shape
+    document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 3}-${middleColumn}`).style.backgroundColor = shapeColor;
 
-
-    currentShape = [
-      {
-        rotationPhase: 0
-      },
-      {
-        pivotCoordinate: { id: "i3", row: null, column: null },
-      },
-      {
-        coordinates: [
-          { id: "i1", row: null, column: null }, 
-          { id: "i2", row: null, column: null }, 
-          { id: "i3", row: null, column: null }, 
-          { id: "i4", row: null, column: null }
-        ]
-      }
-    ];
+    currentShape = {
+      rotationPhase: 1,
+      coordinates: [
+        { id: "i-1", row: rowHeight, column: middleColumn }, 
+        { id: "i-2", row: rowHeight - 1, column: middleColumn }, 
+        { id: "i-3", row: rowHeight - 2, column: middleColumn }, 
+        { id: "i-4", row: rowHeight - 3, column: middleColumn }
+      ]
+    };
 
   } else if (currentShapeIndex == 2) {
+    //S shape
+    document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn - 1}`).style.backgroundColor = shapeColor;
+
+    currentShape = {
+      rotationPhase: 1,
+      coordinates: [
+        { id: "s-1", row: rowHeight, column: middleColumn }, 
+        { id: "s-2", row: rowHeight, column: middleColumn + 1 }, 
+        { id: "s-3", row: rowHeight - 1, column: middleColumn }, 
+        { id: "s-4", row: rowHeight - 1, column: middleColumn - 1 }
+      ]
+    };
 
   } else if (currentShapeIndex == 3) {
+    //Z shape
+    document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight}-${middleColumn - 1}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
+
+    currentShape = {
+      rotationPhase: 1,
+      coordinates: [
+        { id: "z-1", row: rowHeight, column: middleColumn }, 
+        { id: "z-2", row: rowHeight, column: middleColumn - 1 }, 
+        { id: "z-3", row: rowHeight - 1, column: middleColumn }, 
+        { id: "z-4", row: rowHeight - 1, column: middleColumn + 1 }
+      ]
+    };
 
   } else if (currentShapeIndex == 4) {
+    //L shape
+    document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 2}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
+
+    currentShape = {
+      rotationPhase: 1,
+      coordinates: [
+        { id: "l-1", row: rowHeight, column: middleColumn }, 
+        { id: "l-2", row: rowHeight - 1, column: middleColumn }, 
+        { id: "l-3", row: rowHeight - 2, column: middleColumn }, 
+        { id: "l-4", row: rowHeight - 2, column: middleColumn + 1 }
+      ]
+    };
 
   } else if (currentShapeIndex == 5) {
+    //J shape
+    document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 2}-${middleColumn - 1}`).style.backgroundColor = shapeColor;
+
+    currentShape = {
+      rotationPhase: 1,
+      coordinates: [
+        { id: "j-1", row: rowHeight, column: middleColumn }, 
+        { id: "j-2", row: rowHeight - 1, column: middleColumn }, 
+        { id: "j-3", row: rowHeight - 2, column: middleColumn }, 
+        { id: "j-4", row: rowHeight - 2, column: middleColumn - 1 }
+      ]
+    };
 
   } else if (currentShapeIndex == 6) {
+    //T shape
+    document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight}-${middleColumn - 1}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
+    document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
+
+    currentShape = {
+      rotationPhase: 1,
+      coordinates: [
+        { id: "t-1", row: rowHeight, column: middleColumn }, 
+        { id: "t-2", row: rowHeight, column: middleColumn - 1 }, 
+        { id: "t-3", row: rowHeight, column: middleColumn + 1 }, 
+        { id: "t-4", row: rowHeight - 1, column: middleColumn }
+      ]
+    };
 
   }
+
+
+  console.log("currentShape.coordinates: ", currentShape.coordinates);
+
+  rotate(currentShape);
 }
