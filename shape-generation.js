@@ -1,7 +1,5 @@
 "use strict";
 
-var rotationDirection = "";
-
 /**
  * shape indexes:
  * 
@@ -13,6 +11,8 @@ var rotationDirection = "";
  * 5 - J shape
  * 6 - T shape
  */
+
+
 //Requires the global variable middleColumn
 function generateShape() {
 

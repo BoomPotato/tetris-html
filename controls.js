@@ -1,4 +1,4 @@
-//Tank controls
+//Shape controls
 /**
  * Modified from StackOverFlow:
  * https://stackoverflow.com/questions/16345870/keydown-keyup-events-for-specific-keys

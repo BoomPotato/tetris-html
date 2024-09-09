@@ -4,12 +4,11 @@ var tempCoordinates = [];
 var rotateCoordinateTestPassed = false;
 
 
-//Requires the global variables currentShape and rotationDirection
+//Requires the global variables currentShape
 function rotate() {
   /**
-   * coordinates is a temporary array for testing if rotating a shape will cause it to go out of bounds of the grid
-   * coordinates structure sample:
-   * 
+   * tempCoordinates is a temporary array for testing if rotating a shape will cause it to go out of bounds of the grid.
+   * data sample:
    * [
    *    { id: "i-1", row: 0, column: 0},
    *    { id: "i-2", row: 0, column: 0},

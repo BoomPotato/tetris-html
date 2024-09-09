@@ -39,7 +39,6 @@ function initialiseGame() {
   document.getElementById("scoreAndNextShape").style.display = "block";
 
   loadGrid();
-
   countdown();
 }
 
