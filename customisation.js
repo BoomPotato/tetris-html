@@ -15,6 +15,6 @@ var colors = [
   "purple"
 ]
 
-function getColor(colorIndex) {
-  return colors[colorIndex];
+function getColor() {
+  return colors[currentShape.colorIndex];
 }
