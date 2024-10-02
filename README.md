@@ -19,7 +19,7 @@ Project started on 7 June 2024.
       <li>countdownDuration</li>
     </ul>
   </li>
-  <li>Block Aesthetics:
+  <li>Block aesthetics:
     <ul>
       <li>colors</li>
     </ul>
