@@ -1,4 +1,4 @@
-# space-invaders-html
+# tetris-html
 
 Tetris built with html, css, and js.
 
