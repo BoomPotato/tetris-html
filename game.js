@@ -13,7 +13,7 @@
  *    [
  *       {row: 2, column: 1},
  *       {row: 2, column: 2},
- *       {row: 1, column: 3},
+ *       {row: 2, column: 3},
  *    ]
  * ]
  */
@@ -39,7 +39,9 @@ function initialiseGame() {
   document.getElementById("scoreAndNextShape").style.display = "block";
 
   loadGrid();
-  countdown();
+  // countdown();
+  generateShape();
+  startGame();
 }
 
 
@@ -70,8 +72,8 @@ function loadGrid() {
 }
 
 
-function countdown() {
-  startGame();
+function startGame() {
+  activateTankControls();
 }
 
 
@@ -97,11 +99,6 @@ function countdown() {
 //   }, 1000);
 // }
 
-
-function startGame() {
-  //Generate shape
-  generateShape();
-}
 
 // function startGame() {
 //   let currentShapeIndex = Math.floor(Math.random() * 7);

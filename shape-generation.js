@@ -363,6 +363,5 @@ function generateShape() {
   //   document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
 
   // }
-
-  activateTankControls();
+  
 }
