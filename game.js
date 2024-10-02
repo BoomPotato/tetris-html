@@ -21,7 +21,7 @@ var grid = [];
 var middleColumn;
 
 var currentShape = {
-  rotationPhase: 0,
+  rotationPhase: "r0",
   colorIndex: 0,
   coordinates: [
     { id: "", row: null, column: null }, 
@@ -29,7 +29,7 @@ var currentShape = {
     { id: "", row: null, column: null }, 
     { id: "", row: null, column: null }
   ]
-}
+};
 
 
 function initialiseGame() {
@@ -46,7 +46,7 @@ function initialiseGame() {
 /**
  * Grid id format: grid-{row}-{column}
  */
-function loadGrid(){
+function loadGrid() {
   middleColumn = Math.floor(columnWidth / 2);
   let grid = document.getElementById("grid");
   grid.style.setProperty("grid-template-columns", `repeat(${columnWidth}, 2vw)`);
@@ -117,7 +117,7 @@ function startGame() {
 //     document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
 
 //     currentShape = {
-//       rotationPhase: 0,
+//       rotationPhase: "r0",
 //       coordinates: [
 //         { id: "o-1", row: rowHeight, column: middleColumn }, 
 //         { id: "o-2", row: rowHeight, column: middleColumn + 1 }, 
@@ -134,7 +134,7 @@ function startGame() {
 //     document.getElementById(`grid-${rowHeight - 3}-${middleColumn}`).style.backgroundColor = shapeColor;
 
 //     currentShape = {
-//       rotationPhase: 0,
+//       rotationPhase: "r0",
 //       coordinates: [
 //         { id: "i-1", row: rowHeight, column: middleColumn }, 
 //         { id: "i-2", row: rowHeight - 1, column: middleColumn }, 
@@ -151,7 +151,7 @@ function startGame() {
 //     document.getElementById(`grid-${rowHeight - 1}-${middleColumn - 1}`).style.backgroundColor = shapeColor;
 
 //     currentShape = {
-//       rotationPhase: 0,
+//       rotationPhase: "r0",
 //       coordinates: [
 //         { id: "s-1", row: rowHeight, column: middleColumn }, 
 //         { id: "s-2", row: rowHeight, column: middleColumn + 1 }, 
@@ -168,7 +168,7 @@ function startGame() {
 //     document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
 
 //     currentShape = {
-//       rotationPhase: 0,
+//       rotationPhase: "r0",
 //       coordinates: [
 //         { id: "z-1", row: rowHeight, column: middleColumn }, 
 //         { id: "z-2", row: rowHeight, column: middleColumn - 1 }, 
@@ -185,7 +185,7 @@ function startGame() {
 //     document.getElementById(`grid-${rowHeight - 2}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
 
 //     currentShape = {
-//       rotationPhase: 0,
+//       rotationPhase: "r0",
 //       coordinates: [
 //         { id: "l-1", row: rowHeight, column: middleColumn }, 
 //         { id: "l-2", row: rowHeight - 1, column: middleColumn }, 
@@ -202,7 +202,7 @@ function startGame() {
 //     document.getElementById(`grid-${rowHeight - 2}-${middleColumn - 1}`).style.backgroundColor = shapeColor;
 
 //     currentShape = {
-//       rotationPhase: 0,
+//       rotationPhase: "r0",
 //       coordinates: [
 //         { id: "j-1", row: rowHeight, column: middleColumn }, 
 //         { id: "j-2", row: rowHeight - 1, column: middleColumn }, 
@@ -219,7 +219,7 @@ function startGame() {
 //     document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
 
 //     currentShape = {
-//       rotationPhase: 0,
+//       rotationPhase: "r0",
 //       coordinates: [
 //         { id: "t-1", row: rowHeight, column: middleColumn }, 
 //         { id: "t-2", row: rowHeight, column: middleColumn - 1 }, 

@@ -3,9 +3,9 @@
 /**
  * shape indexes:
  * 
- * 0 - O shape
- * 1 - I shape
- * 2 - S shape
+ * 0 - O shape (no rotation required)
+ * 1 - I shape (done rotation)
+ * 2 - S shape (WIP rotation)
  * 3 - Z shape
  * 4 - L shape
  * 5 - J shape
@@ -26,7 +26,7 @@ function generateShape() {
   if (currentShapeIndex == 0) {
     //O shape
     currentShape = {
-      rotationPhase: 0,
+      rotationPhase: "r0",
       colorIndex: 0,
       coordinates: [
         { id: "o-1", row: rowHeight, column: middleColumn },
@@ -49,7 +49,7 @@ function generateShape() {
   } else if (currentShapeIndex == 1) {
     //I shape
     currentShape = {
-      rotationPhase: 0,
+      rotationPhase: "r0",
       colorIndex: 0,
       coordinates: [
         { id: "i-1", row: rowHeight, column: middleColumn },
@@ -72,7 +72,7 @@ function generateShape() {
   } else if (currentShapeIndex == 2) {
     //S shape
     currentShape = {
-      rotationPhase: 0,
+      rotationPhase: "r0",
       colorIndex: 0,
       coordinates: [
         { id: "s-1", row: rowHeight, column: middleColumn },
@@ -95,7 +95,7 @@ function generateShape() {
   } else if (currentShapeIndex == 3) {
     //Z shape
     currentShape = {
-      rotationPhase: 0,
+      rotationPhase: "r0",
       colorIndex: 0,
       coordinates: [
         { id: "z-1", row: rowHeight, column: middleColumn },
@@ -118,7 +118,7 @@ function generateShape() {
   } else if (currentShapeIndex == 4) {
     //L shape
     currentShape = {
-      rotationPhase: 0,
+      rotationPhase: "r0",
       colorIndex: 0,
       coordinates: [
         { id: "l-1", row: rowHeight, column: middleColumn },
@@ -141,7 +141,7 @@ function generateShape() {
   } else if (currentShapeIndex == 5) {
     //J shape
     currentShape = {
-      rotationPhase: 0,
+      rotationPhase: "r0",
       colorIndex: 0,
       coordinates: [
         { id: "j-1", row: rowHeight, column: middleColumn },
@@ -164,7 +164,7 @@ function generateShape() {
   } else if (currentShapeIndex == 6) {
     //T shape
     currentShape = {
-      rotationPhase: 0,
+      rotationPhase: "r0",
       colorIndex: 0,
       coordinates: [
         { id: "t-1", row: rowHeight, column: middleColumn },
