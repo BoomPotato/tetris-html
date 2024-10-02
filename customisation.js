@@ -1,7 +1,7 @@
 "use strict";
 
-var columnWidth = 10;
 var rowHeight = 20;
+var columnWidth = 10;
 
 var countdownDuration = 5;
 
