@@ -34,9 +34,6 @@ function rotate() {
           let row = tempCoordinates[i].row;
           let column = tempCoordinates[i].column;
 
-          //TEST
-          // console.log("algebra:", row, column);
-
           switch (blockIndex) {
             case "1":
               row -= 1;
@@ -83,9 +80,6 @@ function rotate() {
           let row = tempCoordinates[i].row;
           let column = tempCoordinates[i].column;
 
-          //TEST
-          // console.log("algebra:", row, column);
-
           switch (blockIndex) {
             case "1":
               row -= 2;
@@ -128,9 +122,6 @@ function rotate() {
           let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
           let row = tempCoordinates[i].row;
           let column = tempCoordinates[i].column;
-
-          //TEST
-          // console.log("algebra:", row, column);
 
           switch (blockIndex) {
             case "1":
@@ -211,25 +202,870 @@ function rotate() {
           }
         }
       }
-
-      //TEST
-      // console.log("======================");
-
       break;
 
     case "s":
+      if (rotationIndex == 0) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row -= 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row -= 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row += 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 1) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row += 1;
+              column -= 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 2) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row += 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row -= 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row -= 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 3) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row += 1;
+              column -= 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
       break;
 
     case "z":
+      if (rotationIndex == 0) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              column += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row -= 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row -= 1;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 1) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row += 2;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 2) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row -= 1;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row -= 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              column += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 3) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row += 2;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
       break;
 
     case "l":
+      if (rotationIndex == 0) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              column += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row += 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row += 1;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 1) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row -= 2;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 2) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row += 1;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row -= 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              column += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 3) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row -= 1;
+              column -= 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row -= 2;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
       break;
 
     case "j":
+      if (rotationIndex == 0) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row -= 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row += 1;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 1) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row -= 1;
+              column -= 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 2) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row += 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              column += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row -= 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 3) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row -= 2;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row -= 1;
+              column -= 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
       break;
 
     case "t":
+      if (rotationIndex == 0) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row -= 2;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 1) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row -= 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row += 1;
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row += 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 2) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row -= 1;
+              column -= 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              column -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              row += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              row -= 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      } else if (rotationIndex == 3) {
+        //JavaScript label
+        rotationLoop:
+        for (let i = 0; i < tempCoordinates.length; i++) {
+          let [shapeType, blockIndex] = tempCoordinates[i].id.split('-');
+          let row = tempCoordinates[i].row;
+          let column = tempCoordinates[i].column;
+
+          switch (blockIndex) {
+            case "1":
+              row += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "2":
+              row += 1;
+              column += 1;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "3":
+              column += 2;
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            case "4":
+              if (!(rotateCoordinateTrial(i, row, column))) {
+                break rotationLoop;
+              }
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
       break;
 
     default:
@@ -253,7 +1089,7 @@ function rotateCoordinateTrial(i, row, column) {
     return true;
   } else {
     //Log rotation error in console, but don't show to player
-    console.log("Error: cannot rotate " + tempCoordinates[i].id + ", coordinate falls outside grid boundaries");
+    console.log("Error, cannot rotate:" + '\n' + `id: ${currentShape.coordinates[i].id}, row: ${currentShape.coordinates[i].row}, column: ${currentShape.coordinates[i].column}` + '\n' + "Because rotated coordinate falls outside grid boundaries: " + '\n' + `id: ${tempCoordinates[i].id}, row: ${row}, column: ${column}`);
     rotateCoordinateTrialPassed = false;
     return false;
   }
@@ -269,7 +1105,7 @@ function rotateCoordinates() {
 
     //Remove labels from old coordinate
     gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
-    
+
     //Remove color from old coordinate
     gridItem.style.removeProperty("background-color");
   }
