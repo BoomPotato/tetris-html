@@ -1,0 +1,103 @@
+"use strict";
+
+
+var descentIntervalDuration = 1000;
+
+
+function startAutomaticDescent() {
+  let descentInterval = setInterval(function moveShapeDownByOneRow() {
+    let shapeColor = getColor();
+
+    //Check for the lowest coordinate of the shape (the coordinate closest to the bottom of the grid; the coordinate with the lowest row number)
+    let lowestRowCoordinateOfShape = currentShape.coordinates[0].row;
+    for (let i = 0; i < currentShape.coordinates.length; i++) {
+      if (currentShape.coordinates[i].row < lowestRowCoordinateOfShape) {
+        lowestRowCoordinateOfShape = currentShape.coordinates[i].row;
+      }
+    }
+
+    //TEST
+    console.log("lowest coordinate of shape before descending:", lowestRowCoordinateOfShape);
+  
+    //If the lowest coordinate of the shape will not fall below the bottom of the grid if descended, proceed with descent
+    if (lowestRowCoordinateOfShape != 1) {
+      for (let i = 0; i < currentShape.coordinates.length; i++) {
+        let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
+      
+        //Remove labels from old coordinate
+        gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
+      
+        //Remove color from old coordinate
+        gridItem.style.removeProperty("background-color");  
+      }
+      for (let i = 0; i < currentShape.coordinates.length; i++) {
+        //Update coordinate in global variable currentShape to descend by one row
+        currentShape.coordinates[i].row--;
+    
+        //Add label to new coordinate
+        document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`).classList.add(currentShape.coordinates[i].id, currentShape.rotationPhase);
+    
+        //Add color to new coordinate
+        document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`).style.backgroundColor = shapeColor;
+      }
+    } else {
+      clearInterval(descentInterval);
+      placeShape();
+    }
+    
+  }, descentIntervalDuration);
+}
+
+
+function placeShape() {
+  //TO DO: increase lines cleared OR score
+
+  //PLACEHOLDERS
+  console.log("finish descent");
+  alert("finish descent");
+}
+
+
+//Called whenever a shape descends (automatically by one row; sped up via down button; instantly placed via space bar)
+function checkForHorizontalMatches() {
+
+}
+
+
+// function moveShapeDownByOneRow() {
+//   let shapeColor = getColor();
+
+//   //Check for the lowest coordinate of the shape (the coordinate closest to the bottom of the grid; the coordinate with the lowest row number)
+//   let lowestRowCoordinateOfShape = currentShape.coordinates[0].row;
+//   for (let i = 0; i < currentShape.coordinates.length; i++) {
+//     if (lowestRowCoordinateOfShape < currentShape.coordinates[i].row) {
+//       lowestRowCoordinateOfShape = currentShape.coordinates[i].row;
+//     }
+//   }
+
+//   //If the lowest coordinate of the shape will not fall below the bottom of the grid if descended, proceed with descent
+//   if (lowestRowCoordinateOfShape > rowHeight) {
+//     for (let i = 0; i < currentShape.coordinates.length; i++) {
+//       let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
+    
+//       //Remove labels from old coordinate
+//       gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
+    
+//       //Remove color from old coordinate
+//       gridItem.style.removeProperty("background-color");  
+//     }
+//     for (let i = 0; i < currentShape.coordinates.length; i++) {
+//       //Update coordinate in global variable currentShape to descend by one row
+//       currentShape.coordinates[i].row--;
+  
+//       //Add label to new coordinate
+//       document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`).classList.add(currentShape.coordinates[i].id, currentShape.rotationPhase);
+  
+//       //Add color to new coordinate
+//       document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`).style.backgroundColor = shapeColor;
+//     }
+//   } else {
+//     placeShape();
+//   }
+// }
+

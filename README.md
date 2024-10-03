@@ -14,7 +14,7 @@ Project started on 7 June 2024.
       <li>columnWidth</li>
     </ul>
   </li>
-  <li>Pre-game countdown:
+  <li>Pre-game countdown: (currently not in use)
     <ul>
       <li>countdownDuration</li>
     </ul>
