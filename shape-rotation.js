@@ -6,7 +6,7 @@ var rotateCoordinateTrialPassed = false;
 
 //Requires the global variables currentShape
 //Rotates shape clockwise, 90 degrees each time
-function rotate() {
+function rotateClockwise() {
   /**
    * tempCoordinates is a temporary array for testing if rotating a shape will cause it to go out of bounds of the grid.
    * data sample:
@@ -18,7 +18,6 @@ function rotate() {
    * ]
    * 
    */
-
   //Create a deep copy of the original coordinates using JSON, in contrast to using '=' to create a reference to it
   tempCoordinates = JSON.parse(JSON.stringify(currentShape.coordinates));
   let [firstCoordinateShapeType, firstCoordinateBlockIndex] = tempCoordinates[0].id.split('-');
@@ -39,9 +38,8 @@ function rotate() {
               row -= 1;
               column += 2;
               if (!(rotateCoordinateTrial(i, row, column))) {
-                /** If rotate test fails for one coordinate (means that rotating the coordinate will cause 
-                 * it to go out of bounds, don't try to rotate the subsequent coordinates)
-                 */
+                //If rotate test fails for one coordinate (means that rotating the coordinate will cause 
+                //it to go out of bounds, don't try to rotate the subsequent coordinates)
                 break rotationLoop;
               }
               break;
@@ -1084,7 +1082,7 @@ function rotateCoordinateTrial(i, row, column) {
   if (((row >= 1) && (row <= rowHeight)) && ((column >= 1) && (column <= columnWidth))) {
     //Rotate coordinate in test array tempCoordinates
     tempCoordinates[i].row = JSON.parse(JSON.stringify(row));
-    tempCoordinates[i].column = JSON.parse(JSON.stringify(column)); //4th coordinate failing column
+    tempCoordinates[i].column = JSON.parse(JSON.stringify(column));
     rotateCoordinateTrialPassed = true;
     return true;
   } else {

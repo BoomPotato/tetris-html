@@ -1,11 +1,14 @@
 "use strict";
 
-
-var descentIntervalDuration = 1000;
+//Will be gradually shortened depending on how many lines the player has cleared. 
+//Able to be temporarily overriden by the hastenDescentInterval variable.
+var defaultDescentInterval = 1000;
+var timeToBeDeducted = 0;
 
 
 function startAutomaticDescent() {
-  let descentInterval = setInterval(function moveShapeDownByOneRow() {
+  let descentInterval = defaultDescentInterval - timeToBeDeducted;
+  let descentIntervalFunction = setInterval(function moveShapeDownByOneRow() {
     let shapeColor = getColor();
 
     //Check for the lowest coordinate of the shape (the coordinate closest to the bottom of the grid; the coordinate with the lowest row number)
@@ -17,10 +20,10 @@ function startAutomaticDescent() {
     }
 
     //TEST
-    console.log("lowest coordinate of shape before descending:", lowestRowCoordinateOfShape);
+    // console.log("lowest coordinate of shape before descending:", lowestRowCoordinateOfShape);
   
     //If the lowest coordinate of the shape will not fall below the bottom of the grid if descended, proceed with descent
-    if (lowestRowCoordinateOfShape != 1) {
+    if (lowestRowCoordinateOfShape > 1) {
       for (let i = 0; i < currentShape.coordinates.length; i++) {
         let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
       
@@ -33,19 +36,20 @@ function startAutomaticDescent() {
       for (let i = 0; i < currentShape.coordinates.length; i++) {
         //Update coordinate in global variable currentShape to descend by one row
         currentShape.coordinates[i].row--;
+        let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
     
         //Add label to new coordinate
-        document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`).classList.add(currentShape.coordinates[i].id, currentShape.rotationPhase);
+        gridItem.classList.add(currentShape.coordinates[i].id, currentShape.rotationPhase);
     
         //Add color to new coordinate
-        document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`).style.backgroundColor = shapeColor;
+        gridItem.style.backgroundColor = shapeColor;
       }
     } else {
-      clearInterval(descentInterval);
+      clearInterval(descentIntervalFunction);
       placeShape();
     }
-    
-  }, descentIntervalDuration);
+    console.log("descentInterval", descentInterval);
+  }, descentInterval);
 }
 
 

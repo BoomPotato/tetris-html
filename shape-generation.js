@@ -11,7 +11,6 @@
  * 5 - J shape (done rotation)
  * 6 - T shape (done rotation)
  */
-
 var shapes = ["o", "i", "s", "z", "l", "j", "t"];
 
 
@@ -22,7 +21,7 @@ function generateShape() {
   // let randomShape = shapes[randomShapeIndex];
 
   //TESTING - DELETE LATER
-  let randomShape = "t";
+  let randomShape = "l";
 
   let shapeColor = getColor();
  

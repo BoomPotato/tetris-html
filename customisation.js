@@ -18,3 +18,5 @@ var colors = [
 function getColor() {
   return colors[currentShape.colorIndex];
 }
+
+var hastenDescentInterval = 900;
