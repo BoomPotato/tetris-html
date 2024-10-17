@@ -4,8 +4,11 @@
 //Modified from StackOverFlow:
 //https://stackoverflow.com/questions/16345870/keydown-keyup-events-for-specific-keys
 
-//Stores the default defaultDescentInterval variable before it's overriden by the hastenDescentInterval variable.
-var defaultDescentIntervalBeforeOverride;
+// //Stores the default defaultDescentInterval variable before it's overriden by the hastenDescentInterval variable.
+// var defaultDescentIntervalBeforeOverride;
+
+//Used to hasten shape descent
+var arrowDownKeyIsHeld = false;
 
 
 var action = {
@@ -18,7 +21,7 @@ var action = {
       }
     }
 
-    let shapeColor = getColor();
+    let shapeColor = getColor(currentShape.shapeType);
 
     if (closestColumnCoordinateToTheLeft > 1) {
       for (let i = 0; i < currentShape.coordinates.length; i++) {
@@ -48,7 +51,7 @@ var action = {
       }
     }
 
-    let shapeColor = getColor();
+    let shapeColor = getColor(currentShape.shapeType);
 
     if (closestColumnCoordinateToTheRight < columnWidth) {
       for (let i = 0; i < currentShape.coordinates.length; i++) {
@@ -74,30 +77,35 @@ var action = {
   },
 
   hastenDescent() {
-    timeToBeDeducted = hastenDescentInterval;
+    //TEST
+    console.log("a");
+    
+    arrowDownKeyIsHeld = true;
 
 
-
-
-    // //Store default descent interval in a temporary variable. Is necessary because the default interval is not static, 
-    // //it shortens depending on how many lines the player has cleared.
-    // defaultDescentIntervalBeforeOverride = JSON.parse(JSON.stringify(defaultDescentInterval));
-    // //Override default descent interval with hastened interval
-    // defaultDescentInterval = JSON.parse(JSON.stringify(hastenDescentInterval));
+    /*
+    //Store default descent interval in a temporary variable. Is necessary because the default interval is not static, 
+    //it shortens depending on how many lines the player has cleared.
+    defaultDescentIntervalBeforeOverride = JSON.parse(JSON.stringify(defaultDescentInterval));
+    //Override default descent interval with hastened interval
+    defaultDescentInterval = JSON.parse(JSON.stringify(hastenDescentInterval));
+    */
   },
 
   revertDescentToDefaultSpeed() {
+    //TEST
+    console.log("b");
+    
+    arrowDownKeyIsHeld = false;
 
 
 
-
-    // //Restore default descent interval
-    // defaultDescentInterval = JSON.parse(JSON.stringify(defaultDescentIntervalBeforeOverride));
+    /*
+    //Restore default descent interval
+    defaultDescentInterval = JSON.parse(JSON.stringify(defaultDescentIntervalBeforeOverride));
+    */
   },
 
-  placeShape() {
-    //TO DO
-  }
 };
 
 var keyAction = {
@@ -129,7 +137,7 @@ var keyHandler = (event) => {
 };
 
 
-function activateTankControls() {
+function activateControls() {
   ['keydown', 'keyup'].forEach((evType) => {
     document.body.addEventListener(evType, keyHandler);
   });

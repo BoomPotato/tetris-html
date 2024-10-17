@@ -23,15 +23,15 @@ function generateShape() {
   //TESTING - DELETE LATER
   let randomShape = "l";
 
-  let shapeColor = getColor();
+  let shapeColor = getColor(randomShape);
  
   //Generate shape
   switch (randomShape) {
     case "o":
       //O shape
       currentShape = {
+        shapeType: "o",
         rotationPhase: "r0",
-        colorIndex: 0,
         coordinates: [
           { id: "o-1", row: rowHeight, column: middleColumn },
           { id: "o-2", row: rowHeight, column: middleColumn + 1 },
@@ -54,8 +54,8 @@ function generateShape() {
     case "i":
       //I shape
       currentShape = {
+        shapeType: "i",
         rotationPhase: "r0",
-        colorIndex: 0,
         coordinates: [
           { id: "i-1", row: rowHeight, column: middleColumn },
           { id: "i-2", row: rowHeight - 1, column: middleColumn },
@@ -78,8 +78,8 @@ function generateShape() {
     case "s":
       //S shape
       currentShape = {
+        shapeType: "s",
         rotationPhase: "r0",
-        colorIndex: 0,
         coordinates: [
           { id: "s-1", row: rowHeight, column: middleColumn },
           { id: "s-2", row: rowHeight, column: middleColumn + 1 },
@@ -102,8 +102,8 @@ function generateShape() {
     case "z":
       //Z shape
       currentShape = {
+        shapeType: "z",
         rotationPhase: "r0",
-        colorIndex: 0,
         coordinates: [
           { id: "z-1", row: rowHeight, column: middleColumn - 1 },
           { id: "z-2", row: rowHeight, column: middleColumn },
@@ -126,8 +126,8 @@ function generateShape() {
     case "l":
       //L shape
       currentShape = {
+        shapeType: "l",
         rotationPhase: "r0",
-        colorIndex: 0,
         coordinates: [
           { id: "l-1", row: rowHeight, column: middleColumn },
           { id: "l-2", row: rowHeight - 1, column: middleColumn },
@@ -150,8 +150,8 @@ function generateShape() {
     case "j":
       //J shape
       currentShape = {
+        shapeType: "j",
         rotationPhase: "r0",
-        colorIndex: 0,
         coordinates: [
           { id: "j-1", row: rowHeight, column: middleColumn + 1 },
           { id: "j-2", row: rowHeight - 1, column: middleColumn + 1 },
@@ -174,8 +174,8 @@ function generateShape() {
     case "t":
       //T shape
       currentShape = {
+        shapeType: "t",
         rotationPhase: "r0",
-        colorIndex: 0,
         coordinates: [
           { id: "t-1", row: rowHeight, column: middleColumn },
           { id: "t-2", row: rowHeight, column: middleColumn + 1 },

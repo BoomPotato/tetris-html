@@ -20,10 +20,9 @@ function rotateClockwise() {
    */
   //Create a deep copy of the original coordinates using JSON, in contrast to using '=' to create a reference to it
   tempCoordinates = JSON.parse(JSON.stringify(currentShape.coordinates));
-  let [firstCoordinateShapeType, firstCoordinateBlockIndex] = tempCoordinates[0].id.split('-');
   let [rotationNotation, rotationIndex] = currentShape.rotationPhase.split('');
 
-  switch (firstCoordinateShapeType) {
+  switch (currentShape.shapeType) {
     case "i":
       if (rotationIndex == 0) {
         //JavaScript label
@@ -1076,7 +1075,6 @@ function rotateClockwise() {
 }
 
 
-//DO NOT DELETE! THIS FUNCTION IS USED IN-GAME! NOT USED FOR DEBUGGING!
 //Test if rotating a shape's coordinate will cause the shape to go out of bounds of the grid
 function rotateCoordinateTrial(i, row, column) {
   if (((row >= 1) && (row <= rowHeight)) && ((column >= 1) && (column <= columnWidth))) {
@@ -1096,7 +1094,7 @@ function rotateCoordinateTrial(i, row, column) {
 
 function rotateCoordinates() {
   incrementRotationPhase();
-  let shapeColor = getColor();
+  let shapeColor = getColor(currentShape.shapeType);
 
   for (let i = 0; i < currentShape.coordinates.length; i++) {
     let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
@@ -1130,3 +1128,4 @@ function incrementRotationPhase() {
     currentShape.rotationPhase = `r${rotationIndex}`;
   }
 }
+

@@ -21,8 +21,8 @@ var grid = [];
 var middleColumn;
 
 var currentShape = {
+  shapeType: "o",
   rotationPhase: "r0",
-  colorIndex: 0,
   coordinates: [
     { id: "", row: null, column: null }, 
     { id: "", row: null, column: null }, 
@@ -73,30 +73,30 @@ function loadGrid() {
 
 
 function startGame() {
-  activateTankControls();
-  startAutomaticDescent();
+  activateControls();
+  moveShapeDownByOneRow();
 }
 
 
-// function countdown() {
-//   //Unhide overlay
-//   let overlay = document.getElementById("overlay");
-//   overlay.style.display = "flex";
+function countdown() {
+  //Unhide overlay
+  let overlay = document.getElementById("overlay");
+  overlay.style.display = "flex";
 
-//   let countdown = document.getElementById("countdown");
-//   countdown.innerText = "COUNTDOWN";
-//   let counter = countdownDuration;
-//   let timer = setInterval(() => {
-//     countdown.innerText = counter;
-//     if (counter == 0) {
-//       countdown.innerText = "START";
-//     }
-//     if (counter <= -1) {
-//       clearInterval(timer);
-//       overlay.style.display = "none";
-//       startGame();
-//     }
-//     counter--;
-//   }, 1000);
-// }
+  let countdown = document.getElementById("countdown");
+  countdown.innerText = "COUNTDOWN";
+  let counter = countdownDuration;
+  let timer = setInterval(() => {
+    countdown.innerText = counter;
+    if (counter == 0) {
+      countdown.innerText = "START";
+    }
+    if (counter <= -1) {
+      clearInterval(timer);
+      overlay.style.display = "none";
+      startGame();
+    }
+    counter--;
+  }, 1000);
+}
 

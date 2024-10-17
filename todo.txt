@@ -1,6 +1,9 @@
 controls:
 x 1) left and right buttons to move shape left and right
-2) press arrowdown button to hasten descent. lift arrowdown button to revert descent to default speed
+x 2) press arrowdown button to hasten descent. lift arrowdown button to revert descent to default speed
+    - Issue: There is a slight delay when triggering the hastened descent feature when the currently active setTimeout function isn't 
+    finished. This disrupts user experience because the response is not immediate; it catches the user off guard when the feature 
+    eventually and unexpectedly triggers.
 3) space bar to place shape immediately
 
 shape descent:
@@ -22,5 +25,10 @@ customisation options:
 1) randomise color of tetris shapes. might look jarring because there isn't a smooth and gradual transition between hues.
 2) if the stack of blocks rises higher than the mid-point of the grid, change the color of all blocks to match the background 
 (meant to torture players into keeping their stack below the midpoint.)
+
+
+NOTES:
+setInterval takes a fixed interval value that value can't be changed dynamically... but I could change it dynamically in space-invaders-html. Figure out if it would work in tetris-html too.
+https://stackoverflow.com/questions/30725455/change-setinterval-value-dynamically
 
 
