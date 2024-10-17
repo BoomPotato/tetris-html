@@ -13,20 +13,42 @@
  */
 var shapes = ["o", "i", "s", "z", "l", "j", "t"];
 
+var nextRandomShape = "";
+
 
 //Requires the global variable middleColumn
-function generateShape() {
-  
-  // let randomShapeIndex = Math.floor(Math.random() * 7);
-  // let randomShape = shapes[randomShapeIndex];
+function generateShape(isFirstShape) {
+  let shape;
+
+  if (isFirstShape) {
+    //Randomise first shape
+    let randomShapeIndex = Math.floor(Math.random() * 7);
+    shape = shapes[randomShapeIndex];
+  } else {
+    //Take the previously randomised 'next' shape as the current shape
+    shape = nextRandomShape;
+  }
+
+  //Randomise next shape (will be different from current shape)
+  let tempShapesArray = JSON.parse(JSON.stringify(shapes));
+  tempShapesArray.splice(tempShapesArray.indexOf(shape), 1);
+  let nextRandomShapeIndex = Math.floor(Math.random() * 6);
+  nextRandomShape = tempShapesArray[nextRandomShapeIndex];
 
   //TESTING - DELETE LATER
-  let randomShape = "l";
+  // let shape = "t";
 
-  let shapeColor = getColor(randomShape);
+  if (!isFirstShape) {
+    //Remove image of previous 'next' shape
+    let nextShapeElement = document.getElementById("nextShape");
+    nextShapeElement.removeChild(nextShapeElement.getElementsByTagName('img')[0]);
+  }
+  document.getElementById("nextShape").appendChild(getShapeImage(nextRandomShape));
+
+  let shapeColor = getColor(shape);
  
   //Generate shape
-  switch (randomShape) {
+  switch (shape) {
     case "o":
       //O shape
       currentShape = {
@@ -198,5 +220,6 @@ function generateShape() {
     default:
       break;
   }
-  
+
+  moveShapeDownByOneRow();
 }

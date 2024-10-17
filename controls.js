@@ -77,33 +77,11 @@ var action = {
   },
 
   hastenDescent() {
-    //TEST
-    console.log("a");
-    
     arrowDownKeyIsHeld = true;
-
-
-    /*
-    //Store default descent interval in a temporary variable. Is necessary because the default interval is not static, 
-    //it shortens depending on how many lines the player has cleared.
-    defaultDescentIntervalBeforeOverride = JSON.parse(JSON.stringify(defaultDescentInterval));
-    //Override default descent interval with hastened interval
-    defaultDescentInterval = JSON.parse(JSON.stringify(hastenDescentInterval));
-    */
   },
 
   revertDescentToDefaultSpeed() {
-    //TEST
-    console.log("b");
-    
     arrowDownKeyIsHeld = false;
-
-
-
-    /*
-    //Restore default descent interval
-    defaultDescentInterval = JSON.parse(JSON.stringify(defaultDescentIntervalBeforeOverride));
-    */
   },
 
 };

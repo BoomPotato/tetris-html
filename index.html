@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="controls.js"></script>
   <script type="text/javascript" src="customisation.js"></script>
+  <script type="text/javascript" src="asset-handler.js"></script>
   <script type="text/javascript" src="shape-generation.js"></script>
   <script type="text/javascript" src="shape-rotation.js"></script>
   <script type="text/javascript" src="shape-descent.js"></script>
@@ -14,7 +15,9 @@
 </head>
 
 <body>
+
   <h1 id="gameTitle">Tetris</h1>
+
   <div id="welcomeBtns">
     <!--put image of game characters here-->
     <button onclick="initialiseGame()">Start</button>
@@ -23,20 +26,32 @@
     <br><br>
     <button>Instructions</button>
   </div>
-  <div id="scoreAndNextShape">
-    <table>
-      <thead>
-        <tr>
-          <td>Score: <span id="score">0</span></td>
-          <td>Next Shape: <span id="nextShape"></span></td>
-        </tr>
-      </thead>
-    </table>
+
+  <div class="row">
+    
+    <div class="column">
+      <div class="grid-container" id="grid"></div>
+    </div>
+
+    <div class="column" id="scoreAndNextShape">
+      <table>
+        <thead>
+          <tr>
+            <td>Score: <span id="score">0</span></td>
+          </tr>
+          <tr>
+            <td>Next Shape: <span id="nextShape"></span></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
   </div>
-  <div id="grid" class="grid-container"></div>
+
   <div id="overlay">
     <p id="countdown"></p>
   </div>
+
 </body>
 
 </html>

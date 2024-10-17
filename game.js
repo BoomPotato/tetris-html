@@ -40,7 +40,7 @@ function initialiseGame() {
 
   loadGrid();
   // countdown();
-  generateShape();
+  generateShape(true);
   startGame();
 }
 
@@ -66,7 +66,6 @@ function loadGrid() {
       gridItem.appendChild(label);
 
       grid.appendChild(gridItem);
-      document.body.appendChild(grid);
     }
   }
 }
@@ -74,7 +73,7 @@ function loadGrid() {
 
 function startGame() {
   activateControls();
-  moveShapeDownByOneRow();
+  // moveShapeDownByOneRow();
 }
 
 
