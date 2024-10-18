@@ -1,23 +1,5 @@
 "use strict";
 
-/**
- * Grid data structure: grid[row][column]
- * 
- * Sample:
- * [
- *    [
- *       {row: 1, column: 1},
- *       {row: 1, column: 2},
- *       {row: 1, column: 3},
- *    ],
- *    [
- *       {row: 2, column: 1},
- *       {row: 2, column: 2},
- *       {row: 2, column: 3},
- *    ]
- * ]
- */
-var grid = [];
 var middleColumn;
 
 var currentShape = {

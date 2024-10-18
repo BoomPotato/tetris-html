@@ -13,17 +13,14 @@ var arrowDownKeyIsHeld = false;
 
 var action = {
   moveLeft() {
-    //Move shape to the left
-    let closestColumnCoordinateToTheLeft = currentShape.coordinates[0].column;
-    for (let i = 0; i < currentShape.coordinates.length; i++) {
-      if (currentShape.coordinates[i].column < closestColumnCoordinateToTheLeft) {
-        closestColumnCoordinateToTheLeft = currentShape.coordinates[i].column;
-      }
-    }
-
+    let trialCoordinates = JSON.parse(JSON.stringify(currentShape.coordinates));
     let shapeColor = getColor(currentShape.shapeType);
 
-    if (closestColumnCoordinateToTheLeft > 1) {
+    for (let i = 0; i < trialCoordinates.length; i++) {
+      trialCoordinates[i].column--;
+    }
+
+    if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('left', trialCoordinates)) {
       for (let i = 0; i < currentShape.coordinates.length; i++) {
         let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
         //Remove labels from old coordinate
@@ -43,17 +40,14 @@ var action = {
   },
 
   moveRight() {
-    //Move shape to the right
-    let closestColumnCoordinateToTheRight = currentShape.coordinates[0].column;
-    for (let i = 0; i < currentShape.coordinates.length; i++) {
-      if (currentShape.coordinates[i].column > closestColumnCoordinateToTheRight) {
-        closestColumnCoordinateToTheRight = currentShape.coordinates[i].column;
-      }
-    }
-
+    let trialCoordinates = JSON.parse(JSON.stringify(currentShape.coordinates));
     let shapeColor = getColor(currentShape.shapeType);
 
-    if (closestColumnCoordinateToTheRight < columnWidth) {
+    for (let i = 0; i < trialCoordinates.length; i++) {
+      trialCoordinates[i].column++;
+    }
+
+    if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('right', trialCoordinates)) {
       for (let i = 0; i < currentShape.coordinates.length; i++) {
         let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
         //Remove labels from old coordinate

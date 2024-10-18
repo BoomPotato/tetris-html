@@ -10,6 +10,7 @@ var shapeImagePaths = {
   't': './assets/shape-t.png'
 };
 
+
 function getShapeImage(shapeType) {
   let image = document.createElement('img');
   image.src = shapeImagePaths[shapeType];

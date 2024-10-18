@@ -1085,7 +1085,7 @@ function rotateCoordinateTrial(i, row, column) {
     return true;
   } else {
     //Log rotation error in console, but don't show to player
-    console.log("Error, cannot rotate:" + '\n' + `id: ${currentShape.coordinates[i].id}, row: ${currentShape.coordinates[i].row}, column: ${currentShape.coordinates[i].column}` + '\n' + "Because rotated coordinate falls outside grid boundaries: " + '\n' + `id: ${tempCoordinates[i].id}, row: ${row}, column: ${column}`);
+    // console.log("Error, cannot rotate:" + '\n' + `id: ${currentShape.coordinates[i].id}, row: ${currentShape.coordinates[i].row}, column: ${currentShape.coordinates[i].column}` + '\n' + "Because rotated coordinate falls outside grid boundaries: " + '\n' + `id: ${tempCoordinates[i].id}, row: ${row}, column: ${column}`);
     rotateCoordinateTrialPassed = false;
     return false;
   }
