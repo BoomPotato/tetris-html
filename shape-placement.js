@@ -64,6 +64,19 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
       break;
     
     case 'rotate':
+      for (let i = 0; i < trialCoordinates.length; i++) {
+        //If shape will not exceed left, right, or bottom boundary
+        if ((trialCoordinates[i].column >= 1 && trialCoordinates[i].column <= columnWidth) && trialCoordinates[i].row >= 1) {
+          //If shape will collide with placed shapes
+          if (trialCoordinates[i].row in placedShapes) {
+            if (trialCoordinates[i].column in placedShapes[trialCoordinates[i].row]) {
+              return true;
+            }
+          }
+        } else {
+          return true;
+        }
+      }
       break;
     
     default:
