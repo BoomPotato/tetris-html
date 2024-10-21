@@ -44,14 +44,15 @@ function moveShapeDownByOneRow() {
       moveShapeDownByOneRow();
     } else {
       placeShape(shapeColor);
+      clearTimeout(timeout);
     }
 
   }, getDescentInterval());
 }
 
 
+//For testing. The button under the score and next shape table uses this. Can delete later.
 function stopMoveShapeDownByOneRow() {
-  console.log("placedShapes:", placedShapes);
   console.log('stopped moveShapeDownByOneRow');
   clearInterval(timeout);
 }

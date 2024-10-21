@@ -3,8 +3,8 @@
 // var placedShapes = {
 //   '1' (row): {
 //     '2' (column): {
-//       'row': '1',
-//       'column': '2',
+//       'row': 1,
+//       'column': 2,
 //       'color': 'yellow'
 //     }
 //   }
@@ -85,21 +85,13 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
 }
 
 
-function placeShape(shapeColor) { // BUG ;-;
-  // console.log("currentShape.coordinates:", JSON.parse(JSON.stringify(currentShape.coordinates)));
-
+function placeShape(shapeColor) {
   for (let i = 0; i < currentShape.coordinates.length; i++) {
     let row = currentShape.coordinates[i].row;
     let column = currentShape.coordinates[i].column;
 
-    //TEST
-    // console.log("row1:", row);
-
     if (!(row in placedShapes)) {
       placedShapes[row] = {};
-
-      //TEST
-      // console.log("row2:", row);
     }
 
     placedShapes[row][column] = {
@@ -107,15 +99,8 @@ function placeShape(shapeColor) { // BUG ;-;
       'column': column,
       'color': shapeColor
     };
-
-    //TEST
-    // console.log("placedShapes[row][column]:", placedShapes[row][column]);
   }
 
-  //TEST
-  // console.log("placedShapes:", JSON.parse(JSON.stringify(placedShapes)));
-
-  clearTimeout(timeout);
   generateShape();
 
   
