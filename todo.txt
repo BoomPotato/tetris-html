@@ -5,6 +5,7 @@ x 2) press arrowdown button to hasten descent. lift arrowdown button to revert d
     finished. This disrupts user experience because the response is not immediate; it catches the user off-guard when the feature 
     eventually and unexpectedly triggers.
 3) space bar to place shape immediately
+    - WIP. Issue: Only able to stack shapes till the 10th row; unable to stack higher than that
 
 shape descent:
 1) spawn new shape right after previous shape is placed

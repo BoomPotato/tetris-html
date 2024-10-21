@@ -1,5 +1,7 @@
 "use strict";
 
+var timeout;
+
 //Will be gradually shortened depending on how many lines the player has cleared. 
 //Able to be temporarily overriden by the hastenDescentInterval variable.
 var defaultDescentInterval = 1000;
@@ -13,7 +15,7 @@ function getDescentInterval() {
 
 //Recursion
 function moveShapeDownByOneRow() {
-  setTimeout(() => {
+  timeout = setTimeout(() => {
     let trialCoordinates = JSON.parse(JSON.stringify(currentShape.coordinates));
     let shapeColor = getColor(currentShape.shapeType);
     
@@ -41,12 +43,16 @@ function moveShapeDownByOneRow() {
       }
       moveShapeDownByOneRow();
     } else {
-      placeShape();
+      placeShape(shapeColor);
     }
 
-    //TEST
-    // console.log("descent interval:", getDescentInterval());
-
   }, getDescentInterval());
+}
+
+
+function stopMoveShapeDownByOneRow() {
+  console.log("placedShapes:", placedShapes);
+  console.log('stopped moveShapeDownByOneRow');
+  clearInterval(timeout);
 }
 

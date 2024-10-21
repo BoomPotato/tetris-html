@@ -2,16 +2,17 @@
 
 var middleColumn;
 
-var currentShape = {
-  shapeType: "o",
-  rotationPhase: "r0",
-  coordinates: [
-    { id: "", row: null, column: null }, 
-    { id: "", row: null, column: null }, 
-    { id: "", row: null, column: null }, 
-    { id: "", row: null, column: null }
-  ]
-};
+// var currentShape = {
+//   shapeType: "o",
+//   rotationPhase: "r0",
+//   coordinates: [
+//     { id: "", row: null, column: null }, 
+//     { id: "", row: null, column: null }, 
+//     { id: "", row: null, column: null }, 
+//     { id: "", row: null, column: null }
+//   ]
+// };
+var currentShape = {};
 
 
 function initialiseGame() {
@@ -23,7 +24,7 @@ function initialiseGame() {
   loadGrid();
   // countdown();
   generateShape(true);
-  startGame();
+  activateControls();
 }
 
 
@@ -50,12 +51,6 @@ function loadGrid() {
       grid.appendChild(gridItem);
     }
   }
-}
-
-
-function startGame() {
-  activateControls();
-  // moveShapeDownByOneRow();
 }
 
 

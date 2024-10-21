@@ -36,7 +36,7 @@ function generateShape(isFirstShape) {
   nextRandomShape = tempShapesArray[nextRandomShapeIndex];
 
   //TESTING - DELETE LATER
-  // shape = "z";
+  shape = "l";
 
   if (!isFirstShape) {
     //Remove image of previous 'next' shape

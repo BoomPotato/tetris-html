@@ -85,34 +85,44 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
 }
 
 
-function placeShape() {
+function placeShape(shapeColor) { // BUG ;-;
+  // console.log("currentShape.coordinates:", JSON.parse(JSON.stringify(currentShape.coordinates)));
+
   for (let i = 0; i < currentShape.coordinates.length; i++) {
     let row = currentShape.coordinates[i].row;
     let column = currentShape.coordinates[i].column;
-    let color = getColor(currentShape.shapeType);
+
+    //TEST
+    // console.log("row1:", row);
 
     if (!(row in placedShapes)) {
       placedShapes[row] = {};
+
+      //TEST
+      // console.log("row2:", row);
     }
 
     placedShapes[row][column] = {
       'row': row,
       'column': column,
-      'color': color
+      'color': shapeColor
     };
+
+    //TEST
+    // console.log("placedShapes[row][column]:", placedShapes[row][column]);
   }
 
   //TEST
-  // console.log("placedShapes:", placedShapes);
+  // console.log("placedShapes:", JSON.parse(JSON.stringify(placedShapes)));
 
+  clearTimeout(timeout);
   generateShape();
+
+  
 
 
   //TO DO: increase lines cleared OR score if there are full rows
 
-  //PLACEHOLDERS
-  // console.log("finish descent");
-  // alert("finish descent");
 }
 
 
