@@ -76,3 +76,12 @@ function countdown() {
   }, 1000);
 }
 
+
+function gameOver() {
+  //Placeholder
+  console.log("GAME OVER!");
+  
+  //Deactivate controls
+  document.body.removeEventListener("keydown", keyHandler);
+  document.body.removeEventListener("keyup", keyHandler);
+}

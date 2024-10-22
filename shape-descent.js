@@ -43,8 +43,8 @@ function moveShapeDownByOneRow() {
       }
       moveShapeDownByOneRow();
     } else {
-      placeShape(shapeColor);
-      // clearTimeout(timeout);
+      placeShape(currentShape.coordinates, shapeColor);
+      generateShape(false);
     }
 
   }, getDescentInterval());

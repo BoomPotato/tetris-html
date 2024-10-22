@@ -82,6 +82,18 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
       }
       return false;
       break;
+
+    case 'generate':
+      for (let i = 0; i < trialCoordinates.length; i++) {
+        //If shape will collide with placed shapes
+        if (trialCoordinates[i].row in placedShapes) {
+          if (trialCoordinates[i].column in placedShapes[trialCoordinates[i].row]) {
+            return true;
+          }
+        }
+      }
+      return false;
+      break;
     
     default:
       break;
@@ -89,10 +101,84 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
 }
 
 
-function placeShape(shapeColor) {
-  for (let i = 0; i < currentShape.coordinates.length; i++) {
-    let row = currentShape.coordinates[i].row;
-    let column = currentShape.coordinates[i].column;
+function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
+  let uniqueColumnsOccupiedByShape = [];
+  let lowestRowInEachShapeColumnArray = [];
+  let lowestRowInEachShapeColumn = {};
+  for (let i = 0; i < shapeCoordinates.length; i++) {
+    if (!uniqueColumnsOccupiedByShape.includes(shapeCoordinates[i].column)) {
+      uniqueColumnsOccupiedByShape.push(shapeCoordinates[i].column);
+      lowestRowInEachShapeColumnArray.push(shapeCoordinates[i].row);
+    } else {
+      let indexOfExistingColumn = uniqueColumnsOccupiedByShape.indexOf(shapeCoordinates[i].column);
+      if (shapeCoordinates[i].row < lowestRowInEachShapeColumnArray[indexOfExistingColumn]) {
+        lowestRowInEachShapeColumnArray[indexOfExistingColumn] = shapeCoordinates[i].row;
+      }
+    }
+  }
+  for (let i = 0; i < uniqueColumnsOccupiedByShape.length; i++) {
+    lowestRowInEachShapeColumn[uniqueColumnsOccupiedByShape[i]] = lowestRowInEachShapeColumnArray[i];
+  }
+
+  let highestRowInEachPlacedShapesColumn = {};
+  if (Object.keys(placedShapes).length != 0) {
+    let rowsOccupiedByPlacedShapes = Object.keys(placedShapes);
+    for (let i = rowsOccupiedByPlacedShapes.length - 1; i >= 0; i--) {
+      //Find the shape's unique columns occupied by the placed shapes
+      for (let j = 0; j < uniqueColumnsOccupiedByShape.length; j++) {
+        //If the shape's unique column is also occupied by the placed shapes for a particular row
+        if (uniqueColumnsOccupiedByShape[j] in placedShapes[rowsOccupiedByPlacedShapes[i]]) {
+          //If the shape's unique column doesn't exist in the temp object yet
+          if (!(uniqueColumnsOccupiedByShape[j].toString() in highestRowInEachPlacedShapesColumn)) {
+            //Create a new key-item pair (column: row) for the unique column in the temp object
+            highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]] = parseInt(rowsOccupiedByPlacedShapes[i]);
+          } else {
+            //Compare if the new row is larger than the existing row for that unique column in the temp object
+            if (parseInt(rowsOccupiedByPlacedShapes[i]) > highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]]) {
+              //If the new row is larger, replace the old row with it
+              highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]] = parseInt(rowsOccupiedByPlacedShapes[i]);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  //Note: Object keys are always converted to string, even if their initial assignment was int... this 
+  //made me go on a 4 day long bug hunt for the spacebar feature, because I assumed the column object key 
+  //was an int when it was actually a string, and js couldn't compare a string (eg: '9') to an int (eg: 10) 
+  //in the if-statement
+  let columns1 = Object.keys(lowestRowInEachShapeColumn);
+  let smallestDistanceBetweenShapeAndPlacedShapes = rowHeight;
+  if (Object.keys(highestRowInEachPlacedShapesColumn).length != 0) {
+    let columns2 = Object.keys(highestRowInEachPlacedShapesColumn);
+    for (let i = 0; i < columns1.length; i++) {
+      for (let j = 0; j < columns2.length; j++) {
+        if (columns1[i] == columns2[j]) {
+          let distanceBetweenCoordinates = lowestRowInEachShapeColumn[columns1[i]] - highestRowInEachPlacedShapesColumn[columns2[j]] - 1;
+          if (distanceBetweenCoordinates < smallestDistanceBetweenShapeAndPlacedShapes) {              
+            smallestDistanceBetweenShapeAndPlacedShapes = distanceBetweenCoordinates;
+          }
+        }
+      }
+    }
+  } else {
+    for (let i = 0; i < columns1.length; i++) {
+      let distanceBetweenCoordinates = lowestRowInEachShapeColumn[columns1[i]] - 1;
+      if (distanceBetweenCoordinates < smallestDistanceBetweenShapeAndPlacedShapes) {
+        smallestDistanceBetweenShapeAndPlacedShapes = distanceBetweenCoordinates;
+      }
+    }
+  }
+
+  return smallestDistanceBetweenShapeAndPlacedShapes;
+}
+
+
+function placeShape(shapeCoordinates, shapeColor) {
+  for (let i = 0; i < shapeCoordinates.length; i++) {
+    let row = shapeCoordinates[i].row;
+    let column = shapeCoordinates[i].column;
 
     if (!(row in placedShapes)) {
       placedShapes[row] = {};
@@ -104,11 +190,6 @@ function placeShape(shapeColor) {
       'color': shapeColor
     };
   }
-
-  generateShape();
-
-  
-
 
   //TO DO: increase lines cleared OR score if there are full rows
 
