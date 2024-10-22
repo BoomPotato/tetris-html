@@ -29,6 +29,7 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
           return true;
         }
       }
+      return false;
       break;
     
     case 'right':
@@ -45,6 +46,7 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
           return true;
         }
       }
+      return false;
       break;
     
     case 'down':
@@ -61,6 +63,7 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
           return true;
         }
       }
+      return false;
       break;
     
     case 'rotate':
@@ -77,6 +80,7 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
           return true;
         }
       }
+      return false;
       break;
     
     default:
