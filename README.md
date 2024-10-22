@@ -14,7 +14,7 @@ Project started on 7 June 2024.
       <li>columnWidth</li>
     </ul>
   </li>
-  <li>Pre-game countdown:
+  <li>Pre-game countdown: (currently not in use)
     <ul>
       <li>countdownDuration</li>
     </ul>
@@ -31,7 +31,7 @@ Project started on 7 June 2024.
 ## References:
 <ul>
   <li>
-    Tank Controls: <br>
+    Controls: <br>
     https://stackoverflow.com/questions/16345870/keydown-keyup-events-for-specific-keys
   </li>
 </ul>

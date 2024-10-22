@@ -1,20 +1,22 @@
-"use strict";
+'use strict';
 
 var rowHeight = 20;
 var columnWidth = 10;
 
 var countdownDuration = 5;
 
-var colors = [
-  "yellow",
-  "light-blue",
-  "red",
-  "green",
-  "orange",
-  "pink",
-  "purple"
-]
+var colors = {
+  'o': 'yellow',
+  'i': 'lightblue',
+  's': 'green',
+  'z': 'red',
+  'l': 'orange',
+  'j': 'blue',
+  't': 'purple'
+};
 
-function getColor() {
-  return colors[currentShape.colorIndex];
+function getColor(shapeType) {
+  return colors[shapeType];
 }
+
+var hastenDescentInterval = 50;
