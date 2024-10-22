@@ -2,7 +2,7 @@
 
 var timeout;
 
-//Will be gradually shortened depending on how many lines the player has cleared. 
+//TO DO: Will be gradually shortened depending on how many lines the player has cleared. 
 //Able to be temporarily overriden by the hastenDescentInterval variable.
 var defaultDescentInterval = 1000;
 
@@ -44,7 +44,7 @@ function moveShapeDownByOneRow() {
       moveShapeDownByOneRow();
     } else {
       placeShape(shapeColor);
-      clearTimeout(timeout);
+      // clearTimeout(timeout);
     }
 
   }, getDescentInterval());
