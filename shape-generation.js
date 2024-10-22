@@ -36,7 +36,7 @@ function generateShape(isFirstShape) {
   nextRandomShape = tempShapesArray[nextRandomShapeIndex];
 
   //TESTING - DELETE LATER
-  // shape = "l";
+  // shape = changeShape();
 
   if (!isFirstShape) {
     //Remove image of previous 'next' shape
@@ -98,12 +98,21 @@ function generateShape(isFirstShape) {
 
     //I shape
     case "i":
-      trialCoordinates = [
-        { id: "i-1", row: rowHeight, column: middleColumn },
-        { id: "i-2", row: rowHeight - 1, column: middleColumn },
-        { id: "i-3", row: rowHeight - 2, column: middleColumn },
-        { id: "i-4", row: rowHeight - 3, column: middleColumn }
-      ]
+      if (!generateShapesVertically) {
+        trialCoordinates = [
+          { id: "i-1", row: rowHeight, column: middleColumn - 1 },
+          { id: "i-2", row: rowHeight, column: middleColumn },
+          { id: "i-3", row: rowHeight, column: middleColumn + 1 },
+          { id: "i-4", row: rowHeight, column: middleColumn + 2}
+        ];
+      } else {
+        trialCoordinates = [
+          { id: "i-1", row: rowHeight, column: middleColumn },
+          { id: "i-2", row: rowHeight - 1, column: middleColumn },
+          { id: "i-3", row: rowHeight - 2, column: middleColumn },
+          { id: "i-4", row: rowHeight - 3, column: middleColumn }
+        ];
+      }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
@@ -114,73 +123,87 @@ function generateShape(isFirstShape) {
 
         displayShape(currentShape);
       } else {
-        //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-        let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
-        let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
-        let heightOfShape = 4;
-        let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
+        if (!generateShapesVertically) {
+          gameOver();
+          return;
+        } else {
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 4;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        switch (numberOfRowsToGenerate) {
-          case 1:
-            currentShape = {
-              shapeType: "i",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "i-4", row: rowHeight, column: middleColumn }
-              ]
-            };
-
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
-
-          case 2:
-            currentShape = {
-              shapeType: "i",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "i-3", row: rowHeight, column: middleColumn },
-                { id: "i-4", row: rowHeight - 1, column: middleColumn }
-              ]
-            };
-
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
-
-          case 3:
-            currentShape = {
-              shapeType: "i",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "i-2", row: rowHeight, column: middleColumn },
-                { id: "i-3", row: rowHeight - 1, column: middleColumn },
-                { id: "i-4", row: rowHeight - 2, column: middleColumn }
-              ]
-            };
-
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
-
-          default:
-            gameOver();
-            return;
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "i",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "i-4", row: rowHeight, column: middleColumn }
+                ]
+              };
+  
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+  
+            case 2:
+              currentShape = {
+                shapeType: "i",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "i-3", row: rowHeight, column: middleColumn },
+                  { id: "i-4", row: rowHeight - 1, column: middleColumn }
+                ]
+              };
+  
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+  
+            case 3:
+              currentShape = {
+                shapeType: "i",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "i-2", row: rowHeight, column: middleColumn },
+                  { id: "i-3", row: rowHeight - 1, column: middleColumn },
+                  { id: "i-4", row: rowHeight - 2, column: middleColumn }
+                ]
+              };
+  
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+  
+            default:
+              gameOver();
+              return;
+          }
         }
       }
       break;
 
     //S shape
     case "s":
-      trialCoordinates = [
-        { id: "s-1", row: rowHeight, column: middleColumn },
-        { id: "s-2", row: rowHeight, column: middleColumn + 1 },
-        { id: "s-3", row: rowHeight - 1, column: middleColumn - 1 },
-        { id: "s-4", row: rowHeight - 1, column: middleColumn }
-      ]
+      if (!generateShapesVertically) {
+        trialCoordinates = [
+          { id: "s-1", row: rowHeight, column: middleColumn },
+          { id: "s-2", row: rowHeight, column: middleColumn + 1 },
+          { id: "s-3", row: rowHeight - 1, column: middleColumn - 1 },
+          { id: "s-4", row: rowHeight - 1, column: middleColumn }
+        ];
+      } else {
+        trialCoordinates = [
+          { id: "s-2", row: rowHeight, column: middleColumn },
+          { id: "s-1", row: rowHeight - 1, column: middleColumn },
+          { id: "s-4", row: rowHeight - 1, column: middleColumn + 1 },
+          { id: "s-3", row: rowHeight - 2, column: middleColumn + 1 }
+        ];
+      }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
@@ -191,43 +214,96 @@ function generateShape(isFirstShape) {
 
         displayShape(currentShape);
       } else {
-        //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-        let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
-        let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
-        let heightOfShape = 2;
-        let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
+        if (!generateShapesVertically) {
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 2;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        switch (numberOfRowsToGenerate) {
-          case 1:
-            currentShape = {
-              shapeType: "s",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "s-3", row: rowHeight, column: middleColumn - 1 },
-                { id: "s-4", row: rowHeight, column: middleColumn }
-              ]
-            };
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "s",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "s-3", row: rowHeight, column: middleColumn - 1 },
+                  { id: "s-4", row: rowHeight, column: middleColumn }
+                ]
+              };
 
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
 
-          default:
-            gameOver();
-            return;
+            default:
+              gameOver();
+              return;
+          }
+        } else {
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 3;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
+
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "s",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "s-3", row: rowHeight, column: middleColumn + 1 }
+                ]
+              };
+
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            case 2:
+              currentShape = {
+                shapeType: "s",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "s-1", row: rowHeight, column: middleColumn },
+                  { id: "s-4", row: rowHeight, column: middleColumn + 1 },
+                  { id: "s-3", row: rowHeight - 1, column: middleColumn + 1 }
+                ]
+              };
+
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            default:
+              gameOver();
+              return;
+          }
         }
       }
       break;
 
     //Z shape
     case "z":
-      trialCoordinates = [
-        { id: "z-1", row: rowHeight, column: middleColumn - 1 },
-        { id: "z-2", row: rowHeight, column: middleColumn },
-        { id: "z-3", row: rowHeight - 1, column: middleColumn },
-        { id: "z-4", row: rowHeight - 1, column: middleColumn + 1 }
-      ]
+      if (!generateShapesVertically) {
+        trialCoordinates = [
+          { id: "z-1", row: rowHeight, column: middleColumn - 1 },
+          { id: "z-2", row: rowHeight, column: middleColumn },
+          { id: "z-3", row: rowHeight - 1, column: middleColumn },
+          { id: "z-4", row: rowHeight - 1, column: middleColumn + 1 }
+        ];
+      } else {
+        trialCoordinates = [
+          { id: "z-4", row: rowHeight, column: middleColumn + 1 },
+          { id: "z-3", row: rowHeight - 1, column: middleColumn + 1 },
+          { id: "z-2", row: rowHeight - 1, column: middleColumn },
+          { id: "z-1", row: rowHeight - 2, column: middleColumn }
+        ];
+      }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
@@ -238,43 +314,96 @@ function generateShape(isFirstShape) {
 
         displayShape(currentShape);
       } else {
-        //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-        let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
-        let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
-        let heightOfShape = 2;
-        let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
+        if (!generateShapesVertically) {
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 2;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        switch (numberOfRowsToGenerate) {
-          case 1:
-            currentShape = {
-              shapeType: "z",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "z-3", row: rowHeight, column: middleColumn },
-                { id: "z-4", row: rowHeight, column: middleColumn + 1 }
-              ]
-            };
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "z",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "z-3", row: rowHeight, column: middleColumn },
+                  { id: "z-4", row: rowHeight, column: middleColumn + 1 }
+                ]
+              };
 
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
 
-          default:
-            gameOver();
-            return;
+            default:
+              gameOver();
+              return;
+          }
+        } else { 
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 3;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
+
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "z",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "z-1", row: rowHeight, column: middleColumn }
+                ]
+              };
+
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            case 2:
+              currentShape = {
+                shapeType: "z",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "z-3", row: rowHeight, column: middleColumn + 1 },
+                  { id: "z-2", row: rowHeight, column: middleColumn },
+                  { id: "z-1", row: rowHeight - 1, column: middleColumn }
+                ]
+              };
+
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            default:
+              gameOver();
+              return;
+          }
         }
       }
       break;
 
     //L shape
     case "l":
-      trialCoordinates = [
-        { id: "l-1", row: rowHeight, column: middleColumn },
-        { id: "l-2", row: rowHeight - 1, column: middleColumn },
-        { id: "l-3", row: rowHeight - 2, column: middleColumn },
-        { id: "l-4", row: rowHeight - 2, column: middleColumn + 1 }
-      ]
+      if (!generateShapesVertically) {
+        trialCoordinates = [
+          { id: "l-4", row: rowHeight, column: middleColumn + 2 },
+          { id: "l-1", row: rowHeight - 1, column: middleColumn },
+          { id: "l-2", row: rowHeight - 1, column: middleColumn + 1 },
+          { id: "l-3", row: rowHeight - 1, column: middleColumn + 2 }
+        ];
+      } else {
+        trialCoordinates = [
+          { id: "l-1", row: rowHeight, column: middleColumn },
+          { id: "l-2", row: rowHeight - 1, column: middleColumn },
+          { id: "l-3", row: rowHeight - 2, column: middleColumn },
+          { id: "l-4", row: rowHeight - 2, column: middleColumn + 1 }
+        ];
+      }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
@@ -285,59 +414,98 @@ function generateShape(isFirstShape) {
 
         displayShape(currentShape);
       } else {
-        //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-        let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
-        let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
-        let heightOfShape = 3;
-        let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
+        if (!generateShapesVertically) { 
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 2;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        switch (numberOfRowsToGenerate) {
-          case 1:
-            currentShape = {
-              shapeType: "l",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "l-3", row: rowHeight, column: middleColumn },
-                { id: "l-4", row: rowHeight, column: middleColumn + 1 }
-              ]
-            };
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "l",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "l-1", row: rowHeight, column: middleColumn },
+                  { id: "l-2", row: rowHeight, column: middleColumn + 1 },
+                  { id: "l-3", row: rowHeight, column: middleColumn + 2 }
+                ]
+              };
 
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
 
-          case 2:
-            currentShape = {
-              shapeType: "l",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "l-2", row: rowHeight, column: middleColumn },
-                { id: "l-3", row: rowHeight - 1, column: middleColumn },
-                { id: "l-4", row: rowHeight - 1, column: middleColumn + 1 }
-              ]
-            };
+            default:
+              gameOver();
+              return;
+          }
+        } else {
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 3;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "l",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "l-3", row: rowHeight, column: middleColumn },
+                  { id: "l-4", row: rowHeight, column: middleColumn + 1 }
+                ]
+              };
 
-          default:
-            gameOver();
-            return;
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            case 2:
+              currentShape = {
+                shapeType: "l",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "l-2", row: rowHeight, column: middleColumn },
+                  { id: "l-3", row: rowHeight - 1, column: middleColumn },
+                  { id: "l-4", row: rowHeight - 1, column: middleColumn + 1 }
+                ]
+              };
+
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            default:
+              gameOver();
+              return;
+          }
         }
       }
       break;
 
     //J shape
     case "j":
-      trialCoordinates = [
-        { id: "j-1", row: rowHeight, column: middleColumn + 1 },
-        { id: "j-2", row: rowHeight - 1, column: middleColumn + 1 },
-        { id: "j-3", row: rowHeight - 2, column: middleColumn + 1 },
-        { id: "j-4", row: rowHeight - 2, column: middleColumn }
-      ]
+      if (!generateShapesVertically) {
+        trialCoordinates = [
+          { id: "j-4", row: rowHeight, column: middleColumn },
+          { id: "j-3", row: rowHeight - 1, column: middleColumn },
+          { id: "j-2", row: rowHeight - 1, column: middleColumn + 1 },
+          { id: "j-1", row: rowHeight - 1, column: middleColumn + 2 }
+        ];
+      } else {
+        trialCoordinates = [
+          { id: "j-1", row: rowHeight, column: middleColumn + 1 },
+          { id: "j-2", row: rowHeight - 1, column: middleColumn + 1 },
+          { id: "j-3", row: rowHeight - 2, column: middleColumn + 1 },
+          { id: "j-4", row: rowHeight - 2, column: middleColumn }
+        ];
+      }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
@@ -348,59 +516,98 @@ function generateShape(isFirstShape) {
 
         displayShape(currentShape);
       } else {
-        //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-        let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
-        let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
-        let heightOfShape = 3;
-        let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
+        if (!generateShapesVertically) {
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 2;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        switch (numberOfRowsToGenerate) {
-          case 1:
-            currentShape = {
-              shapeType: "j",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "j-3", row: rowHeight, column: middleColumn + 1 },
-                { id: "j-4", row: rowHeight, column: middleColumn }
-              ]
-            };
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "j",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "j-3", row: rowHeight, column: middleColumn },
+                  { id: "j-2", row: rowHeight, column: middleColumn + 1 },
+                  { id: "j-1", row: rowHeight, column: middleColumn + 2 }
+                ]
+              };
 
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
 
-          case 2:
-            currentShape = {
-              shapeType: "j",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "j-2", row: rowHeight, column: middleColumn + 1 },
-                { id: "j-3", row: rowHeight - 1, column: middleColumn + 1 },
-                { id: "j-4", row: rowHeight - 1, column: middleColumn }
-              ]
-            };
+            default:
+              gameOver();
+              return;
+          }
+        } else {
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 3;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "j",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "j-3", row: rowHeight, column: middleColumn + 1 },
+                  { id: "j-4", row: rowHeight, column: middleColumn }
+                ]
+              };
 
-          default:
-            gameOver();
-            return;
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            case 2:
+              currentShape = {
+                shapeType: "j",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "j-2", row: rowHeight, column: middleColumn + 1 },
+                  { id: "j-3", row: rowHeight - 1, column: middleColumn + 1 },
+                  { id: "j-4", row: rowHeight - 1, column: middleColumn }
+                ]
+              };
+
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            default:
+              gameOver();
+              return;
+          }
         }
       }
       break;
     
     //T shape
     case "t":
-      trialCoordinates = [
-        { id: "t-1", row: rowHeight, column: middleColumn },
-        { id: "t-2", row: rowHeight, column: middleColumn + 1 },
-        { id: "t-3", row: rowHeight, column: middleColumn + 2 },
-        { id: "t-4", row: rowHeight - 1, column: middleColumn + 1 }
-      ]
+      if (!generateShapesVertically) {
+        trialCoordinates = [
+          { id: "t-1", row: rowHeight, column: middleColumn },
+          { id: "t-2", row: rowHeight, column: middleColumn + 1 },
+          { id: "t-3", row: rowHeight, column: middleColumn + 2 },
+          { id: "t-4", row: rowHeight - 1, column: middleColumn + 1 }
+        ];
+      } else {
+        trialCoordinates = [
+          { id: "t-3", row: rowHeight, column: middleColumn },
+          { id: "t-2", row: rowHeight - 1, column: middleColumn },
+          { id: "t-4", row: rowHeight - 1, column: middleColumn + 1 },
+          { id: "t-1", row: rowHeight - 2, column: middleColumn }
+        ];
+      }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
@@ -411,30 +618,74 @@ function generateShape(isFirstShape) {
 
         displayShape(currentShape);
       } else {
-        //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-        let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
-        let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
-        let heightOfShape = 2;
-        let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
+        if (!generateShapesVertically) {
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 2;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        switch (numberOfRowsToGenerate) {
-          case 1:
-            currentShape = {
-              shapeType: "t",
-              rotationPhase: "r0",
-              coordinates: [
-                { id: "t-4", row: rowHeight, column: middleColumn + 1 }
-              ]
-            };
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "t",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "t-4", row: rowHeight, column: middleColumn + 1 }
+                ]
+              };
+
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            default:
+              gameOver();
+              return;
+          }
+        } else { 
+          //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
+          let heightOfShape = 3;
+          let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
+
+          switch (numberOfRowsToGenerate) {
+            case 1:
+              currentShape = {
+                shapeType: "t",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "t-1", row: rowHeight, column: middleColumn }
+                ]
+              };
+
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
             
-            displayShape(currentShape);
-            placeShape(currentShape);
-            gameOver();
-            return;
+            case 2:
+              currentShape = {
+                shapeType: "t",
+                rotationPhase: "r0",
+                coordinates: [
+                  { id: "t-2", row: rowHeight, column: middleColumn },
+                  { id: "t-4", row: rowHeight, column: middleColumn + 1 },
+                  { id: "t-1", row: rowHeight - 1, column: middleColumn }
+                ]
+              };
 
-          default:
-            gameOver();
-            return;
+              displayShape(currentShape);
+              placeShape(currentShape);
+              gameOver();
+              return;
+
+            default:
+              gameOver();
+              return;
+          }
         }
       }
       break;
