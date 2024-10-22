@@ -11,55 +11,25 @@ var arrowDownKeyIsHeld = false;
 var action = {
   moveLeft() {
     let trialCoordinates = JSON.parse(JSON.stringify(currentShape.coordinates));
-    let shapeColor = getColor(currentShape.shapeType);
-
     for (let i = 0; i < trialCoordinates.length; i++) {
       trialCoordinates[i].column--;
     }
-
     if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('left', trialCoordinates)) {
-      for (let i = 0; i < currentShape.coordinates.length; i++) {
-        let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
-        //Remove labels from old coordinate
-        gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
-        //Remove color from old coordinate
-        gridItem.style.removeProperty("background-color");
-      }
-      for (let i = 0; i < currentShape.coordinates.length; i++) {
-        currentShape.coordinates[i].column--;
-        let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
-        //Add label to new coordinate
-        gridItem.classList.add(currentShape.coordinates[i].id, currentShape.rotationPhase);
-        //Add color to new coordinate
-        gridItem.style.backgroundColor = shapeColor;
-      }
+      clearShape(currentShape);
+      currentShape.coordinates = trialCoordinates;
+      displayShape(currentShape);
     }
   },
 
   moveRight() {
     let trialCoordinates = JSON.parse(JSON.stringify(currentShape.coordinates));
-    let shapeColor = getColor(currentShape.shapeType);
-
     for (let i = 0; i < trialCoordinates.length; i++) {
       trialCoordinates[i].column++;
     }
-
     if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('right', trialCoordinates)) {
-      for (let i = 0; i < currentShape.coordinates.length; i++) {
-        let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
-        //Remove labels from old coordinate
-        gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
-        //Remove color from old coordinate
-        gridItem.style.removeProperty("background-color");
-      }
-      for (let i = 0; i < currentShape.coordinates.length; i++) {
-        currentShape.coordinates[i].column++;
-        let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
-        //Add label to new coordinate
-        gridItem.classList.add(currentShape.coordinates[i].id, currentShape.rotationPhase);
-        //Add color to new coordinate
-        gridItem.style.backgroundColor = shapeColor;
-      }
+      clearShape(currentShape);
+      currentShape.coordinates = trialCoordinates;
+      displayShape(currentShape);
     }
   },
 
@@ -78,25 +48,12 @@ var action = {
   triggerPlaceShape() {
     clearTimeout(timeout);
     let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(currentShape.coordinates);
-
-    let shapeColor = getColor(currentShape.shapeType);
-    for (let i = 0; i < currentShape.coordinates.length; i++) {
-      let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
-      //Remove labels from old coordinate
-      gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
-      //Remove color from old coordinate
-      gridItem.style.removeProperty("background-color");
-    }
+    clearShape(currentShape);
     for (let i = 0; i < currentShape.coordinates.length; i++) {
       currentShape.coordinates[i].row -= smallestDistanceBetweenShapeAndPlacedShapes;
-      let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
-      //Add label to new coordinate
-      gridItem.classList.add(currentShape.coordinates[i].id, currentShape.rotationPhase);
-      //Add color to new coordinate
-      gridItem.style.backgroundColor = shapeColor;
     }
-
-    placeShape(currentShape.coordinates, shapeColor);
+    displayShape(currentShape);
+    placeShape(currentShape);
     generateShape(false);
   }
   

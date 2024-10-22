@@ -175,10 +175,11 @@ function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
 }
 
 
-function placeShape(shapeCoordinates, shapeColor) {
-  for (let i = 0; i < shapeCoordinates.length; i++) {
-    let row = shapeCoordinates[i].row;
-    let column = shapeCoordinates[i].column;
+function placeShape(shape) {
+  let shapeColor = getColor(shape.shapeType);
+  for (let i = 0; i < shape.coordinates.length; i++) {
+    let row = shape.coordinates[i].row;
+    let column = shape.coordinates[i].column;
 
     if (!(row in placedShapes)) {
       placedShapes[row] = {};

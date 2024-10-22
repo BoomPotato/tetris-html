@@ -17,7 +17,6 @@ function getDescentInterval() {
 function moveShapeDownByOneRow() {
   timeout = setTimeout(() => {
     let trialCoordinates = JSON.parse(JSON.stringify(currentShape.coordinates));
-    let shapeColor = getColor(currentShape.shapeType);
     
     for (let i = 0; i < trialCoordinates.length; i++) {
       trialCoordinates[i].row--;
@@ -25,25 +24,16 @@ function moveShapeDownByOneRow() {
 
     //Check if shape will go out of bounds or collide with placed shapes
     if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('down', trialCoordinates)) {
-      for (let i = 0; i < currentShape.coordinates.length; i++) {
-        let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
-        //Remove labels from old coordinate
-        gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
-        //Remove color from old coordinate
-        gridItem.style.removeProperty("background-color");  
-      }
+      clearShape(currentShape);
       for (let i = 0; i < currentShape.coordinates.length; i++) {
         //Update coordinate in global variable currentShape to descend by one row
         currentShape.coordinates[i].row--;
-        let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
-        //Add label to new coordinate
-        gridItem.classList.add(currentShape.coordinates[i].id, currentShape.rotationPhase);
-        //Add color to new coordinate
-        gridItem.style.backgroundColor = shapeColor;
       }
+      displayShape(currentShape);
+
       moveShapeDownByOneRow();
     } else {
-      placeShape(currentShape.coordinates, shapeColor);
+      placeShape(currentShape);
       generateShape(false);
     }
 

@@ -688,28 +688,13 @@ function rotateClockwise() {
 
 function rotateCoordinates(trialCoordinates) {
   incrementRotationPhase();
-  let shapeColor = getColor(currentShape.shapeType);
-
-  for (let i = 0; i < currentShape.coordinates.length; i++) {
-    let gridItem = document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`);
-
-    //Remove labels from old coordinate
-    gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
-
-    //Remove color from old coordinate
-    gridItem.style.removeProperty("background-color");
-  }
+  clearShape(currentShape);
   for (let i = 0; i < currentShape.coordinates.length; i++) {
     //Update coordinate in global variable currentShape
     currentShape.coordinates[i].row = JSON.parse(JSON.stringify(trialCoordinates[i].row));
     currentShape.coordinates[i].column = JSON.parse(JSON.stringify(trialCoordinates[i].column));
-
-    //Add label to new coordinate
-    document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`).classList.add(trialCoordinates[i].id, currentShape.rotationPhase);
-
-    //Add color to new coordinate
-    document.getElementById(`grid-${currentShape.coordinates[i].row}-${currentShape.coordinates[i].column}`).style.backgroundColor = shapeColor;
   }
+  displayShape(currentShape);
 }
 
 

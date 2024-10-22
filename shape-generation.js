@@ -45,7 +45,6 @@ function generateShape(isFirstShape) {
   }
   document.getElementById("nextShape").appendChild(getShapeImage(nextRandomShape));
 
-  let shapeColor = getColor(shape);
   let trialCoordinates = [];
  
   //Generate shape
@@ -65,16 +64,8 @@ function generateShape(isFirstShape) {
           rotationPhase: "r0",
           coordinates: trialCoordinates
         };
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("o-1", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("o-2", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("o-3", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).classList.add("o-4", currentShape.rotationPhase);
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
+
+        displayShape(currentShape);
       } else {
         //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
         let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
@@ -82,25 +73,19 @@ function generateShape(isFirstShape) {
         let heightOfShape = 2;
         let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        //TEST
-        console.log("smallestDistanceBetweenShapeAndPlacedShapes:", smallestDistanceBetweenShapeAndPlacedShapes)
-        console.log("numberOfOverlappingCoordinates:", numberOfOverlappingCoordinates)
-        console.log("numberOfRowsToGenerate:", numberOfRowsToGenerate)
-
         switch (numberOfRowsToGenerate) {
           case 1:
-            trialCoordinates = [
-              { id: "o-3", row: rowHeight, column: middleColumn },
-              { id: "o-4", row: rowHeight, column: middleColumn + 1 }
-            ];
+            currentShape = {
+              shapeType: "o",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "o-3", row: rowHeight, column: middleColumn },
+                { id: "o-4", row: rowHeight, column: middleColumn + 1 }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("o-3", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("o-4", currentShape.rotationPhase);
-      
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
@@ -126,16 +111,8 @@ function generateShape(isFirstShape) {
           rotationPhase: "r0",
           coordinates: trialCoordinates
         };
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("i-1", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("i-2", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).classList.add("i-3", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 3}-${middleColumn}`).classList.add("i-4", currentShape.rotationPhase);
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 3}-${middleColumn}`).style.backgroundColor = shapeColor;
+
+        displayShape(currentShape);
       } else {
         //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
         let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
@@ -143,57 +120,49 @@ function generateShape(isFirstShape) {
         let heightOfShape = 4;
         let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        //TEST
-        console.log("smallestDistanceBetweenShapeAndPlacedShapes:", smallestDistanceBetweenShapeAndPlacedShapes)
-        console.log("numberOfOverlappingCoordinates:", numberOfOverlappingCoordinates)
-        console.log("numberOfRowsToGenerate:", numberOfRowsToGenerate)
-
         switch (numberOfRowsToGenerate) {
           case 1:
-            trialCoordinates = [
-              { id: "i-4", row: rowHeight, column: middleColumn }
-            ]
+            currentShape = {
+              shapeType: "i",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "i-4", row: rowHeight, column: middleColumn }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("i-4", currentShape.rotationPhase);
-      
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
           case 2:
-            trialCoordinates = [
-              { id: "i-3", row: rowHeight, column: middleColumn },
-              { id: "i-4", row: rowHeight - 1, column: middleColumn }
-            ]
+            currentShape = {
+              shapeType: "i",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "i-3", row: rowHeight, column: middleColumn },
+                { id: "i-4", row: rowHeight - 1, column: middleColumn }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("i-3", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("i-4", currentShape.rotationPhase);
-
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
           case 3:
-            trialCoordinates = [
-              { id: "i-2", row: rowHeight, column: middleColumn },
-              { id: "i-3", row: rowHeight - 1, column: middleColumn },
-              { id: "i-4", row: rowHeight - 2, column: middleColumn }
-            ]
+            currentShape = {
+              shapeType: "i",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "i-2", row: rowHeight, column: middleColumn },
+                { id: "i-3", row: rowHeight - 1, column: middleColumn },
+                { id: "i-4", row: rowHeight - 2, column: middleColumn }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("i-2", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("i-3", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).classList.add("i-4", currentShape.rotationPhase);
-
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
@@ -219,16 +188,8 @@ function generateShape(isFirstShape) {
           rotationPhase: "r0",
           coordinates: trialCoordinates
         };
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("s-1", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("s-2", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn - 1}`).classList.add("s-3", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("s-4", currentShape.rotationPhase);
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn - 1}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
+
+        displayShape(currentShape);
       } else {
         //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
         let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
@@ -236,25 +197,19 @@ function generateShape(isFirstShape) {
         let heightOfShape = 2;
         let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        //TEST
-        console.log("smallestDistanceBetweenShapeAndPlacedShapes:", smallestDistanceBetweenShapeAndPlacedShapes)
-        console.log("numberOfOverlappingCoordinates:", numberOfOverlappingCoordinates)
-        console.log("numberOfRowsToGenerate:", numberOfRowsToGenerate)
-
         switch (numberOfRowsToGenerate) {
           case 1:
-            trialCoordinates = [
-              { id: "s-3", row: rowHeight, column: middleColumn - 1 },
-              { id: "s-4", row: rowHeight, column: middleColumn }
-            ]
+            currentShape = {
+              shapeType: "s",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "s-3", row: rowHeight, column: middleColumn - 1 },
+                { id: "s-4", row: rowHeight, column: middleColumn }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn - 1}`).classList.add("s-3", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("s-4", currentShape.rotationPhase);
-      
-            document.getElementById(`grid-${rowHeight}-${middleColumn - 1}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
@@ -280,16 +235,8 @@ function generateShape(isFirstShape) {
           rotationPhase: "r0",
           coordinates: trialCoordinates
         };
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn - 1}`).classList.add("z-1", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("z-2", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("z-3", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).classList.add("z-4", currentShape.rotationPhase);
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn  - 1}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
+
+        displayShape(currentShape);
       } else {
         //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
         let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
@@ -297,25 +244,19 @@ function generateShape(isFirstShape) {
         let heightOfShape = 2;
         let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        //TEST
-        console.log("smallestDistanceBetweenShapeAndPlacedShapes:", smallestDistanceBetweenShapeAndPlacedShapes)
-        console.log("numberOfOverlappingCoordinates:", numberOfOverlappingCoordinates)
-        console.log("numberOfRowsToGenerate:", numberOfRowsToGenerate)
-
         switch (numberOfRowsToGenerate) {
           case 1:
-            trialCoordinates = [
-              { id: "z-3", row: rowHeight, column: middleColumn },
-              { id: "z-4", row: rowHeight, column: middleColumn + 1 }
-            ]
+            currentShape = {
+              shapeType: "z",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "z-3", row: rowHeight, column: middleColumn },
+                { id: "z-4", row: rowHeight, column: middleColumn + 1 }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("z-3", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("z-4", currentShape.rotationPhase);
-      
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
@@ -341,16 +282,8 @@ function generateShape(isFirstShape) {
           rotationPhase: "r0",
           coordinates: trialCoordinates
         };
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("l-1", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("l-2", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).classList.add("l-3", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn + 1}`).classList.add("l-4", currentShape.rotationPhase);
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
+
+        displayShape(currentShape);
       } else {
         //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
         let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
@@ -358,44 +291,35 @@ function generateShape(isFirstShape) {
         let heightOfShape = 3;
         let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        //TEST
-        console.log("smallestDistanceBetweenShapeAndPlacedShapes:", smallestDistanceBetweenShapeAndPlacedShapes)
-        console.log("numberOfOverlappingCoordinates:", numberOfOverlappingCoordinates)
-        console.log("numberOfRowsToGenerate:", numberOfRowsToGenerate)
-
         switch (numberOfRowsToGenerate) {
           case 1:
-            trialCoordinates = [
-              { id: "l-3", row: rowHeight, column: middleColumn },
-              { id: "l-4", row: rowHeight, column: middleColumn + 1 }
-            ]
+            currentShape = {
+              shapeType: "l",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "l-3", row: rowHeight, column: middleColumn },
+                { id: "l-4", row: rowHeight, column: middleColumn + 1 }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("l-3", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("l-4", currentShape.rotationPhase);
-      
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
           case 2:
-            trialCoordinates = [
-              { id: "l-2", row: rowHeight, column: middleColumn },
-              { id: "l-3", row: rowHeight - 1, column: middleColumn },
-              { id: "l-4", row: rowHeight - 1, column: middleColumn + 1 }
-            ]
+            currentShape = {
+              shapeType: "l",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "l-2", row: rowHeight, column: middleColumn },
+                { id: "l-3", row: rowHeight - 1, column: middleColumn },
+                { id: "l-4", row: rowHeight - 1, column: middleColumn + 1 }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("l-2", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("l-3", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).classList.add("l-4", currentShape.rotationPhase);
-      
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
@@ -421,16 +345,8 @@ function generateShape(isFirstShape) {
           rotationPhase: "r0",
           coordinates: trialCoordinates
         };
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("j-1", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).classList.add("j-2", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn + 1}`).classList.add("j-3", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).classList.add("j-4", currentShape.rotationPhase);
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 2}-${middleColumn}`).style.backgroundColor = shapeColor;
+
+        displayShape(currentShape);
       } else {
         //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
         let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
@@ -438,44 +354,35 @@ function generateShape(isFirstShape) {
         let heightOfShape = 3;
         let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        //TEST
-        console.log("smallestDistanceBetweenShapeAndPlacedShapes:", smallestDistanceBetweenShapeAndPlacedShapes)
-        console.log("numberOfOverlappingCoordinates:", numberOfOverlappingCoordinates)
-        console.log("numberOfRowsToGenerate:", numberOfRowsToGenerate)
-
         switch (numberOfRowsToGenerate) {
           case 1:
-            trialCoordinates = [
-              { id: "j-3", row: rowHeight, column: middleColumn + 1 },
-              { id: "j-4", row: rowHeight, column: middleColumn }
-            ]
+            currentShape = {
+              shapeType: "j",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "j-3", row: rowHeight, column: middleColumn + 1 },
+                { id: "j-4", row: rowHeight, column: middleColumn }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("j-3", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("j-4", currentShape.rotationPhase);
-      
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
           case 2:
-            trialCoordinates = [
-              { id: "j-2", row: rowHeight, column: middleColumn + 1 },
-              { id: "j-3", row: rowHeight - 1, column: middleColumn + 1 },
-              { id: "j-4", row: rowHeight - 1, column: middleColumn }
-            ]
+            currentShape = {
+              shapeType: "j",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "j-2", row: rowHeight, column: middleColumn + 1 },
+                { id: "j-3", row: rowHeight - 1, column: middleColumn + 1 },
+                { id: "j-4", row: rowHeight - 1, column: middleColumn }
+              ]
+            };
 
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("j-2", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).classList.add("j-3", currentShape.rotationPhase);
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).classList.add("j-4", currentShape.rotationPhase);
-      
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-            document.getElementById(`grid-${rowHeight - 1}-${middleColumn}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
@@ -501,16 +408,8 @@ function generateShape(isFirstShape) {
           rotationPhase: "r0",
           coordinates: trialCoordinates
         };
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).classList.add("t-1", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("t-2", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 2}`).classList.add("t-3", currentShape.rotationPhase);
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).classList.add("t-4", currentShape.rotationPhase);
-  
-        document.getElementById(`grid-${rowHeight}-${middleColumn}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight}-${middleColumn + 2}`).style.backgroundColor = shapeColor;
-        document.getElementById(`grid-${rowHeight - 1}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
+
+        displayShape(currentShape);
       } else {
         //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
         let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
@@ -518,22 +417,18 @@ function generateShape(isFirstShape) {
         let heightOfShape = 2;
         let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
 
-        //TEST
-        console.log("smallestDistanceBetweenShapeAndPlacedShapes:", smallestDistanceBetweenShapeAndPlacedShapes)
-        console.log("numberOfOverlappingCoordinates:", numberOfOverlappingCoordinates)
-        console.log("numberOfRowsToGenerate:", numberOfRowsToGenerate)
-
         switch (numberOfRowsToGenerate) {
           case 1:
-            trialCoordinates = [
-              { id: "t-4", row: rowHeight, column: middleColumn + 1 }
-            ]
-
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).classList.add("t-4", currentShape.rotationPhase);
+            currentShape = {
+              shapeType: "t",
+              rotationPhase: "r0",
+              coordinates: [
+                { id: "t-4", row: rowHeight, column: middleColumn + 1 }
+              ]
+            };
             
-            document.getElementById(`grid-${rowHeight}-${middleColumn + 1}`).style.backgroundColor = shapeColor;
-
-            placeShape(trialCoordinates, shapeColor);
+            displayShape(currentShape);
+            placeShape(currentShape);
             gameOver();
             return;
 
@@ -550,3 +445,40 @@ function generateShape(isFirstShape) {
 
   moveShapeDownByOneRow();
 }
+
+
+// currentShape = {
+//   shapeType: "t",
+//   rotationPhase: "r0",
+//   coordinates: trialCoordinates
+// };
+
+// trialCoordinates = [
+//   { id: "o-1", row: rowHeight, column: middleColumn },
+//   { id: "o-2", row: rowHeight, column: middleColumn + 1 },
+//   { id: "o-3", row: rowHeight - 1, column: middleColumn },
+//   { id: "o-4", row: rowHeight - 1, column: middleColumn + 1 }
+// ];
+
+function displayShape(shape) {
+  let shapeColor = getColor(shape.shapeType);
+  for (let i = 0; i < shape.coordinates.length; i++) {
+    let gridItem = document.getElementById(`grid-${shape.coordinates[i].row}-${shape.coordinates[i].column}`);
+    //Add label to new coordinate
+    gridItem.classList.add(shape.coordinates[i].id, shape.rotationPhase);
+    //Add color to new coordinate
+    gridItem.style.backgroundColor = shapeColor;
+  }
+}
+
+
+function clearShape(shape) {
+  for (let i = 0; i < shape.coordinates.length; i++) {
+    let gridItem = document.getElementById(`grid-${shape.coordinates[i].row}-${shape.coordinates[i].column}`);
+    //Remove labels from old coordinate
+    gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
+    //Remove color from old coordinate
+    gridItem.style.removeProperty("background-color");  
+  }
+}
+
