@@ -21,1312 +21,656 @@ function rotateClockwise() {
 
   switch (currentShape.shapeType) {
     case "i":
-      if (!generateShapesVertically) {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 2;
-                break;
-  
-              default:
-                break;
-            }
+      if (rotationIndex == 0) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 2;
+              break;
+
+            case "2":
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row += 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row += 2;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            default:
+              break;
           }
         }
-      } else {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
+      } else if (rotationIndex == 1) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 2;
+              trialCoordinates[i].column -= 2;
+              break;
+
+            case "2":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "3":
+              break;
+
+            case "4":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 2) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row += 2;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].row += 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 2;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 2;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 3) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "2":
+              break;
+
+            case "3":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row -= 2;
+              trialCoordinates[i].column -= 2;
+              break;
+
+            default:
+              break;
           }
         }
       }
       break;
 
     case "s":
-      if (!generateShapesVertically) {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 2;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
+      if (rotationIndex == 0) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].row -= 2;
+              break;
+
+            case "3":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "4":
+              break;
+
+            default:
+              break;
           }
         }
-      } else { 
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
+      } else if (rotationIndex == 1) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column -= 2;
+              break;
+
+            case "3":
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row += 1;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 2;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 2) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              break;
+
+            case "2":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row -= 2;
+              break;
+
+            case "4":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 3) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row += 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column -= 2;
+              break;
+
+            case "4":
+              trialCoordinates[i].column -= 1;
+              break;
+
+            default:
+              break;
           }
         }
       }
       break;
 
     case "z":
-      if (!generateShapesVertically) {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              default:
-                break;
-            }
+      if (rotationIndex == 0) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].column += 2;
+              break;
+
+            case "2":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "3":
+              break;
+
+            case "4":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            default:
+              break;
           }
         }
-      } else { // WIP
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              default:
-                break;
-            }
+      } else if (rotationIndex == 1) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row += 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row += 2;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 2) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "2":
+              break;
+
+            case "3":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].column += 2;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 3) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row += 2;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].row += 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row -= 1;
+              break;
+
+            default:
+              break;
           }
         }
       }
       break;
 
     case "l":
-      if (!generateShapesVertically) {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              default:
-                break;
-            }
+      if (rotationIndex == 0) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].column += 2;
+              break;
+
+            case "2":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row += 2;
+              break;
+
+            case "4":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            default:
+              break;
           }
         }
-      } else {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
+      } else if (rotationIndex == 1) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 2;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].row -= 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row += 1;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 2) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "2":
+              break;
+
+            case "3":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].column += 2;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 3) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row += 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column -= 2;
+              break;
+
+            case "4":
+              trialCoordinates[i].row -= 2;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            default:
+              break;
           }
         }
       }
       break;
 
     case "j":
-      if (!generateShapesVertically) {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 2;
-                break;
-  
-              default:
-                break;
-            }
+      if (rotationIndex == 0) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "2":
+              break;
+
+            case "3":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row += 2;
+              break;
+
+            default:
+              break;
           }
         }
-      } else {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 2;
-                break;
-  
-              default:
-                break;
-            }
+      } else if (rotationIndex == 1) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column -= 2;
+              break;
+
+            case "2":
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row += 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].column += 1;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 2) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row += 2;
+              break;
+
+            case "2":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].column += 2;
+              break;
+
+            case "4":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 3) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].row -= 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row -= 2;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column -= 2;
+              break;
+
+            default:
+              break;
           }
         }
       }
       break;
 
     case "t":
-      if (!generateShapesVertically) {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "4":
-                break;
-  
-              default:
-                break;
-            }
+      if (rotationIndex == 0) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "2":
+              trialCoordinates[i].row -= 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row -= 2;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].column -= 1;
+              break;
+
+            default:
+              break;
           }
         }
-      } else {
-        if (rotationIndex == 0) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row += 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].column += 2;
-                break;
-  
-              case "4":
-                break;
-  
-              default:
-                break;
-            }
+      } else if (rotationIndex == 1) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "2":
+              break;
+
+            case "3":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 1) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row -= 2;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 2) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row -= 1;
+              trialCoordinates[i].column -= 2;
+              break;
+
+            case "2":
+              trialCoordinates[i].column -= 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].row += 1;
+              break;
+
+            case "4":
+              trialCoordinates[i].row -= 1;
+              break;
+
+            default:
+              break;
           }
-        } else if (rotationIndex == 2) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              case "2":
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row += 1;
-                trialCoordinates[i].column += 1;
-                break;
-  
-              default:
-                break;
-            }
-          }
-        } else if (rotationIndex == 3) {
-          for (let i = 0; i < trialCoordinates.length; i++) {
-            let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
-  
-            switch (blockIndex) {
-              case "1":
-                trialCoordinates[i].row -= 1;
-                trialCoordinates[i].column -= 2;
-                break;
-  
-              case "2":
-                trialCoordinates[i].column -= 1;
-                break;
-  
-              case "3":
-                trialCoordinates[i].row += 1;
-                break;
-  
-              case "4":
-                trialCoordinates[i].row -= 1;
-                break;
-  
-              default:
-                break;
-            }
+        }
+      } else if (rotationIndex == 3) {
+        for (let i = 0; i < trialCoordinates.length; i++) {
+          let [shapeType, blockIndex] = trialCoordinates[i].id.split('-');
+
+          switch (blockIndex) {
+            case "1":
+              trialCoordinates[i].row += 2;
+              break;
+
+            case "2":
+              trialCoordinates[i].row += 1;
+              trialCoordinates[i].column += 1;
+              break;
+
+            case "3":
+              trialCoordinates[i].column += 2;
+              break;
+
+            case "4":
+              break;
+
+            default:
+              break;
           }
         }
       }

@@ -21,10 +21,9 @@ var shapeImagePathsVertical = {
 };
 
 
-
 function getShapeImage(shapeType) {
   let image = document.createElement('img');
-  if (!generateShapesVertically) {
+  if (generateShapesHorizontally) {
     image.src = shapeImagePathsHorizontal[shapeType];
   } else {
     image.src = shapeImagePathsVertical[shapeType];

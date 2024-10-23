@@ -21,4 +21,4 @@ function getColor(shapeType) {
 
 var hastenDescentInterval = 50;
 
-var generateShapesVertically = false;
+var generateShapesHorizontally = false;

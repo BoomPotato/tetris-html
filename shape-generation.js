@@ -36,7 +36,7 @@ function generateShape(isFirstShape) {
   nextRandomShape = tempShapesArray[nextRandomShapeIndex];
 
   //TESTING - DELETE LATER
-  // shape = changeShape();
+  shape = changeShape();
 
   if (!isFirstShape) {
     //Remove image of previous 'next' shape
@@ -46,6 +46,7 @@ function generateShape(isFirstShape) {
   document.getElementById("nextShape").appendChild(getShapeImage(nextRandomShape));
 
   let trialCoordinates = [];
+  let rotationPhase = "";
  
   //Generate shape
   switch (shape) {
@@ -98,13 +99,14 @@ function generateShape(isFirstShape) {
 
     //I shape
     case "i":
-      if (!generateShapesVertically) {
+      if (generateShapesHorizontally) {
         trialCoordinates = [
           { id: "i-1", row: rowHeight, column: middleColumn - 1 },
           { id: "i-2", row: rowHeight, column: middleColumn },
           { id: "i-3", row: rowHeight, column: middleColumn + 1 },
           { id: "i-4", row: rowHeight, column: middleColumn + 2}
         ];
+        rotationPhase = "r3";
       } else {
         trialCoordinates = [
           { id: "i-1", row: rowHeight, column: middleColumn },
@@ -112,18 +114,19 @@ function generateShape(isFirstShape) {
           { id: "i-3", row: rowHeight - 2, column: middleColumn },
           { id: "i-4", row: rowHeight - 3, column: middleColumn }
         ];
+        rotationPhase = "r0";
       }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
           shapeType: "i",
-          rotationPhase: "r0",
+          rotationPhase: rotationPhase,
           coordinates: trialCoordinates
         };
 
         displayShape(currentShape);
       } else {
-        if (!generateShapesVertically) {
+        if (generateShapesHorizontally) {
           gameOver();
           return;
         } else {
@@ -189,13 +192,14 @@ function generateShape(isFirstShape) {
 
     //S shape
     case "s":
-      if (!generateShapesVertically) {
+      if (generateShapesHorizontally) {
         trialCoordinates = [
           { id: "s-1", row: rowHeight, column: middleColumn },
           { id: "s-2", row: rowHeight, column: middleColumn + 1 },
           { id: "s-3", row: rowHeight - 1, column: middleColumn - 1 },
           { id: "s-4", row: rowHeight - 1, column: middleColumn }
         ];
+        rotationPhase = "r0";
       } else {
         trialCoordinates = [
           { id: "s-2", row: rowHeight, column: middleColumn },
@@ -203,18 +207,19 @@ function generateShape(isFirstShape) {
           { id: "s-4", row: rowHeight - 1, column: middleColumn + 1 },
           { id: "s-3", row: rowHeight - 2, column: middleColumn + 1 }
         ];
+        rotationPhase = "r3";
       }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
           shapeType: "s",
-          rotationPhase: "r0",
+          rotationPhase: rotationPhase,
           coordinates: trialCoordinates
         };
 
         displayShape(currentShape);
       } else {
-        if (!generateShapesVertically) {
+        if (generateShapesHorizontally) {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
           let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
@@ -252,7 +257,7 @@ function generateShape(isFirstShape) {
             case 1:
               currentShape = {
                 shapeType: "s",
-                rotationPhase: "r0",
+                rotationPhase: "r3",
                 coordinates: [
                   { id: "s-3", row: rowHeight, column: middleColumn + 1 }
                 ]
@@ -266,7 +271,7 @@ function generateShape(isFirstShape) {
             case 2:
               currentShape = {
                 shapeType: "s",
-                rotationPhase: "r0",
+                rotationPhase: "r3",
                 coordinates: [
                   { id: "s-1", row: rowHeight, column: middleColumn },
                   { id: "s-4", row: rowHeight, column: middleColumn + 1 },
@@ -289,13 +294,14 @@ function generateShape(isFirstShape) {
 
     //Z shape
     case "z":
-      if (!generateShapesVertically) {
+      if (generateShapesHorizontally) {
         trialCoordinates = [
           { id: "z-1", row: rowHeight, column: middleColumn - 1 },
           { id: "z-2", row: rowHeight, column: middleColumn },
           { id: "z-3", row: rowHeight - 1, column: middleColumn },
           { id: "z-4", row: rowHeight - 1, column: middleColumn + 1 }
         ];
+        rotationPhase = "r0";
       } else {
         trialCoordinates = [
           { id: "z-4", row: rowHeight, column: middleColumn + 1 },
@@ -303,18 +309,19 @@ function generateShape(isFirstShape) {
           { id: "z-2", row: rowHeight - 1, column: middleColumn },
           { id: "z-1", row: rowHeight - 2, column: middleColumn }
         ];
+        rotationPhase = "r3";
       }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
           shapeType: "z",
-          rotationPhase: "r0",
+          rotationPhase: rotationPhase,
           coordinates: trialCoordinates
         };
 
         displayShape(currentShape);
       } else {
-        if (!generateShapesVertically) {
+        if (generateShapesHorizontally) {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
           let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
@@ -352,7 +359,7 @@ function generateShape(isFirstShape) {
             case 1:
               currentShape = {
                 shapeType: "z",
-                rotationPhase: "r0",
+                rotationPhase: "r3",
                 coordinates: [
                   { id: "z-1", row: rowHeight, column: middleColumn }
                 ]
@@ -366,7 +373,7 @@ function generateShape(isFirstShape) {
             case 2:
               currentShape = {
                 shapeType: "z",
-                rotationPhase: "r0",
+                rotationPhase: "r3",
                 coordinates: [
                   { id: "z-3", row: rowHeight, column: middleColumn + 1 },
                   { id: "z-2", row: rowHeight, column: middleColumn },
@@ -389,13 +396,14 @@ function generateShape(isFirstShape) {
 
     //L shape
     case "l":
-      if (!generateShapesVertically) {
+      if (generateShapesHorizontally) {
         trialCoordinates = [
           { id: "l-4", row: rowHeight, column: middleColumn + 2 },
           { id: "l-1", row: rowHeight - 1, column: middleColumn },
           { id: "l-2", row: rowHeight - 1, column: middleColumn + 1 },
           { id: "l-3", row: rowHeight - 1, column: middleColumn + 2 }
         ];
+        rotationPhase = "r3";
       } else {
         trialCoordinates = [
           { id: "l-1", row: rowHeight, column: middleColumn },
@@ -403,18 +411,19 @@ function generateShape(isFirstShape) {
           { id: "l-3", row: rowHeight - 2, column: middleColumn },
           { id: "l-4", row: rowHeight - 2, column: middleColumn + 1 }
         ];
+        rotationPhase = "r0";
       }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
           shapeType: "l",
-          rotationPhase: "r0",
+          rotationPhase: rotationPhase,
           coordinates: trialCoordinates
         };
 
         displayShape(currentShape);
       } else {
-        if (!generateShapesVertically) { 
+        if (generateShapesHorizontally) { 
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
           let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
@@ -425,7 +434,7 @@ function generateShape(isFirstShape) {
             case 1:
               currentShape = {
                 shapeType: "l",
-                rotationPhase: "r0",
+                rotationPhase: "r3",
                 coordinates: [
                   { id: "l-1", row: rowHeight, column: middleColumn },
                   { id: "l-2", row: rowHeight, column: middleColumn + 1 },
@@ -491,13 +500,14 @@ function generateShape(isFirstShape) {
 
     //J shape
     case "j":
-      if (!generateShapesVertically) {
+      if (generateShapesHorizontally) {
         trialCoordinates = [
           { id: "j-4", row: rowHeight, column: middleColumn },
           { id: "j-3", row: rowHeight - 1, column: middleColumn },
           { id: "j-2", row: rowHeight - 1, column: middleColumn + 1 },
           { id: "j-1", row: rowHeight - 1, column: middleColumn + 2 }
         ];
+        rotationPhase = "r1";
       } else {
         trialCoordinates = [
           { id: "j-1", row: rowHeight, column: middleColumn + 1 },
@@ -505,18 +515,19 @@ function generateShape(isFirstShape) {
           { id: "j-3", row: rowHeight - 2, column: middleColumn + 1 },
           { id: "j-4", row: rowHeight - 2, column: middleColumn }
         ];
+        rotationPhase = "r0";
       }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
           shapeType: "j",
-          rotationPhase: "r0",
+          rotationPhase: rotationPhase,
           coordinates: trialCoordinates
         };
 
         displayShape(currentShape);
       } else {
-        if (!generateShapesVertically) {
+        if (generateShapesHorizontally) {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
           let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
@@ -527,7 +538,7 @@ function generateShape(isFirstShape) {
             case 1:
               currentShape = {
                 shapeType: "j",
-                rotationPhase: "r0",
+                rotationPhase: "r1",
                 coordinates: [
                   { id: "j-3", row: rowHeight, column: middleColumn },
                   { id: "j-2", row: rowHeight, column: middleColumn + 1 },
@@ -593,13 +604,14 @@ function generateShape(isFirstShape) {
     
     //T shape
     case "t":
-      if (!generateShapesVertically) {
+      if (generateShapesHorizontally) {
         trialCoordinates = [
           { id: "t-1", row: rowHeight, column: middleColumn },
           { id: "t-2", row: rowHeight, column: middleColumn + 1 },
           { id: "t-3", row: rowHeight, column: middleColumn + 2 },
           { id: "t-4", row: rowHeight - 1, column: middleColumn + 1 }
         ];
+        rotationPhase = "r0";
       } else {
         trialCoordinates = [
           { id: "t-3", row: rowHeight, column: middleColumn },
@@ -607,18 +619,19 @@ function generateShape(isFirstShape) {
           { id: "t-4", row: rowHeight - 1, column: middleColumn + 1 },
           { id: "t-1", row: rowHeight - 2, column: middleColumn }
         ];
+        rotationPhase = "r3";
       }
 
       if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('generate', trialCoordinates)) {
         currentShape = {
           shapeType: "t",
-          rotationPhase: "r0",
+          rotationPhase: rotationPhase,
           coordinates: trialCoordinates
         };
 
         displayShape(currentShape);
       } else {
-        if (!generateShapesVertically) {
+        if (generateShapesHorizontally) {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
           let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
@@ -655,7 +668,7 @@ function generateShape(isFirstShape) {
             case 1:
               currentShape = {
                 shapeType: "t",
-                rotationPhase: "r0",
+                rotationPhase: "r3",
                 coordinates: [
                   { id: "t-1", row: rowHeight, column: middleColumn }
                 ]
@@ -669,7 +682,7 @@ function generateShape(isFirstShape) {
             case 2:
               currentShape = {
                 shapeType: "t",
-                rotationPhase: "r0",
+                rotationPhase: "r3",
                 coordinates: [
                   { id: "t-2", row: rowHeight, column: middleColumn },
                   { id: "t-4", row: rowHeight, column: middleColumn + 1 },
