@@ -1,15 +1,7 @@
 "use strict";
 
-// var placedShapes = {
-//   '1' (row): {
-//     '2' (column): {
-//       'row': 1,
-//       'column': 2,
-//       'color': 'yellow'
-//     }
-//   }
-// };
 var placedShapes = {};
+var totalLinesCleared = 0;
 
 
 //Check if the shape will move out of bounds or collide with placed shapes
@@ -31,7 +23,7 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
       }
       return false;
       break;
-    
+
     case 'right':
       for (let i = 0; i < trialCoordinates.length; i++) {
         //If shape will not exceed right boundary
@@ -48,7 +40,7 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
       }
       return false;
       break;
-    
+
     case 'down':
       for (let i = 0; i < trialCoordinates.length; i++) {
         //If shape will not exceed bottom boundary
@@ -65,7 +57,7 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
       }
       return false;
       break;
-    
+
     case 'rotate':
       for (let i = 0; i < trialCoordinates.length; i++) {
         //If shape will not exceed left, right, top, or bottom boundary
@@ -94,7 +86,7 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
       }
       return false;
       break;
-    
+
     default:
       break;
   }
@@ -143,7 +135,7 @@ function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
       }
     }
   }
-  
+
   //Note: Object keys are always converted to string, even if their initial assignment was int... this 
   //made me go on a 4 day long bug hunt for the spacebar feature, because I assumed the column object key 
   //was an int when it was actually a string, and js couldn't compare a string (eg: '9') to an int (eg: 10) 
@@ -156,7 +148,7 @@ function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
       for (let j = 0; j < columns2.length; j++) {
         if (columns1[i] == columns2[j]) {
           let distanceBetweenCoordinates = lowestRowInEachShapeColumn[columns1[i]] - highestRowInEachPlacedShapesColumn[columns2[j]] - 1;
-          if (distanceBetweenCoordinates < smallestDistanceBetweenShapeAndPlacedShapes) {              
+          if (distanceBetweenCoordinates < smallestDistanceBetweenShapeAndPlacedShapes) {
             smallestDistanceBetweenShapeAndPlacedShapes = distanceBetweenCoordinates;
           }
         }
@@ -188,22 +180,106 @@ function placeShape(shape) {
     placedShapes[row][column] = {
       'row': row,
       'column': column,
-      'color': shapeColor
+      'color': shapeColor,
+      'shapeType': shape.shapeType,
+      'rotationPhase': shape.rotationPhase,
+      'id': shape.coordinates[i].id
     };
   }
 
   //TO DO: increase lines cleared OR score if there are full rows
+  checkForHorizontalMatches();
 
 }
 
 
 //Called whenever a shape descends (automatically by one row; sped up via down button; instantly placed via space bar)
-function checkForHorizontalMatches() {
+function checkForHorizontalMatches() { 
+  let rows = Object.keys(placedShapes);
+  let rowsMatched = [];
+  for (let i = 0; i < rows.length; i++) {
+    if (Object.keys(placedShapes[rows[i]]).length == columnWidth) {
+      rowsMatched.push(rows[i]);
+    }
+  }
+
+  if (rowsMatched.length > 0) {
+    increaseLinesCleared(rowsMatched.length);
+    clearPlacedShapesInGrid();
+    for (let i = 0; i < rowsMatched.length; i++) {
+      delete placedShapes[rowsMatched[i]];
+    }
+    displayRemainingPlacedShapes();
+  }
+
+  //TEST
+  // console.log("rowsMatched:", rowsMatched);
 }
 
 
-//For casual play, only takes into account how many lines are cleared; no extra points for clearing multiple rows at once
-function increaseLinesCleared() {
+function clearPlacedShapesInGrid() {
+  let rows = Object.keys(placedShapes);
+  for (let i = 0; i < rows.length; i++) {
+    let columns = Object.keys(placedShapes[rows[i]]);
+    for (let j = 0; j < columns.length; j++) {
+      let gridItem = document.getElementById(`grid-${rows[i]}-${columns[j]}`);
+      //Remove labels from old coordinate
+      gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
+      //Remove color from old coordinate
+      gridItem.style.removeProperty("background-color");
+    }
+  }
+}
+
+
+//Sorting object keys:
+//https://www.basedash.com/blog/how-to-sort-javascript-objects-by-key
+function displayRemainingPlacedShapes() {
+  let sortedRows = Object.keys(placedShapes).sort((a, b) => placedShapes[a] - placedShapes[b]);
+
+  let rowCounter = 0;
+  for (let i = 0; i < sortedRows.length; i++) {
+    rowCounter++;
+    let columns = Object.keys(placedShapes[sortedRows[i]]);
+    
+    if (sortedRows[i] == rowCounter) { 
+      for (let j = 0; j < columns.length; j++) {
+        let unchangedCoordinate = placedShapes[sortedRows[i]][columns[j]];
+
+        let gridItem = document.getElementById(`grid-${rowCounter}-${columns[j]}`);
+        //Add label to coordinate
+        gridItem.classList.add(unchangedCoordinate.id, unchangedCoordinate.rotationPhase);
+        //Add color to coordinate
+        let shapeColor = getColor(unchangedCoordinate.shapeType);
+        gridItem.style.backgroundColor = shapeColor;
+      }
+    } else { 
+      for (let j = 0; j < columns.length; j++) {
+        //Descend higher rows to fill the gaps between rows
+        placedShapes[sortedRows[i]][columns[j]].row = rowCounter;
+        
+        let newCoordinate = placedShapes[sortedRows[i]][columns[j]];
+        let gridItem = document.getElementById(`grid-${newCoordinate.row}-${newCoordinate.column}`);
+        //Add label to new coordinate
+        gridItem.classList.add(newCoordinate.id, newCoordinate.rotationPhase);
+        //Add color to new coordinate
+        let shapeColor = getColor(newCoordinate.shapeType);
+        gridItem.style.backgroundColor = shapeColor;
+      }
+
+      //Update data structure with the new row as a key, and delete the old key
+      let tempRow = JSON.parse(JSON.stringify(placedShapes[sortedRows[i]]));
+      delete placedShapes[sortedRows[i]];
+      placedShapes[rowCounter] = tempRow;
+    }
+  }
+}
+
+
+//For casual play; only takes into account how many lines are cleared; no extra points for clearing multiple rows at once
+function increaseLinesCleared(linesCleared) {
+  totalLinesCleared += linesCleared;
+  document.getElementById("totalLinesCleared").innerText = totalLinesCleared;
 }
 
 

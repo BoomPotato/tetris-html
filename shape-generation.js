@@ -36,7 +36,7 @@ function generateShape(isFirstShape) {
   nextRandomShape = tempShapesArray[nextRandomShapeIndex];
 
   //TESTING - DELETE LATER
-  shape = changeShape();
+  // shape = changeShape();
 
   if (!isFirstShape) {
     //Remove image of previous 'next' shape
@@ -710,19 +710,6 @@ function generateShape(isFirstShape) {
   moveShapeDownByOneRow();
 }
 
-
-// currentShape = {
-//   shapeType: "t",
-//   rotationPhase: "r0",
-//   coordinates: trialCoordinates
-// };
-
-// trialCoordinates = [
-//   { id: "o-1", row: rowHeight, column: middleColumn },
-//   { id: "o-2", row: rowHeight, column: middleColumn + 1 },
-//   { id: "o-3", row: rowHeight - 1, column: middleColumn },
-//   { id: "o-4", row: rowHeight - 1, column: middleColumn + 1 }
-// ];
 
 function displayShape(shape) {
   let shapeColor = getColor(shape.shapeType);
