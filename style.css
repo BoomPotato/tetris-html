@@ -50,8 +50,11 @@ h1 {
 
 
 #scoreAndNextShape {
-    display: none; /* Hidden by default */
     margin-left: 2em;
+}
+
+#combos {
+    margin-right: 2em;
 }
 
 table, th, td {
@@ -60,14 +63,56 @@ table, th, td {
     border: 1px solid darkgoldenrod;
     margin-left: auto;
     margin-right: auto;
+    width: 12vw;
+}
+
+.tableHeader {
+    color: gray;
+    margin-left: 0.75vw;
+    margin-right: 0.75vw;
+}
+
+.tableData {
+    margin-left: 0.75vw;
+    margin-right: 0.75vw;
+    font-size: 1.5em;
 }
 
 td {
     padding: 0.15em;
 }
 
-.row {
+#rowGameplay {
     display: flex;
     justify-content: center;
-    margin-top: 3em;
+    /* margin-top: 10vh; */
+}
+
+#rowPastResults {
+    display: none;
+    justify-content: center;
+}
+
+#pastResults {
+    width: 100vw;
+}
+
+#noPastResultsMsg {
+    display: none;
+}
+
+/* Make table header in past results stick to the top of the screen */
+/* https://css-tricks.com/position-sticky-and-table-headers/ */
+.pastResultsTableHeader {
+    background-color: dimgray;
+    position: sticky;
+    top: 0; /* Don't forget this, required for the stickiness */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+.backButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }

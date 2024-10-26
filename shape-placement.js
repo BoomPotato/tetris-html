@@ -2,6 +2,12 @@
 
 var placedShapes = {};
 var totalLinesCleared = 0;
+var totalScore = 0;
+
+var singleLinesCleared = 0;
+var doubleLinesCleared = 0;
+var tripleLinesCleared = 0;
+var tetrisLinesCleared = 0;
 
 
 //Check if the shape will move out of bounds or collide with placed shapes
@@ -205,15 +211,13 @@ function checkForHorizontalMatches() {
 
   if (rowsMatched.length > 0) {
     increaseLinesCleared(rowsMatched.length);
+    increaseScore(rowsMatched.length);
     clearPlacedShapesInGrid();
     for (let i = 0; i < rowsMatched.length; i++) {
       delete placedShapes[rowsMatched[i]];
     }
     displayRemainingPlacedShapes();
   }
-
-  //TEST
-  // console.log("rowsMatched:", rowsMatched);
 }
 
 
@@ -284,6 +288,88 @@ function increaseLinesCleared(linesCleared) {
 
 
 //For competitive play; extra points for clearing multiple rows at once
-function increaseScore() {
+function increaseScore(linesCleared) {
+  let score = 0;
+  switch (linesCleared) {
+    case 1:
+      score = 1;
+      singleLinesCleared++;
+      document.getElementById("singleLinesCleared").innerText = singleLinesCleared;
+      break;
+    
+    case 2:
+      score = 3;
+      doubleLinesCleared++;
+      document.getElementById("doubleLinesCleared").innerText = doubleLinesCleared;
+      break;
+    
+    case 3:
+      score = 5;
+      tripleLinesCleared++;
+      document.getElementById("tripleLinesCleared").innerText = tripleLinesCleared;
+      break;
+    
+    case 4:
+      score = 8;
+      tetrisLinesCleared++;
+      document.getElementById("tetrisLinesCleared").innerText = tetrisLinesCleared;
+      break;
+  }
+
+  totalScore += score;
+  document.getElementById("totalScore").innerText = totalScore;
+}
+
+
+function saveResultsToLocalStorage() {
+  let gameStartTimeFormatted = new Date(gameStartTime).toString();
+  gameEndTime = Date.now();
+  let gameEndTimeFormatted = new Date(gameEndTime).toString();
+
+  let gameDuration = calculateGameDuration();
+  
+  let newResults = {
+    "score": totalScore,
+    "linesCleared": totalLinesCleared,
+    "single": singleLinesCleared,
+    "double": doubleLinesCleared,
+    "triple": tripleLinesCleared,
+    "tetris": tetrisLinesCleared,
+    "duration": gameDuration,
+    "startTime": gameStartTimeFormatted,
+    "endTime": gameEndTimeFormatted,
+  }
+
+  let pastResults = JSON.parse(localStorage.getItem("pastResults"));
+  if (pastResults == null) {
+    pastResults = [];
+    pastResults.push(newResults);
+    localStorage.setItem("pastResults", JSON.stringify(pastResults));
+  } else {
+    pastResults.push(newResults);
+    localStorage.removeItem("pastResults");
+    localStorage.setItem("pastResults", JSON.stringify(pastResults));
+  }
+}
+
+
+//https://www.geeksforgeeks.org/get-the-relative-timestamp-difference-between-dates-in-javascript/
+function calculateGameDuration() {
+  let ms_Sec = 1000; // milliseconds in Second 
+  let ms_Min = 60 * 1000; // milliseconds in Minute 
+  let ms_Hour = ms_Min * 60; // milliseconds in Hour 
+  let gameDuration = gameEndTime - gameStartTime; //difference between times
+  
+  let unconvertedTime;
+  let hours = Math.floor(gameDuration / ms_Hour);
+  unconvertedTime = gameDuration - (hours * ms_Hour);
+  let minutes = Math.floor(unconvertedTime / ms_Min);
+  unconvertedTime -= (minutes * ms_Min);
+  let seconds = Math.floor(unconvertedTime / ms_Sec);
+  unconvertedTime -= (seconds * ms_Sec);
+
+  let formattedDuration = `${hours} hours, ${minutes} minutes, ${seconds} seconds, ${unconvertedTime} miliseconds`;
+
+  return formattedDuration;
 }
 

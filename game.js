@@ -14,17 +14,16 @@ var middleColumn;
 // };
 var currentShape = {};
 
+var gameStartTime;
+var gameEndTime;
+
 
 function initialiseGame() {
-  //Hide game title and welcome buttons, and display score and lives
-  document.getElementById("gameTitle").style.display = "none";
-  document.getElementById("welcomeBtns").style.display = "none";
-  document.getElementById("scoreAndNextShape").style.display = "block";
-
   loadGrid();
   // countdown();
   generateShape(true);
   activateControls();
+  gameStartTime = Date.now();
 }
 
 
@@ -84,4 +83,44 @@ function gameOver() {
   //Deactivate controls
   document.body.removeEventListener("keydown", keyHandler);
   document.body.removeEventListener("keyup", keyHandler);
+
+  saveResultsToLocalStorage();
 }
+
+
+//https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
+function showPastResults() {  
+  let pastResults = JSON.parse(localStorage.getItem("pastResults"));
+  
+  if (pastResults == null) {
+    document.getElementById("noPastResultsMsg").style.display = "flex";
+  } else {
+    document.getElementById("rowPastResults").style.display = "flex";
+    let table = document.getElementById("pastResults");
+    let indexCounter = 0;
+    for (let i = 0; i < pastResults.length; i++) {
+      indexCounter++;
+      let tr = document.createElement("tr");
+
+      let thHeaders = document.getElementById("pastResultsTableHeaders").getElementsByTagName("th");
+      let keys = Object.keys(pastResults[i]);
+      for (let j = 0; j < thHeaders.length; j++) {
+        let td = document.createElement("td");
+        td.id = `${thHeaders[j].id}-${indexCounter}`;
+        td.style.fontSize = "1em";
+        td.style.textAlign = "center";
+        if (thHeaders[j].id == "index") {
+          let text = document.createTextNode(indexCounter);
+          td.appendChild(text);
+        } else if (keys.includes(thHeaders[j].id)) {
+          let text = document.createTextNode(pastResults[i][thHeaders[j].id]);
+          td.appendChild(text);
+        }
+        tr.appendChild(td);
+      }
+
+      table.appendChild(tr);
+    }
+  }
+}
+

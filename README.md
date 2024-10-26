@@ -49,4 +49,8 @@ Project started on 7 June 2024.
     Sorting object keys: <br>
     https://www.basedash.com/blog/how-to-sort-javascript-objects-by-key
   </li>
+  <li>
+    Formatting timestamp: <br>
+    https://codedamn.com/news/javascript/how-to-convert-timestamp-to-date-in-javascript
+  </li>
 </ul>

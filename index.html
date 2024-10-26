@@ -22,41 +22,9 @@
 
   <div id="welcomeBtns">
     <!--put image of game characters here-->
-    <button onclick="initialiseGame()">Start</button>
+    <button onclick="location.href = './game.html';">Start</button>
     <br><br>
-    <button>Scores</button>
-    <br><br>
-    <button>Instructions</button>
-  </div>
-
-  <div class="row">
-    
-    <div class="column">
-      <div class="grid-container" id="grid"></div>
-    </div>
-
-    <div class="column" id="scoreAndNextShape">
-      <table>
-        <thead>
-          <tr>
-            <td>Lines Cleared: <span id="totalLinesCleared">0</span></td>
-          </tr>
-          <tr>
-            <td>Score: <span id="score">0</span></td>
-          </tr>
-          <tr>
-            <td>Next Shape: <span id="nextShape"></span></td>
-          </tr>
-        </thead>
-      </table>
-      <br>
-      <button onclick="stopMoveShapeDownByOneRow()">Stop moveShapeDownByOneRow()</button>
-    </div>
-
-  </div>
-
-  <div id="overlay">
-    <p id="countdown"></p>
+    <button onclick="location.href = './past-results.html';">Past Results</button>
   </div>
 
 </body>
