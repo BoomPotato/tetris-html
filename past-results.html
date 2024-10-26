@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tetris</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="controls.js"></script>
+  <script type="text/javascript" src="customisation.js"></script>
+  <script type="text/javascript" src="asset-handler.js"></script>
+  <script type="text/javascript" src="shape-generation.js"></script>
+  <script type="text/javascript" src="shape-placement.js"></script>
+  <script type="text/javascript" src="shape-rotation.js"></script>
+  <script type="text/javascript" src="shape-descent.js"></script>
+  <script type="text/javascript" src="temp.js"></script> <!--for convenience in testing, delete later-->
+  <script type="text/javascript" src="game.js"></script>
+
+  <script>
+    window.addEventListener("load", (event) => {
+      showPastResults();
+    });
+  </script>
+</head>
+
+<body>
+
+  <h1 id="gameTitle">Tetris</h1>
+  <div class="backButton">
+    <button onclick="location.href = './index.html';">Back to home page</button>
+  </div>
+  <div id="noPastResultsMsg">No past results!</div>
+
+  <div id="rowPastResults">
+    <table id="pastResults">
+      <tr id="pastResultsTableHeaders">
+        <th class="pastResultsTableHeader" id="index">Index</th>
+        <th class="pastResultsTableHeader" id="startTime">Start Time</th>
+        <th class="pastResultsTableHeader" id="endTime">End Time</th>
+        <th class="pastResultsTableHeader" id="duration">Duration</th>
+        <th class="pastResultsTableHeader" id="score">Score</th>
+        <th class="pastResultsTableHeader" id="linesCleared">Lines Cleared</th>
+        <th class="pastResultsTableHeader" id="single">Single</th>
+        <th class="pastResultsTableHeader" id="double">Double</th>
+        <th class="pastResultsTableHeader" id="triple">Triple</th>
+        <th class="pastResultsTableHeader" id="tetris">Tetris</th>
+      </tr>
+    </table>
+  </div>
+
+</body>
+
+</html>

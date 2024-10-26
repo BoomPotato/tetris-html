@@ -14,17 +14,32 @@ var middleColumn;
 // };
 var currentShape = {};
 
+var gameStartTime;
+var gameEndTime;
+
 
 function initialiseGame() {
-  //Hide game title and welcome buttons, and display score and lives
-  document.getElementById("gameTitle").style.display = "none";
-  document.getElementById("welcomeBtns").style.display = "none";
-  document.getElementById("scoreAndNextShape").style.display = "block";
+  //Implement customisation
+  let unparsedCustomisation = localStorage.getItem('customisation');
+  if (unparsedCustomisation != null) {
+    let customisation = JSON.parse(unparsedCustomisation);
+    rowHeight = customisation.rowHeight;
+    columnWidth = customisation.columnWidth;
+    if (customisation.generateShapesHorizontally == "false") {
+      generateShapesHorizontally = false;
+    } else {
+      generateShapesHorizontally = true;
+    }
+    defaultDescentInterval = customisation.defaultDescentInterval;
+    hastenDescentInterval = customisation.hastenDescentInterval;
+    colors = customisation.colors;
+  }
 
   loadGrid();
   // countdown();
   generateShape(true);
   activateControls();
+  gameStartTime = Date.now();
 }
 
 
@@ -78,10 +93,50 @@ function countdown() {
 
 
 function gameOver() {
-  //Placeholder
-  console.log("GAME OVER!");
-  
   //Deactivate controls
   document.body.removeEventListener("keydown", keyHandler);
   document.body.removeEventListener("keyup", keyHandler);
+
+  saveResultsToLocalStorage();
+
+  //Show game over alert. To be replaced with game over screen later.
+  alert("Game over! Your results have been saved!");
 }
+
+
+//https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
+function showPastResults() {  
+  let pastResults = JSON.parse(localStorage.getItem("pastResults"));
+  
+  if (pastResults == null) {
+    document.getElementById("noPastResultsMsg").style.display = "flex";
+  } else {
+    document.getElementById("rowPastResults").style.display = "flex";
+    let table = document.getElementById("pastResults");
+    let indexCounter = 0;
+    for (let i = 0; i < pastResults.length; i++) {
+      indexCounter++;
+      let tr = document.createElement("tr");
+
+      let thHeaders = document.getElementById("pastResultsTableHeaders").getElementsByTagName("th");
+      let keys = Object.keys(pastResults[i]);
+      for (let j = 0; j < thHeaders.length; j++) {
+        let td = document.createElement("td");
+        td.id = `${thHeaders[j].id}-${indexCounter}`;
+        td.style.fontSize = "1em";
+        td.style.textAlign = "center";
+        if (thHeaders[j].id == "index") {
+          let text = document.createTextNode(indexCounter);
+          td.appendChild(text);
+        } else if (keys.includes(thHeaders[j].id)) {
+          let text = document.createTextNode(pastResults[i][thHeaders[j].id]);
+          td.appendChild(text);
+        }
+        tr.appendChild(td);
+      }
+
+      table.appendChild(tr);
+    }
+  }
+}
+

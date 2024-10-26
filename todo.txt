@@ -4,22 +4,27 @@ x 2) press arrowdown button to hasten descent. lift arrowdown button to revert d
     - Issue: There is a slight delay when triggering the hasten descent feature when the currently active setTimeout function hasn't 
     finished. This disrupts user experience because the response is not immediate; it catches the user off-guard when the feature 
     eventually and unexpectedly triggers.
-3) space bar to place shape immediately
-    - WIP. Issue: Only able to stack shapes till the 10th row; unable to stack higher than that
+x 3) space bar to place shape immediately
+    x - WIP. Issue: Only able to stack shapes till the 10th row; unable to stack higher than that
 
 shape descent:
-1) spawn new shape right after previous shape is placed
+x 1) spawn new shape right after previous shape is placed
 2) based on number of lines cleared, increase speed of descent (descentIntervalDuration)
 
 score:
 1) for casual play, increase number of lines cleared
 2) for competitive play, increase score for number of lines cleared and give bonus points for multiple lines cleared at once
 
-IDK HOW TO LABEL THESE
-1) create an array with all the blocks in the block stack. on each descent of the current shape, check if the shape collides with the 
+place shape:
+x 1) create an array with all the blocks in the block stack. on each descent of the current shape, check if the shape collides with the 
 stack. If it collides, place the shape.
 
+player aid:
+1) show outline of where a shape will be placed if the shape descends/is insta-placed. will prevent player from placing shapes in the wrong columns
+2) show line combo, so players will know why they get different score increments
 
+music:
+1) add sound effects and music, and options to disable them
 
 
 customisation options:
@@ -29,7 +34,6 @@ customisation options:
 
 
 NOTES:
-setInterval takes a fixed interval value that value can't be changed dynamically... but I could change it dynamically in space-invaders-html. Figure out if it would work in tetris-html too.
+setInterval takes a fixed interval value that value can't be changed dynamically
 https://stackoverflow.com/questions/30725455/change-setinterval-value-dynamically
-
 

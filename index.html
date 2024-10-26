@@ -20,40 +20,13 @@
 
   <h1 id="gameTitle">Tetris</h1>
 
-  <div id="welcomeBtns">
+  <div id="indexButtons">
     <!--put image of game characters here-->
-    <button onclick="initialiseGame()">Start</button>
+    <button onclick="location.href = './game.html';">Start</button>
     <br><br>
-    <button>Scores</button>
+    <button onclick="location.href = './past-results.html';">Past Results</button>
     <br><br>
-    <button>Instructions</button>
-  </div>
-
-  <div class="row">
-    
-    <div class="column">
-      <div class="grid-container" id="grid"></div>
-    </div>
-
-    <div class="column" id="scoreAndNextShape">
-      <table>
-        <thead>
-          <tr>
-            <td>Score: <span id="score">0</span></td>
-          </tr>
-          <tr>
-            <td>Next Shape: <span id="nextShape"></span></td>
-          </tr>
-        </thead>
-      </table>
-      <br>
-      <button onclick="stopMoveShapeDownByOneRow()">Stop moveShapeDownByOneRow()</button>
-    </div>
-
-  </div>
-
-  <div id="overlay">
-    <p id="countdown"></p>
+    <button onclick="location.href = './customisation.html';">Customisation</button>
   </div>
 
 </body>

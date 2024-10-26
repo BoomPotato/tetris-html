@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tetris</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="controls.js"></script>
+  <script type="text/javascript" src="customisation.js"></script>
+  <script type="text/javascript" src="asset-handler.js"></script>
+  <script type="text/javascript" src="shape-generation.js"></script>
+  <script type="text/javascript" src="shape-placement.js"></script>
+  <script type="text/javascript" src="shape-rotation.js"></script>
+  <script type="text/javascript" src="shape-descent.js"></script>
+  <script type="text/javascript" src="temp.js"></script> <!--for convenience in testing, delete later-->
+  <script type="text/javascript" src="game.js"></script>
+
+  <script>
+    window.addEventListener("load", (event) => {
+      initialiseGame();
+    });
+  </script>
+</head>
+
+<body>
+  <div class="backButton">
+    <button onclick="location.href = './index.html';">Back to home page</button>
+  </div>
+
+  <div id="rowGameplay">
+
+    <div class="column" id="combos">
+      <table>
+        <thead>
+          <tr>
+            <td><span class="tableHeader">Single:</span> <br>
+              <span class="tableHeader">(1 pt)</span> <br>
+              <span class="tableData" id="singleLinesCleared">0</span>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="tableHeader">Double:</span> <br>
+              <span class="tableHeader">(3 pts)</span> <br>
+              <span class="tableData" id="doubleLinesCleared">0</span>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="tableHeader">Triple:</span> <br>
+              <span class="tableHeader">(5 pts)</span> <br>
+              <span class="tableData" id="tripleLinesCleared">0</span>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="tableHeader">Tetris:</span> <br>
+              <span class="tableHeader">(8 pts)</span> <br>
+              <span class="tableData" id="tetrisLinesCleared">0</span>
+            </td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    
+    <div class="column">
+      <div class="grid-container" id="grid"></div>
+    </div>
+
+    <div class="column" id="scoreAndNextShape">
+      <table>
+        <thead>
+          <tr>
+            <td><span class="tableHeader">Score:</span> <br>
+              <span class="tableData" id="totalScore">0</span>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="tableHeader">Lines Cleared:</span> <br>
+              <span class="tableData" id="totalLinesCleared">0</span>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="tableHeader">Next Shape:</span> <br>
+              <span class="tableData" id="nextShape"></span>
+            </td>
+          </tr>
+        </thead>
+      </table>
+      <br>
+      <!-- for testing -->
+      <button onclick="stopMoveShapeDownByOneRow()">Stop moveShapeDownByOneRow()</button>
+    </div>
+
+  </div>
+
+  <div id="overlay">
+    <p id="countdown"></p>
+  </div>
+
+</body>
+
+</html>
