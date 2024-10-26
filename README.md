@@ -53,4 +53,12 @@ Project started on 7 June 2024.
     Formatting timestamp: <br>
     https://codedamn.com/news/javascript/how-to-convert-timestamp-to-date-in-javascript
   </li>
+  <li>
+    Dynamic creation of tables: <br>
+    https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
+  </li>
+  <li>
+    Make table header stick to the top of the screen: <br>
+    https://css-tricks.com/position-sticky-and-table-headers/
+  </li>
 </ul>

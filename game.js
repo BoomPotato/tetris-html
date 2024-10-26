@@ -19,6 +19,22 @@ var gameEndTime;
 
 
 function initialiseGame() {
+  //Implement customisation
+  let unparsedCustomisation = localStorage.getItem('customisation');
+  if (unparsedCustomisation != null) {
+    let customisation = JSON.parse(unparsedCustomisation);
+    rowHeight = customisation.rowHeight;
+    columnWidth = customisation.columnWidth;
+    if (customisation.generateShapesHorizontally == "false") {
+      generateShapesHorizontally = false;
+    } else {
+      generateShapesHorizontally = true;
+    }
+    defaultDescentInterval = customisation.defaultDescentInterval;
+    hastenDescentInterval = customisation.hastenDescentInterval;
+    colors = customisation.colors;
+  }
+
   loadGrid();
   // countdown();
   generateShape(true);
@@ -77,14 +93,14 @@ function countdown() {
 
 
 function gameOver() {
-  //Placeholder
-  console.log("GAME OVER!");
-  
   //Deactivate controls
   document.body.removeEventListener("keydown", keyHandler);
   document.body.removeEventListener("keyup", keyHandler);
 
   saveResultsToLocalStorage();
+
+  //Show game over alert. To be replaced with game over screen later.
+  alert("Game over! Your results have been saved!");
 }
 
 

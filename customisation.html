@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tetris</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="controls.js"></script>
+  <script type="text/javascript" src="customisation.js"></script>
+  <script type="text/javascript" src="asset-handler.js"></script>
+  <script type="text/javascript" src="shape-generation.js"></script>
+  <script type="text/javascript" src="shape-placement.js"></script>
+  <script type="text/javascript" src="shape-rotation.js"></script>
+  <script type="text/javascript" src="shape-descent.js"></script>
+  <script type="text/javascript" src="temp.js"></script> <!--for convenience in testing, delete later-->
+  <script type="text/javascript" src="game.js"></script>
+
+  <script>
+    window.addEventListener("load", (event) => {
+      populateForm();
+    });
+  </script>
+</head>
+
+<body>
+
+  <div class="backButton">
+    <button onclick="location.href = './index.html';">Back to home page</button>
+  </div>
+
+  <div>
+    <form id="customisationForm">
+      <table>
+        <tr>
+          <td><label>Row height: </label></td>
+          <td><input type="number" id="rowHeight" min="10" value="20" required></td>
+        </tr>
+        <tr>
+          <td><label>Column width: </label></td>
+          <td><input type="number" id="columnWidth" min="5" value="10" required></td>
+        </tr>
+        <tr>
+          <td><label>Generate shapes: </label></td>
+          <td>
+            <input type="radio" id="horizontally" name="generateShapes" value="true" checked required>
+            <label for="horizontally">Horizontally</label>
+            <br>
+            <input type="radio" id="vertically" name="generateShapes" value="false" required>
+            <label for="vertically">Vertically</label>
+          </td>
+        </tr>
+        <tr>
+          <td><label>Descent interval: </label></td>
+          <td><input type="number" id="descentInterval" min="0" value="300" required></td>
+        </tr>
+        <tr>
+          <td><label>Hasten descent interval (ArrowDown key): </label></td>
+          <td><input type="number" id="hastenDescentInterval" min="0" value="50" required></td>
+        </tr>
+        <tr>
+          <td><label>O color: </label></td>
+          <td><input type="color" id="colorO" name="colorO" value="#FFFF00"></td>
+        </tr>
+        <tr>
+          <td><label>I color: </label></td>
+          <td><input type="color" id="colorI" name="colorI" value="#ADD8E6"></td>
+        </tr>
+        <tr>
+          <td><label>S color: </label></td>
+          <td><input type="color" id="colorS" name="colorS" value="#008000"></td>
+        </tr>
+        <tr>
+          <td><label>Z color: </label></td>
+          <td><input type="color" id="colorZ" name="colorZ" value="#FF0000"></td>
+        </tr>
+        <tr>
+          <td><label>L color: </label></td>
+          <td><input type="color" id="colorL" name="colorL" value="#FFA500"></td>
+        </tr>
+        <tr>
+          <td><label>J color: </label></td>
+          <td><input type="color" id="colorJ" name="colorJ" value="#0000FF"></td>
+        </tr>
+        <tr>
+          <td><label>T color: </label></td>
+          <td><input type="color" id="colorT" name="colorT" value="#800080"></td>
+        </tr>
+      </table>
+    </form>
+    <div class="customiseButton">
+      <button onclick="customiseGame()">Customise & Start</button>
+    </div>
+  </div>
+
+</body>
+
+</html>

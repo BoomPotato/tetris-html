@@ -9,7 +9,6 @@ h1 {
 
 .grid-container {
     display: grid;
-    /* justify-content: center; */
 }
   
 .grid-item {
@@ -22,7 +21,7 @@ h1 {
     color: blue;
 }
 
-#welcomeBtns {
+#indexButtons {
     text-align: center;
 }
 
@@ -85,7 +84,6 @@ td {
 #rowGameplay {
     display: flex;
     justify-content: center;
-    /* margin-top: 10vh; */
 }
 
 #rowPastResults {
@@ -104,13 +102,12 @@ td {
 /* Make table header in past results stick to the top of the screen */
 /* https://css-tricks.com/position-sticky-and-table-headers/ */
 .pastResultsTableHeader {
-    background-color: dimgray;
+    background-color: darkslategrey;
     position: sticky;
     top: 0; /* Don't forget this, required for the stickiness */
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
 }
 
-.backButton {
+.backButton, .customiseButton {
     display: flex;
     justify-content: center;
     margin-top: 3vh;
