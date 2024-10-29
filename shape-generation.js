@@ -24,6 +24,8 @@ function generateShape(isFirstShape) {
     //Randomise first shape
     let randomShapeIndex = Math.floor(Math.random() * 7);
     shape = shapes[randomShapeIndex];
+
+    shape = "i";
   } else {
     //Take the previously randomised 'next' shape as the current shape
     shape = nextRandomShape;
@@ -37,6 +39,7 @@ function generateShape(isFirstShape) {
 
   //TESTING - DELETE LATER
   // shape = changeShape();
+  nextRandomShape = "j";
 
   if (!isFirstShape) {
     //Remove image of previous 'next' shape

@@ -137,6 +137,14 @@ function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
               highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]] = parseInt(rowsOccupiedByPlacedShapes[i]);
             }
           }
+        } 
+        //If the shape's unique column is not occupied by the placed shapes for a particular row
+        else {
+          //If the shape's unique column doesn't exist in the temp object yet
+          if (!(uniqueColumnsOccupiedByShape[j].toString() in highestRowInEachPlacedShapesColumn)) {
+            //Create a new key-item pair (column: row) for the unoccupied column in the temp object
+            highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]] = 0;
+          }
         }
       }
     }
