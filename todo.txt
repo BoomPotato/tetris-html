@@ -12,16 +12,16 @@ x 1) spawn new shape right after previous shape is placed
 2) based on number of lines cleared, increase speed of descent (descentIntervalDuration)
 
 score:
-1) for casual play, increase number of lines cleared
-2) for competitive play, increase score for number of lines cleared and give bonus points for multiple lines cleared at once
+x 1) for casual play, increase number of lines cleared
+x 2) for competitive play, increase score for number of lines cleared and give bonus points for multiple lines cleared at once
 
 place shape:
-x 1) create an array with all the blocks in the block stack. on each descent of the current shape, check if the shape collides with the 
+x 1) create an object with all the blocks in the block stack. on each descent of the current shape, check if the shape collides with the 
 stack. If it collides, place the shape.
 
 player aid:
 1) show outline of where a shape will be placed if the shape descends/is insta-placed. will prevent player from placing shapes in the wrong columns
-2) show line combo, so players will know why they get different score increments
+x 2) show line combo, so players will know why they get different score increments
 
 music:
 1) add sound effects and music, and options to disable them
@@ -30,7 +30,7 @@ music:
 customisation options:
 1) randomise color of tetris shapes. might look jarring because there isn't a smooth and gradual transition between hues.
 2) if the stack of blocks rises higher than the mid-point of the grid, change the color of all blocks to match the background 
-(meant to torture players into keeping their stack below the midpoint.)
+(meant to pressure players into keeping their stack below the midpoint.)
 
 
 NOTES:

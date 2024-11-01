@@ -14,14 +14,60 @@
   <script type="text/javascript" src="shape-descent.js"></script>
   <script type="text/javascript" src="temp.js"></script> <!--for convenience in testing, delete later-->
   <script type="text/javascript" src="game.js"></script>
+
+  <script>
+    window.addEventListener("load", (event) => {
+      populateGameModeForm();
+    });
+  </script>
 </head>
 
 <body>
 
   <h1 id="gameTitle">Tetris</h1>
 
+  <div id="rowGameMode">
+    <div class="column">
+      <form id="gameModeForm">
+        <table>
+          <tr>
+            <td>
+              <input type="radio" id="endlessMode" name="gameMode" value="endlessMode" checked required>
+              <label for="endlessMode">Endless</label>              
+            </td>
+            <td>
+              <span>-</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="radio" id="scoreMode" name="gameMode" value="scoreMode" required>
+              <label for="scoreMode">Score</label>
+            </td>
+            <td>
+              <input type="number" id="scoreModeValue" min="1" value="30" required>        
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="radio" id="linesMode" name="gameMode" value="linesMode" required>
+              <label for="linesMode">Lines</label>
+            </td>
+            <td>
+              <input type="number" id="linesModeValue" min="1" value="30" required>        
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div id="setGameModeButton">
+      <button onclick="setGameMode()">Set Game Mode</button>
+    </div>
+  </div>
+    
   <div id="indexButtons">
-    <!--put image of game characters here-->
+    <!--put image of tetris shapes here-->
+
     <button onclick="location.href = './game.html';">Start</button>
     <br><br>
     <button onclick="location.href = './past-results.html';">Past Results</button>

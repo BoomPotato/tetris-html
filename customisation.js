@@ -30,8 +30,7 @@ function getColor(shapeType) {
 }
 
 
-function populateForm() {
-  //Implement customisation
+function populateCustomisationForm() {
   let unparsedCustomisation = localStorage.getItem('customisation');
   if (unparsedCustomisation != null) {
     let customisation = JSON.parse(unparsedCustomisation);
@@ -98,6 +97,5 @@ function customiseGame() {
 
   //Direct to game page
   window.location.href = './game.html';
-
 }
 
