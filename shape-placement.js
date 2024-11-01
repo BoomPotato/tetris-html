@@ -9,6 +9,8 @@ var doubleLinesCleared = 0;
 var tripleLinesCleared = 0;
 var tetrisLinesCleared = 0;
 
+var gameModeGoalReached = false
+
 
 //Check if the shape will move out of bounds or collide with placed shapes
 function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordinates) {
@@ -201,9 +203,8 @@ function placeShape(shape) {
     };
   }
 
-  //TO DO: increase lines cleared OR score if there are full rows
+  //Increase lines cleared OR score if there are full rows
   checkForHorizontalMatches();
-
 }
 
 
@@ -292,6 +293,13 @@ function displayRemainingPlacedShapes() {
 function increaseLinesCleared(linesCleared) {
   totalLinesCleared += linesCleared;
   document.getElementById("totalLinesCleared").innerText = totalLinesCleared;
+
+  if (gameMode['gameMode'] == 'linesMode') {
+    if (totalLinesCleared >= gameMode['value']) {
+      //Lines goal reached
+      gameModeGoalReached = true;
+    }
+  }
 }
 
 
@@ -326,13 +334,20 @@ function increaseScore(linesCleared) {
 
   totalScore += score;
   document.getElementById("totalScore").innerText = totalScore;
+
+  if (gameMode['gameMode'] == 'scoreMode') {
+    if (totalScore >= gameMode['value']) {
+      //Score goal reached
+      gameModeGoalReached = true;
+    }
+  }
 }
 
 
 function saveResultsToLocalStorage() {
   let gameStartTimeFormatted = new Date(gameStartTime).toString();
-  gameEndTime = Date.now();
-  let gameEndTimeFormatted = new Date(gameEndTime).toString();
+  // currentTime = Date.now();
+  let currentTimeFormatted = new Date(currentTime).toString();
 
   let gameDuration = calculateGameDuration();
   
@@ -345,7 +360,7 @@ function saveResultsToLocalStorage() {
     "tetris": tetrisLinesCleared,
     "duration": gameDuration,
     "startTime": gameStartTimeFormatted,
-    "endTime": gameEndTimeFormatted,
+    "endTime": currentTimeFormatted,
   }
 
   let pastResults = JSON.parse(localStorage.getItem("pastResults"));
@@ -366,7 +381,7 @@ function calculateGameDuration() {
   let ms_Sec = 1000; // milliseconds in Second 
   let ms_Min = 60 * 1000; // milliseconds in Minute 
   let ms_Hour = ms_Min * 60; // milliseconds in Hour 
-  let gameDuration = gameEndTime - gameStartTime; //difference between times
+  let gameDuration = currentTime - gameStartTime; //difference between times
   
   let unconvertedTime;
   let hours = Math.floor(gameDuration / ms_Hour);

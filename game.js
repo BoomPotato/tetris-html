@@ -15,7 +15,63 @@ var middleColumn;
 var currentShape = {};
 
 var gameStartTime;
-var gameEndTime;
+var currentTime;
+
+var gameMode = {};
+
+var timerInterval;
+
+
+function populateGameModeForm() {
+  let unparsedGameModes = localStorage.getItem('gameModes');
+  if (unparsedGameModes != null) {
+    let gameModes = JSON.parse(unparsedGameModes);
+
+    let gameModesKeys = Object.keys(gameModes);
+    for (let i = 0; i < gameModesKeys.length; i++) {
+
+      if (gameModes[gameModesKeys[i]]['selected'] == true) {
+        document.getElementById(gameModesKeys[i]).checked = true;
+      } else {
+        document.getElementById(gameModesKeys[i]).checked = false;
+      }
+
+      if (gameModesKeys[i] != "endlessMode") {
+        document.getElementById(`${gameModesKeys[i]}Value`).value = gameModes[gameModesKeys[i]]['value'];
+      }
+    }
+
+  }
+}
+
+
+function setGameMode() {
+  let formGameMode = document.querySelector('input[name="gameMode"]:checked').value;
+  let radioButtons = document.querySelectorAll('input[type="radio"]');
+
+  let gameModes = {};
+  for (let i = 0; i < radioButtons.length; i++) {
+    
+    gameModes[radioButtons[i].id] = {};
+    if (radioButtons[i].id == formGameMode) {
+      gameModes[radioButtons[i].id]['selected'] = true;
+    } else {
+      gameModes[radioButtons[i].id]['selected'] = false;
+    }
+
+    if (radioButtons[i].id != "endlessMode") {
+      let gameModeValue = document.getElementById(`${radioButtons[i].id}Value`).value;
+      gameModes[radioButtons[i].id]['value'] = gameModeValue;
+    }
+  }
+
+  if (localStorage.getItem('gameModes') != null) {
+    localStorage.removeItem('gameModes');
+  }
+  localStorage.setItem('gameModes', JSON.stringify(gameModes));
+
+  alert("Game mode set!");
+}
 
 
 function initialiseGame() {
@@ -35,11 +91,46 @@ function initialiseGame() {
     colors = customisation.colors;
   }
 
+  //Implement game mode
+  let unparsedGameModes = localStorage.getItem('gameModes');
+  if (unparsedGameModes != null) {
+    let gameModes = JSON.parse(unparsedGameModes);
+    let gameModesKeys = Object.keys(gameModes);
+    
+    for (let i = 0; i < gameModesKeys.length; i++) {
+      if (gameModes[gameModesKeys[i]]['selected'] == true) {
+        gameMode['gameMode'] = gameModesKeys[i];
+        if (gameModesKeys[i] != "endlessMode") {
+          gameMode['value'] = gameModes[gameModesKeys[i]]['value'];
+        }
+      }
+    }
+
+    if (gameMode['gameMode'] == "endlessMode") {
+      document.getElementById("goalsToReach").style.display = "none";
+    } else {
+      document.getElementById(`${gameMode['gameMode']}ValueLabel`).innerText = gameMode['value'];
+      let goals = document.getElementById('goalsToReach').getElementsByTagName('tr');
+      for (let i = 0; i < goals.length; i++) {
+        if (goals[i].id.toLowerCase().indexOf((`${gameMode['gameMode']}ValueLabel`).toLowerCase()) == -1) {
+          document.getElementById(goals[i].id).style.display = "none";
+        }
+      }
+    }
+
+  }
+
   loadGrid();
   // countdown();
   generateShape(true);
   activateControls();
   gameStartTime = Date.now();
+
+  //Timer
+  timerInterval = setInterval(() => {
+    currentTime = Date.now();
+    document.getElementById("timer").innerText = calculateGameDuration();
+  }, 0);
 }
 
 
@@ -93,6 +184,8 @@ function countdown() {
 
 
 function gameOver() {
+  clearInterval(timerInterval);
+
   //Deactivate controls
   document.body.removeEventListener("keydown", keyHandler);
   document.body.removeEventListener("keyup", keyHandler);
@@ -113,9 +206,9 @@ function showPastResults() {
   } else {
     document.getElementById("rowPastResults").style.display = "flex";
     let table = document.getElementById("pastResults");
-    let indexCounter = 0;
-    for (let i = 0; i < pastResults.length; i++) {
-      indexCounter++;
+    let indexCounter = pastResults.length + 1;
+    for (let i = pastResults.length - 1; i >= 0; i--) {
+      indexCounter--;
       let tr = document.createElement("tr");
 
       let thHeaders = document.getElementById("pastResultsTableHeaders").getElementsByTagName("th");

@@ -23,6 +23,7 @@ h1 {
 
 #indexButtons {
     text-align: center;
+    margin-top: 3vh;
 }
 
 #overlay {
@@ -47,22 +48,31 @@ h1 {
     font-size: 7em;
 }
 
-
 #scoreAndNextShape {
     margin-left: 2em;
 }
 
-#combos {
+#setGameModeButton {
+    margin-left: 2em;
+    margin-top: 10vh;
+}
+
+#combosAndTime {
     margin-right: 2em;
 }
 
 table, th, td {
     color: white;
     font-size: 1.1em;
-    border: 1px solid darkgoldenrod;
+    /* border: 1px solid darkgoldenrod; */
+    border: 1px solid seagreen;
     margin-left: auto;
     margin-right: auto;
     width: 12vw;
+}
+
+td {
+    padding: 0.15em;
 }
 
 .tableHeader {
@@ -77,11 +87,7 @@ table, th, td {
     font-size: 1.5em;
 }
 
-td {
-    padding: 0.15em;
-}
-
-#rowGameplay {
+#rowGameplay, #rowGameMode {
     display: flex;
     justify-content: center;
 }
@@ -97,6 +103,10 @@ td {
 
 #noPastResultsMsg {
     display: none;
+    background-color: darkslategray;
+    justify-content: center;
+    color: white;
+    font-size: 1.2em;
 }
 
 /* Make table header in past results stick to the top of the screen */
@@ -107,9 +117,23 @@ td {
     top: 0; /* Don't forget this, required for the stickiness */
 }
 
-.backButton, .customiseButton {
+.backButton, #customiseButton {
     display: flex;
     justify-content: center;
     margin-top: 3vh;
     margin-bottom: 3vh;
+}
+
+#timer, #goalsToReach {
+    margin-bottom: 3vh;
+    border: 1px solid gold;
+}
+
+/* #goalsToReach:has(td)  */
+.trGameModeValueLabel > td { 
+    border: none;
+}
+
+button {
+    cursor: pointer;
 }

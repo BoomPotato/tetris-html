@@ -54,9 +54,13 @@ var action = {
     }
     displayShape(currentShape);
     placeShape(currentShape);
-    generateShape(false);
+
+    if (!gameModeGoalReached) {
+      generateShape(false);
+    } else {
+      gameOver();
+    }
   }
-  
 };
 
 

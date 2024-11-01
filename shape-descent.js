@@ -30,7 +30,12 @@ function moveShapeDownByOneRow() {
       moveShapeDownByOneRow();
     } else {
       placeShape(currentShape);
-      generateShape(false);
+      
+      if (!gameModeGoalReached) {
+        generateShape(false);
+      } else {
+        gameOver();
+      }
     }
 
   }, getDescentInterval());
@@ -39,6 +44,7 @@ function moveShapeDownByOneRow() {
 
 //For testing. The button under the score and next shape table uses this. Can delete later.
 function stopMoveShapeDownByOneRow() {
+  clearInterval(timerInterval);
   console.log('stopped moveShapeDownByOneRow');
   clearInterval(timeout);
 }
