@@ -117,7 +117,8 @@ function initialiseGame() {
         }
       }
     }
-
+  } else {
+    document.getElementById("goalsToReach").style.display = "none";
   }
 
   loadGrid();
