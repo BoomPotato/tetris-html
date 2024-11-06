@@ -8,7 +8,7 @@ var countdownDuration = 5;
 
 var colors = {
   'o': 'yellow',
-  'i': 'lightblue',
+  'i': '#00bfff',
   's': 'green',
   'z': 'red',
   'l': 'orange',
@@ -23,6 +23,8 @@ var defaultDescentInterval = 300;
 var hastenDescentInterval = 50;
 
 var generateShapesHorizontally = true;
+
+var enableGhostShape = true;
 
 
 function getColor(shapeType) {
@@ -45,6 +47,14 @@ function populateCustomisationForm() {
       document.getElementById("vertically").checked = true;
     }
 
+    if (customisation.enableGhostShape == "true") {
+      document.getElementById("ghostEnable").checked = true;
+      document.getElementById("ghostDisable").checked = false;
+    } else {
+      document.getElementById("ghostEnable").checked = false;
+      document.getElementById("ghostDisable").checked = true;
+    }
+
     document.getElementById("descentInterval").value = customisation.defaultDescentInterval;
     document.getElementById("hastenDescentInterval").value = customisation.hastenDescentInterval;
 
@@ -63,6 +73,7 @@ function customiseGame() {
   let formRowHeight = document.getElementById("rowHeight").value;
   let formColumnWidth = document.getElementById("columnWidth").value;
   let formGenerateShapesHorizontally = document.querySelector('input[name="generateShapes"]:checked').value;
+  let formGhostShape = document.querySelector('input[name="ghostShape"]:checked').value;
   let formDescentInterval = document.getElementById("descentInterval").value;
   let formHastenDescentInterval = document.getElementById("hastenDescentInterval").value;
   let formColorO = document.getElementById("colorO").value;
@@ -85,6 +96,7 @@ function customiseGame() {
     'rowHeight': formRowHeight,
     'columnWidth': formColumnWidth,
     'generateShapesHorizontally': formGenerateShapesHorizontally,
+    'enableGhostShape': formGhostShape,
     'defaultDescentInterval': formDescentInterval,
     'hastenDescentInterval': formHastenDescentInterval,
     'colors': colors

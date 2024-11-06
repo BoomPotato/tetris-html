@@ -86,6 +86,11 @@ function initialiseGame() {
     } else {
       generateShapesHorizontally = true;
     }
+    if (customisation.enableGhostShape == "false") {
+      enableGhostShape = false;
+    } else {
+      enableGhostShape = true;
+    }
     defaultDescentInterval = customisation.defaultDescentInterval;
     hastenDescentInterval = customisation.hastenDescentInterval;
     colors = customisation.colors;

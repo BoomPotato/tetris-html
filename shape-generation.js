@@ -707,6 +707,10 @@ function generateShape(isFirstShape) {
       break;
   }
 
+  if (enableGhostShape == true) {
+    displayGhostShape();
+  }
+  
   moveShapeDownByOneRow();
 }
 
@@ -719,6 +723,9 @@ function displayShape(shape) {
     gridItem.classList.add(shape.coordinates[i].id, shape.rotationPhase);
     //Add color to new coordinate
     gridItem.style.backgroundColor = shapeColor;
+
+    //Reset change in opacity caused by ghost shapes
+    gridItem.style.opacity = 1;
   }
 }
 
@@ -729,7 +736,10 @@ function clearShape(shape) {
     //Remove labels from old coordinate
     gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
     //Remove color from old coordinate
-    gridItem.style.removeProperty("background-color");  
+    gridItem.style.removeProperty("background-color");
+
+    //Reset change in opacity caused by ghost shapes
+    gridItem.style.opacity = 1;
   }
 }
 

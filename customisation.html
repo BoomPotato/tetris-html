@@ -9,6 +9,7 @@
   <script type="text/javascript" src="customisation.js"></script>
   <script type="text/javascript" src="asset-handler.js"></script>
   <script type="text/javascript" src="shape-generation.js"></script>
+  <script type="text/javascript" src="shape-ghost.js"></script>
   <script type="text/javascript" src="shape-placement.js"></script>
   <script type="text/javascript" src="shape-rotation.js"></script>
   <script type="text/javascript" src="shape-descent.js"></script>
@@ -50,6 +51,16 @@
           </td>
         </tr>
         <tr>
+          <td><label>Ghost shape: </label></td>
+          <td>
+            <input type="radio" id="ghostEnable" name="ghostShape" value="true" checked required>
+            <label for="ghostEnable">Enable</label>
+            <br>
+            <input type="radio" id="ghostDisable" name="ghostShape" value="false" required>
+            <label for="ghostDisable">Disable</label>
+          </td>
+        </tr>
+        <tr>
           <td><label>Descent interval: </label></td>
           <td><input type="number" id="descentInterval" min="0" value="300" required></td>
         </tr>
@@ -63,7 +74,7 @@
         </tr>
         <tr>
           <td><label>I color: </label></td>
-          <td><input type="color" id="colorI" name="colorI" value="#ADD8E6"></td>
+          <td><input type="color" id="colorI" name="colorI" value="#00bfff"></td>
         </tr>
         <tr>
           <td><label>S color: </label></td>

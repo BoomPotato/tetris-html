@@ -17,6 +17,11 @@ var action = {
     if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('left', trialCoordinates)) {
       clearShape(currentShape);
       currentShape.coordinates = trialCoordinates;
+      
+      if (enableGhostShape == true) {
+        displayGhostShape();
+      }
+
       displayShape(currentShape);
     }
   },
@@ -29,6 +34,11 @@ var action = {
     if (!checkIfOutOfBoundsOrCollidesWithPlacedShapes('right', trialCoordinates)) {
       clearShape(currentShape);
       currentShape.coordinates = trialCoordinates;
+
+      if (enableGhostShape == true) {
+        displayGhostShape();
+      }
+
       displayShape(currentShape);
     }
   },

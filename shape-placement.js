@@ -128,15 +128,18 @@ function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
       for (let j = 0; j < uniqueColumnsOccupiedByShape.length; j++) {
         //If the shape's unique column is also occupied by the placed shapes for a particular row
         if (uniqueColumnsOccupiedByShape[j] in placedShapes[rowsOccupiedByPlacedShapes[i]]) {
-          //If the shape's unique column doesn't exist in the temp object yet
-          if (!(uniqueColumnsOccupiedByShape[j].toString() in highestRowInEachPlacedShapesColumn)) {
-            //Create a new key-item pair (column: row) for the unique column in the temp object
-            highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]] = parseInt(rowsOccupiedByPlacedShapes[i]);
-          } else {
-            //Compare if the new row is larger than the existing row for that unique column in the temp object
-            if (parseInt(rowsOccupiedByPlacedShapes[i]) > highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]]) {
-              //If the new row is larger, replace the old row with it
+          //If the row occupied by the placed shapes is lower than the lowest row of the current shape for a particular column
+          if (parseInt(rowsOccupiedByPlacedShapes[i]) < lowestRowInEachShapeColumn[uniqueColumnsOccupiedByShape[j]]) {
+            //If the shape's unique column doesn't exist in the temp object yet
+            if (!(uniqueColumnsOccupiedByShape[j].toString() in highestRowInEachPlacedShapesColumn)) {
+              //Create a new key-item pair (column: row) for the unique column in the temp object
               highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]] = parseInt(rowsOccupiedByPlacedShapes[i]);
+            } else {
+              //Compare if the new row is larger than the existing row for that unique column in the temp object
+              if (parseInt(rowsOccupiedByPlacedShapes[i]) > highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]]) {
+                //If the new row is larger, replace the old row with it
+                highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]] = parseInt(rowsOccupiedByPlacedShapes[i]);
+              }
             }
           }
         } 
@@ -184,6 +187,10 @@ function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
 
 
 function placeShape(shape) {
+  //Clear ghost shape
+  ghostShape = {};
+
+  //Add current shape to placed shapes
   let shapeColor = getColor(shape.shapeType);
   for (let i = 0; i < shape.coordinates.length; i++) {
     let row = shape.coordinates[i].row;
@@ -240,6 +247,9 @@ function clearPlacedShapesInGrid() {
       gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
       //Remove color from old coordinate
       gridItem.style.removeProperty("background-color");
+
+      //Reset change in opacity caused by ghost shapes
+      gridItem.style.opacity = 1;
     }
   }
 }

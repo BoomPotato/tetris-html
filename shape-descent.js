@@ -25,6 +25,11 @@ function moveShapeDownByOneRow() {
         //Update coordinate in global variable currentShape to descend by one row
         currentShape.coordinates[i].row--;
       }
+
+      if (enableGhostShape == true) {
+        displayGhostShape();
+      }
+
       displayShape(currentShape);
 
       moveShapeDownByOneRow();
