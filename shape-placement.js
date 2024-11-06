@@ -184,6 +184,10 @@ function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
 
 
 function placeShape(shape) {
+  //Clear ghost shape
+  ghostShape = {};
+
+  //Add current shape to placed shapes
   let shapeColor = getColor(shape.shapeType);
   for (let i = 0; i < shape.coordinates.length; i++) {
     let row = shape.coordinates[i].row;
@@ -240,6 +244,9 @@ function clearPlacedShapesInGrid() {
       gridItem.classList.remove(gridItem.classList.item(1), gridItem.classList.item(2));
       //Remove color from old coordinate
       gridItem.style.removeProperty("background-color");
+
+      //Reset change in opacity caused by ghost shapes
+      gridItem.style.opacity = 1;
     }
   }
 }
