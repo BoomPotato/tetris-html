@@ -707,7 +707,10 @@ function generateShape(isFirstShape) {
       break;
   }
 
-  displayGhostShape();
+  if (enableGhostShape == true) {
+    displayGhostShape();
+  }
+  
   moveShapeDownByOneRow();
 }
 

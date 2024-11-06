@@ -695,8 +695,9 @@ function rotateCoordinates(trialCoordinates) {
     currentShape.coordinates[i].column = JSON.parse(JSON.stringify(trialCoordinates[i].column));
   }
   
-  //TESTING
-  displayGhostShape();
+  if (enableGhostShape == true) {
+    displayGhostShape();
+  }
 
   displayShape(currentShape);
 }

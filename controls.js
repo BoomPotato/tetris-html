@@ -18,8 +18,9 @@ var action = {
       clearShape(currentShape);
       currentShape.coordinates = trialCoordinates;
       
-      //TESTING
-      displayGhostShape();
+      if (enableGhostShape == true) {
+        displayGhostShape();
+      }
 
       displayShape(currentShape);
     }
@@ -34,8 +35,9 @@ var action = {
       clearShape(currentShape);
       currentShape.coordinates = trialCoordinates;
 
-      //TESTING
-      displayGhostShape();
+      if (enableGhostShape == true) {
+        displayGhostShape();
+      }
 
       displayShape(currentShape);
     }
