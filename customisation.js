@@ -8,7 +8,7 @@ var countdownDuration = 5;
 
 var colors = {
   'o': 'yellow',
-  'i': 'lightblue',
+  'i': '#00bfff',
   's': 'green',
   'z': 'red',
   'l': 'orange',
