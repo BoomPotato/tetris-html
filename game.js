@@ -130,6 +130,7 @@ function initialiseGame() {
   // countdown();
   generateShape(true);
   activateControls();
+  activateGamepad();
   gameStartTime = Date.now();
 
   //Timer
@@ -191,10 +192,10 @@ function countdown() {
 
 function gameOver() {
   clearInterval(timerInterval);
+  clearInterval(gamepadInterval);
 
-  //Deactivate controls
-  document.body.removeEventListener("keydown", keyHandler);
-  document.body.removeEventListener("keyup", keyHandler);
+  deactivateControls();
+  deactivateGamepad();
 
   saveResultsToLocalStorage();
 
