@@ -1,18 +1,22 @@
 body {
-    background-color: black;
+    background-image: url("./assets/nier-automata-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1 {
     text-align: center;
-    color: white;
+    color: #696459;
 }
 
 .grid-container {
     display: grid;
+    background-color: #dbd4ba;
+    border: 1px solid #696459;
 }
   
 .grid-item {
-    border: 1px solid darkred;
+    border: 1px solid #b5af9b;
     display: flex;
     text-align: center;
     align-items: center;
@@ -39,8 +43,8 @@ h1 {
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
 
     /* Centralise countdown text. Only works when display: flex */
-    justify-content: center; /* Vertically */
-    align-items: center; /* Horizontally */
+    justify-content: center; /* Horizontally */
+    align-items: center; /* Vertically */
 }
 
 #countdown {
@@ -57,18 +61,18 @@ h1 {
     margin-top: 10vh;
 }
 
-#combosAndTime {
+#combosAndTime, #gamepadLogContainer {
     margin-right: 2em;
 }
 
 table, th, td {
-    color: white;
+    color: #696459;
     font-size: 1.1em;
-    /* border: 1px solid darkgoldenrod; */
-    border: 1px solid seagreen;
+    border: 1px solid #696459;
     margin-left: auto;
     margin-right: auto;
     width: 12vw;
+    background-color: #dbd4ba;
 }
 
 td {
@@ -76,7 +80,7 @@ td {
 }
 
 .tableHeader {
-    color: gray;
+    color: #696459;
     margin-left: 0.75vw;
     margin-right: 0.75vw;
 }
@@ -87,7 +91,7 @@ td {
     font-size: 1.5em;
 }
 
-#rowGameplay, #rowGameMode {
+.row {
     display: flex;
     justify-content: center;
 }
@@ -103,7 +107,7 @@ td {
 
 #noPastResultsMsg {
     display: none;
-    background-color: darkslategray;
+    background-color: #b5af9b;
     justify-content: center;
     color: white;
     font-size: 1.2em;
@@ -112,9 +116,11 @@ td {
 /* Make table header in past results stick to the top of the screen */
 /* https://css-tricks.com/position-sticky-and-table-headers/ */
 .pastResultsTableHeader {
-    background-color: darkslategrey;
+    background-color: #696459;
     position: sticky;
     top: 0; /* Don't forget this, required for the stickiness */
+
+    color: #d1cbb2;
 }
 
 .backButton, #customiseButton {
@@ -126,14 +132,58 @@ td {
 
 #timer, #goalsToReach {
     margin-bottom: 3vh;
-    border: 1px solid gold;
+    border: 1px solid #696459;
 }
 
-/* #goalsToReach:has(td)  */
 .trGameModeValueLabel > td { 
     border: none;
 }
 
 button {
     cursor: pointer;
+}
+
+#gamepadLogContainer {
+    width: 30vw;
+    height: 50vh;
+    border: 1px solid #696459;
+    background-color: #dbd4ba;
+    font-size: 1.1em;
+    overflow: auto; /* Makes the div scrollable */
+}
+
+#gamepadLog {
+    margin: 10px;
+}
+
+.gamepadSetting {
+    width: 7vw;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.logMessage {
+    border-bottom: 1px solid #696459;
+}
+
+.logTimestamp {
+    color: #696459;
+}
+
+#testGamepadContainer {
+    margin-top: 2em;
+    border: 1px solid #696459;
+    background-color: #dbd4ba;
+    width: 40vw;
+    height: 20vh;
+    text-align: center;
+    font-size: 1.1em;
+    overflow: auto; /* Makes the div scrollable */
+}
+
+#testGamepadButton {
+    margin: 1.5em;
 }

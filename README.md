@@ -35,6 +35,11 @@ Project started on 7 June 2024.
       <li>generateShapesHorizontally</li>
     </ul>
   </li>
+  <li>Ghost shape:
+    <ul>
+      <li>enableGhostShape</li>
+    </ul>
+  </li>
 </ul>
 
 ===========================================================================
@@ -42,23 +47,44 @@ Project started on 7 June 2024.
 ## References:
 <ul>
   <li>
-    Controls: <br>
+    Controls <br>
     https://stackoverflow.com/questions/16345870/keydown-keyup-events-for-specific-keys
   </li>
   <li>
-    Sorting object keys: <br>
+    Sorting object keys <br>
     https://www.basedash.com/blog/how-to-sort-javascript-objects-by-key
   </li>
   <li>
-    Formatting timestamp: <br>
+    Formatting timestamp <br>
     https://codedamn.com/news/javascript/how-to-convert-timestamp-to-date-in-javascript
   </li>
   <li>
-    Dynamic creation of tables: <br>
+    Dynamic creation of tables <br>
     https://stackoverflow.com/questions/8302166/dynamic-creation-of-table-with-dom
   </li>
   <li>
-    Make table header stick to the top of the screen: <br>
+    Make table header stick to the top of the screen <br>
     https://css-tricks.com/position-sticky-and-table-headers/
+  </li>
+  <li>
+    Nature of setInterval() <br>
+    it takes a fixed interval value that value can't be changed dynamically <br>
+    https://stackoverflow.com/questions/30725455/change-setinterval-value-dynamically
+  </li>
+  <li>
+    Gamepad API <br>
+    https://developer.mozilla.org/en-US/docs/Web/API/Window/ongamepadconnected#Browser_compatibility <br>
+    https://www.youtube.com/watch?v=vGPgTvNojv0  <br>
+    https://j2i.net/apps/gamePadStatus/
+  </li>
+</ul>
+
+===========================================================================
+
+## Credits:
+<ul>
+  <li>
+    NieR: Automata Wallpaper <br>
+    https://www.reddit.com/r/nier/comments/bdn03a/i_couldnt_find_the_perfect_nier_automata/
   </li>
 </ul>

@@ -101,7 +101,6 @@ function initialiseGame() {
   if (unparsedGameModes != null) {
     let gameModes = JSON.parse(unparsedGameModes);
     let gameModesKeys = Object.keys(gameModes);
-    
     for (let i = 0; i < gameModesKeys.length; i++) {
       if (gameModes[gameModesKeys[i]]['selected'] == true) {
         gameMode['gameMode'] = gameModesKeys[i];
@@ -110,7 +109,6 @@ function initialiseGame() {
         }
       }
     }
-
     if (gameMode['gameMode'] == "endlessMode") {
       document.getElementById("goalsToReach").style.display = "none";
     } else {
@@ -130,7 +128,32 @@ function initialiseGame() {
   // countdown();
   generateShape(true);
   activateControls();
-  activateGamepad();
+
+  //Implement gamepad controls
+  let unparsedGamepadControls = localStorage.getItem('gamepadControls');
+  if (unparsedGamepadControls != null) {
+    gamepadControls = JSON.parse(unparsedGamepadControls);
+    let nullFieldFound = false;
+    if (gamepadControls.left.axisIndex == null) {
+      nullFieldFound = true;
+    }
+    if (gamepadControls.right.axisIndex == null) {
+      nullFieldFound = true;
+    }
+    if (gamepadControls.rotate.buttonIndex == null) {
+      nullFieldFound = true;
+    }
+    if (gamepadControls.placeShape.buttonIndex == null) {
+      nullFieldFound = true;
+    }
+    if (gamepadControls.hastenDescent.buttonIndex == null) {
+      nullFieldFound = true;
+    }
+    if (!nullFieldFound) {
+      activateGamepad();
+    }
+  }
+
   gameStartTime = Date.now();
 
   //Timer
@@ -158,8 +181,8 @@ function loadGrid() {
       gridItem.setAttribute("id", `grid-${row}-${column}`);
 
       //Label the grid cell
-      let label = document.createTextNode(`${row}-${column}`);
-      gridItem.appendChild(label);
+      // let label = document.createTextNode(`${row}-${column}`);
+      // gridItem.appendChild(label);
 
       grid.appendChild(gridItem);
     }
