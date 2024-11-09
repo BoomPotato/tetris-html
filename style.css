@@ -1,22 +1,26 @@
 body {
-    background-image: url("./assets/nier-automata-bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-image: url("./assets/nier-automata-bg.jpg"); */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+
+    background-color: black;
 }
 
 h1 {
     text-align: center;
-    color: #696459;
+    color: white;
+    /* color: #696459; */
 }
 
 .grid-container {
     display: grid;
-    background-color: #dbd4ba;
-    border: 1px solid #696459;
+    /* background-color: #dbd4ba; */
+    /* border: 1px solid #696459; */
 }
   
 .grid-item {
-    border: 1px solid #b5af9b;
+    /* border: 1px solid #b5af9b; */
+    border: 1px solid darkred;
     display: flex;
     text-align: center;
     align-items: center;
@@ -66,13 +70,15 @@ h1 {
 }
 
 table, th, td {
-    color: #696459;
+    color: white;
+    /* color: #696459; */
     font-size: 1.1em;
-    border: 1px solid #696459;
+    border: 1px solid seagreen;
+    /* border: 1px solid #696459; */
     margin-left: auto;
     margin-right: auto;
     width: 12vw;
-    background-color: #dbd4ba;
+    /* background-color: #dbd4ba; */
 }
 
 td {
@@ -80,7 +86,8 @@ td {
 }
 
 .tableHeader {
-    color: #696459;
+    color: gray;
+    /* color: #696459; */
     margin-left: 0.75vw;
     margin-right: 0.75vw;
 }
@@ -107,7 +114,8 @@ td {
 
 #noPastResultsMsg {
     display: none;
-    background-color: #b5af9b;
+    background-color: darkslategray;
+    /* background-color: #b5af9b; */
     justify-content: center;
     color: white;
     font-size: 1.2em;
@@ -116,11 +124,12 @@ td {
 /* Make table header in past results stick to the top of the screen */
 /* https://css-tricks.com/position-sticky-and-table-headers/ */
 .pastResultsTableHeader {
-    background-color: #696459;
+    background-color: darkslategrey;
+    /* background-color: #696459; */
     position: sticky;
     top: 0; /* Don't forget this, required for the stickiness */
 
-    color: #d1cbb2;
+    /* color: #d1cbb2; */
 }
 
 .backButton, #customiseButton {
@@ -132,7 +141,8 @@ td {
 
 #timer, #goalsToReach {
     margin-bottom: 3vh;
-    border: 1px solid #696459;
+    /* border: 1px solid #696459; */
+    border: 1px solid gold;
 }
 
 .trGameModeValueLabel > td { 
@@ -146,10 +156,12 @@ button {
 #gamepadLogContainer {
     width: 30vw;
     height: 50vh;
-    border: 1px solid #696459;
-    background-color: #dbd4ba;
+    border: 1px solid gold;
+    /* border: 1px solid #696459;
+    background-color: #dbd4ba; */
     font-size: 1.1em;
     overflow: auto; /* Makes the div scrollable */
+    color: white;
 }
 
 #gamepadLog {
@@ -162,26 +174,31 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: black;
+    /* color: black; */
+    color: white;
 }
 
 .logMessage {
-    border-bottom: 1px solid #696459;
+    /* border-bottom: 1px solid #696459; */
+    border-bottom: 1px solid darkslategrey;
 }
 
 .logTimestamp {
-    color: #696459;
+    /* color: #696459; */
+    color: gray;
 }
 
 #testGamepadContainer {
     margin-top: 2em;
-    border: 1px solid #696459;
-    background-color: #dbd4ba;
+    border: 1px solid seagreen;
+    /* border: 1px solid #696459;
+    background-color: #dbd4ba; */
     width: 40vw;
     height: 20vh;
     text-align: center;
     font-size: 1.1em;
     overflow: auto; /* Makes the div scrollable */
+    color: white;
 }
 
 #testGamepadButton {
