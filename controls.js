@@ -1,5 +1,7 @@
 "use strict";
 
+//Keyboard controls. Can be used simultaneously with gamepad.
+
 //Shape controls
 //Modified from StackOverFlow:
 //https://stackoverflow.com/questions/16345870/keydown-keyup-events-for-specific-keys
@@ -109,3 +111,10 @@ function activateControls() {
     document.body.addEventListener(evType, keyHandler);
   });
 }
+
+
+function deactivateControls() {
+  document.body.removeEventListener("keydown", keyHandler);
+  document.body.removeEventListener("keyup", keyHandler);
+}
+

@@ -21,6 +21,8 @@ var gameMode = {};
 
 var timerInterval;
 
+var gamepadControlsImplemented = false;
+
 
 function populateGameModeForm() {
   let unparsedGameModes = localStorage.getItem('gameModes');
@@ -40,7 +42,7 @@ function populateGameModeForm() {
         document.getElementById(`${gameModesKeys[i]}Value`).value = gameModes[gameModesKeys[i]]['value'];
       }
     }
-
+    updateGameModeText(gameModes);
   }
 }
 
@@ -70,7 +72,23 @@ function setGameMode() {
   }
   localStorage.setItem('gameModes', JSON.stringify(gameModes));
 
-  alert("Game mode set!");
+  updateGameModeText(gameModes);
+}
+
+
+function updateGameModeText(gameModes) {
+  let gameModesKeys = Object.keys(gameModes);
+  for (let i = 0; i < gameModesKeys.length; i++) {
+    if (gameModesKeys[i] == "endlessMode") {
+      if (gameModes[gameModesKeys[i]].selected == true) {
+        document.getElementById("currentGameMode").textContent = `${gameModesKeys[i]}`;
+      }
+    } else {
+      if (gameModes[gameModesKeys[i]].selected == true) {
+        document.getElementById("currentGameMode").textContent = `${gameModesKeys[i]}: ${gameModes[gameModesKeys[i]]['value']}`;
+      }
+    }
+  }
 }
 
 
@@ -101,7 +119,6 @@ function initialiseGame() {
   if (unparsedGameModes != null) {
     let gameModes = JSON.parse(unparsedGameModes);
     let gameModesKeys = Object.keys(gameModes);
-    
     for (let i = 0; i < gameModesKeys.length; i++) {
       if (gameModes[gameModesKeys[i]]['selected'] == true) {
         gameMode['gameMode'] = gameModesKeys[i];
@@ -110,7 +127,6 @@ function initialiseGame() {
         }
       }
     }
-
     if (gameMode['gameMode'] == "endlessMode") {
       document.getElementById("goalsToReach").style.display = "none";
     } else {
@@ -130,6 +146,45 @@ function initialiseGame() {
   // countdown();
   generateShape(true);
   activateControls();
+
+  //Gamepad
+  gamepadDetectionInterval = setInterval(() => {
+    //Detect gamepad
+    let gamepads = navigator.getGamepads();
+    let gamepadFound = false;
+    for (let i = 0; i < gamepads.length; ++i) {
+      if (gamepads[i] != null) {
+        document.getElementById("gamepadDetectionStatus-game").textContent = `Gamepad detected. Index = ${i}`;
+        gamepadFound = true;
+        if (!gamepadControlsImplemented) {
+          //Implement gamepad controls
+          let unparsedGamepadControls = localStorage.getItem('gamepadControls');
+          if (unparsedGamepadControls != null) {
+            gamepadControls = JSON.parse(unparsedGamepadControls);
+            let nullFieldFound = false;
+            let keys = Object.keys(gamepadControls);
+            for (let i = 0; i < keys.length; ++i) {
+              if (gamepadControls[keys[i]].index == null) {
+                nullFieldFound = true;
+                break;
+              } 
+            }
+            if (!nullFieldFound) {
+              activateGamepad();
+            }
+          }
+          gamepadControlsImplemented = true;
+        }
+        break;
+      }
+    }
+    if (!gamepadFound) {
+      deactivateGamepad();
+      gamepadControlsImplemented = false;
+      document.getElementById("gamepadDetectionStatus-game").textContent = 'Gamepad not detected.';
+    }
+  }, gamepadIntervalDuration);
+
   gameStartTime = Date.now();
 
   //Timer
@@ -157,8 +212,8 @@ function loadGrid() {
       gridItem.setAttribute("id", `grid-${row}-${column}`);
 
       //Label the grid cell
-      let label = document.createTextNode(`${row}-${column}`);
-      gridItem.appendChild(label);
+      // let label = document.createTextNode(`${row}-${column}`);
+      // gridItem.appendChild(label);
 
       grid.appendChild(gridItem);
     }
@@ -191,15 +246,16 @@ function countdown() {
 
 function gameOver() {
   clearInterval(timerInterval);
+  clearInterval(gamepadInterval);
 
-  //Deactivate controls
-  document.body.removeEventListener("keydown", keyHandler);
-  document.body.removeEventListener("keyup", keyHandler);
+  deactivateControls();
+  deactivateGamepad();
 
   saveResultsToLocalStorage();
 
-  //Show game over alert. To be replaced with game over screen later.
-  alert("Game over! Your results have been saved!");
+  //Show game over text
+  document.getElementById("gameOverStatus").textContent = "Game over. Your results have been saved.";
+  document.getElementById("gameOverStatusContainer").style.border = '1px solid red';
 }
 
 

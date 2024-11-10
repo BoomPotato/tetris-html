@@ -12,7 +12,6 @@ function displayGhostShape() {
   ghostShape = JSON.parse(JSON.stringify(currentShape));
 
   let shapeColor = getColor(ghostShape.shapeType);
-  // let shapeColor = getColor('ghost');
   for (let i = 0; i < ghostShape.coordinates.length; i++) {
     ghostShape.coordinates[i].row -= smallestDistanceBetweenShapeAndPlacedShapes;
 

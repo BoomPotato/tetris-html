@@ -15,6 +15,7 @@
   <script type="text/javascript" src="shape-descent.js"></script>
   <script type="text/javascript" src="temp.js"></script> <!--for convenience in testing, delete later-->
   <script type="text/javascript" src="game.js"></script>
+  <script type="text/javascript" src="gamepad.js"></script>
 
   <script>
     window.addEventListener("load", (event) => {
@@ -27,7 +28,13 @@
 
   <h1 id="gameTitle">Tetris</h1>
 
-  <div id="rowGameMode">
+  <div class="row">
+    <div id="currentGameModeContainer">
+      <div id="currentGameMode">endlessMode</div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="column">
       <form id="gameModeForm">
         <table>
@@ -67,13 +74,15 @@
   </div>
     
   <div id="indexButtons">
-    <!--put image of tetris shapes here-->
+    <!--put image of the 5 types of controls here-->
 
     <button onclick="location.href = './game.html';">Start</button>
     <br><br>
     <button onclick="location.href = './past-results.html';">Past Results</button>
     <br><br>
-    <button onclick="location.href = './customisation.html';">Customisation</button>
+    <button onclick="location.href = './customisation.html';">Gameplay Customisation</button>
+    <br><br>
+    <button onclick="location.href = './gamepad.html';">Gamepad Configuration</button>
   </div>
 
 </body>
