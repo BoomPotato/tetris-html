@@ -41,35 +41,39 @@
     </div>
 
     <div class="column">
+      <div id="gamepadDetectionStatusContainer-configuration">
+        <div id="gamepadDetectionStatus-configuration">Gamepad not detected.</div>
+      </div>
+
       <table>
         <tr>
           <td><label>Left: </label></td>
           <td><div id="gamepadSettingLeft" class="gamepadSetting">-</div></td>
-          <td><button class="gamepadSetButton" onclick="setAxis('left')">Set</button></td>
+          <td><button class="gamepadSetButton" onclick="setGamepadControl('left')">Set</button></td>
           <td><button class="gamepadClearButton" onclick="clearGamepadControl('left')">Clear</button></td>
         </tr>
         <tr>
           <td><label>Right: </label></td>
           <td><div id="gamepadSettingRight" class="gamepadSetting">-</div></td>
-          <td><button class="gamepadSetButton" onclick="setAxis('right')">Set</button></td>
+          <td><button class="gamepadSetButton" onclick="setGamepadControl('right')">Set</button></td>
           <td><button class="gamepadClearButton" onclick="clearGamepadControl('right')">Clear</button></td>
         </tr>
         <tr>
           <td><label>Rotate: </label></td>
           <td><div id="gamepadSettingRotate" class="gamepadSetting">-</div></td>
-          <td><button class="gamepadSetButton" onclick="setButton('rotate')">Set</button></td>
+          <td><button class="gamepadSetButton" onclick="setGamepadControl('rotate')">Set</button></td>
           <td><button class="gamepadClearButton" onclick="clearGamepadControl('rotate')">Clear</button></td>
         </tr>
         <tr>
           <td><label>Place Shape: </label></td>
           <td><div id="gamepadSettingPlaceShape" class="gamepadSetting">-</div></td>
-          <td><button class="gamepadSetButton" onclick="setButton('placeShape')">Set</button></td>
+          <td><button class="gamepadSetButton" onclick="setGamepadControl('placeShape')">Set</button></td>
           <td><button class="gamepadClearButton" onclick="clearGamepadControl('placeShape')">Clear</button></td>
         </tr>
         <tr>
           <td><label>Hasten Descent: </label></td>
           <td><div id="gamepadSettingHastenDescent" class="gamepadSetting">-</div></td>
-          <td><button class="gamepadSetButton" onclick="setButton('hastenDescent')">Set</button></td>
+          <td><button class="gamepadSetButton" onclick="setGamepadControl('hastenDescent')">Set</button></td>
           <td><button class="gamepadClearButton" onclick="clearGamepadControl('hastenDescent')">Clear</button></td>
         </tr>
       </table>
@@ -79,7 +83,7 @@
 
   <div class="row">
     <div id="testGamepadContainer">
-      <button id="testGamepadButton" onclick="testGamepad()">Test Gamepad Controls</button>
+      <button id="testGamepadButton" onclick="testGamepadControl()">Test Gamepad Controls</button>
       <p id="testGamepadText">Press an axis or a button and its corresponding assignment will be logged.</p>
     </div>
   </div>

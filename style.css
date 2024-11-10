@@ -155,7 +155,7 @@ button {
 
 #gamepadLogContainer {
     width: 30vw;
-    height: 50vh;
+    height: 51.2vh;
     border: 1px solid gold;
     /* border: 1px solid #696459;
     background-color: #dbd4ba; */
@@ -203,4 +203,74 @@ button {
 
 #testGamepadButton {
     margin: 1.5em;
+}
+
+#gamepadDetectionStatusContainer-configuration {
+    margin-bottom: 2em;
+    border: 1px solid seagreen;
+    /* border: 1px solid #696459;
+    background-color: #dbd4ba; */
+    width: auto;
+    height: 5vh;
+    text-align: center;
+    font-size: 1.1em;
+    overflow: auto; /* Makes the div scrollable */
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gamepadDetectionStatusContainer-game {
+    margin-top: 1em;
+    border: 1px solid seagreen;
+    /* border: 1px solid #696459;
+    background-color: #dbd4ba; */
+    width: 12vw;
+    height: 12vh;
+    text-align: center;
+    font-size: 1.1em;
+    overflow: auto; /* Makes the div scrollable */
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameOverStatusContainer {
+    margin-top: 1em;
+    border: 1px solid cyan;
+    /* border: 1px solid #696459;
+    background-color: #dbd4ba; */
+    width: 12vw;
+    height: 12vh;
+    text-align: center;
+    font-size: 1.1em;
+    overflow: auto; /* Makes the div scrollable */
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#gamepadDetectionStatus-configuration, #gamepadDetectionStatus-game, #gameOverStatus, #currentGameMode {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#currentGameModeContainer {
+    margin-bottom: 2em;
+    border: 1px solid seagreen;
+    /* border: 1px solid #696459;
+    background-color: #dbd4ba; */
+    width: 25vw;
+    height: 5vh;
+    text-align: center;
+    font-size: 1.1em;
+    overflow: auto; /* Makes the div scrollable */
+    color: white;
 }
