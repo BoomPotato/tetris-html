@@ -702,6 +702,7 @@ function populateGameControlsForm() {
   gamepadDetectionInterval = setInterval(() => {
     //Detect gamepad
     let gamepads = navigator.getGamepads();
+    console.log(gamepads)
     let gamepadFound = false;
     for (let i = 0; i < gamepads.length; ++i) {
       if (gamepads[i] != null) {
@@ -711,7 +712,7 @@ function populateGameControlsForm() {
       }
     }
     if (!gamepadFound) {
-      document.getElementById("gamepadDetectionStatus-game").textContent = 'Gamepad not detected.';
+      document.getElementById("gamepadDetectionStatus-configuration").textContent = 'Gamepad not detected.';
     }
   }, gamepadIntervalDuration);
 
