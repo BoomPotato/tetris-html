@@ -111,3 +111,72 @@ function customiseGame() {
   window.location.href = './game.html';
 }
 
+
+function setTheme(changeTheme) {
+  let unparsedTheme = localStorage.getItem('theme');
+  let theme;
+
+  let link = document.createElement('link');
+  link.id = 'cssTheme';
+  link.rel = 'stylesheet';
+
+  //If change theme button is pressed
+  if (changeTheme) {
+    if (unparsedTheme == null) {
+      theme = 'nierAutomata';
+      link.href = 'style-nier-automata.css';
+    } else {
+      theme = JSON.parse(unparsedTheme);
+
+      switch (theme) {
+        case 'default':
+          theme = 'nierAutomata';
+          link.href = 'style-nier-automata.css';
+          break;
+
+        case 'nierAutomata':
+          theme = 'default';
+          link.href = 'style.css';
+          break;
+
+        default:
+          theme = 'default';
+          link.href = 'style.css';
+          break;
+      }
+    }
+    
+    let oldTheme = document.getElementById('cssTheme');
+    if (oldTheme != null) {
+      document.getElementById('cssTheme').remove();
+    }
+  } 
+  //When the page loads
+  else {
+    if (unparsedTheme == null) {
+      theme = 'default';
+      link.href = 'style.css';
+    } else {
+      theme = JSON.parse(unparsedTheme);
+
+      switch (theme) {
+        case 'default':
+          link.href = 'style.css';
+          break;
+
+        case 'nierAutomata':
+          link.href = 'style-nier-automata.css';
+          break;
+
+        default:
+          theme = 'default';
+          link.href = 'style.css';
+          break;
+      }
+    }
+  }
+
+  document.head.appendChild(link);
+  localStorage.setItem('theme', JSON.stringify(theme));
+}
+

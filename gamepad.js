@@ -3,7 +3,7 @@
 //Gamepad controls. Can be used simultaneously with keyboard.
 
 //8 Nov 2024:
-//Gamepad support was originally hardcoded for my bootleg PS3 controller, but has since been 
+//Gamepad support was originally hardcoded for my bootleg PS1 controller, but has since been 
 //made dynamic. I've tested the code on my PS5 DualSense controller, and I could assign the 
 //rotate, placeShape, and hastenDescent controls but not the left and right controls because the 
 //directional buttons on the DualSense are buttons and not axes. I will need to rewrite the code 

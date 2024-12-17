@@ -4,7 +4,9 @@
 <head>
   <title>Tetris</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="style.css" id="cssTheme"> -->
+  <!-- <link rel="stylesheet" href="style-nier-automata.css"> -->
+  
   <script type="text/javascript" src="controls.js"></script>
   <script type="text/javascript" src="customisation.js"></script>
   <script type="text/javascript" src="asset-controller.js"></script>
@@ -21,13 +23,18 @@
     window.addEventListener("load", (event) => {
       populateGameModeForm();
     });
+
+    setTheme(false);
   </script>
 </head>
 
 <body>
 
   <h1 id="gameTitle">Tetris</h1>
-
+  <div id="changeThemeButton">
+    <button onclick="setTheme(true);">Change Theme</button>
+  </div>
+  
   <div class="row">
     <div id="currentGameModeContainer">
       <div id="currentGameMode">endlessMode</div>
@@ -75,6 +82,14 @@
     
   <div id="indexButtons">
     <!--put image of the 5 types of controls here-->
+    <p id="keyboardControlsInfo">
+      <b><u>Keyboard Controls</u></b><br>
+      Left Arrow: Move Left<br>
+      Right Arrow: Move Right<br>
+      Up Arrow: Rotate<br>
+      Down Arrow: Hasten Descent<br>
+      Spacebar: Place Shape
+    </p>
 
     <button onclick="location.href = './game.html';">Start</button>
     <br><br>
