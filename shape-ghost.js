@@ -7,7 +7,7 @@ function displayGhostShape() {
     clearShape(ghostShape);
   }
 
-  let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(currentShape.coordinates);
+  let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(currentShape.coordinates, false);
   
   ghostShape = JSON.parse(JSON.stringify(currentShape));
 

@@ -28,6 +28,6 @@
 
 
 function changeShape() {
-  return "t";
+  return "i";
 }
 

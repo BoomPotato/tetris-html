@@ -101,7 +101,7 @@ function checkIfOutOfBoundsOrCollidesWithPlacedShapes(shapeMovement, trialCoordi
 }
 
 
-function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
+function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates, shapeIsGenerated) {
   let uniqueColumnsOccupiedByShape = [];
   let lowestRowInEachShapeColumnArray = [];
   let lowestRowInEachShapeColumn = {};
@@ -117,6 +117,7 @@ function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
     }
   }
   for (let i = 0; i < uniqueColumnsOccupiedByShape.length; i++) {
+    //Create a new key-item pair (column: row) for each unique column in the shape
     lowestRowInEachShapeColumn[uniqueColumnsOccupiedByShape[i]] = lowestRowInEachShapeColumnArray[i];
   }
 
@@ -129,15 +130,15 @@ function calculateDistanceBetweenShapeAndPlacedShapes(shapeCoordinates) {
         //If the shape's unique column is also occupied by the placed shapes for a particular row
         if (uniqueColumnsOccupiedByShape[j] in placedShapes[rowsOccupiedByPlacedShapes[i]]) {
           //If the row occupied by the placed shapes is lower than the lowest row of the current shape for a particular column
-          if (parseInt(rowsOccupiedByPlacedShapes[i]) < lowestRowInEachShapeColumn[uniqueColumnsOccupiedByShape[j]]) {
+          if ((parseInt(rowsOccupiedByPlacedShapes[i]) < lowestRowInEachShapeColumn[uniqueColumnsOccupiedByShape[j]]) || shapeIsGenerated) {
             //If the shape's unique column doesn't exist in the temp object yet
             if (!(uniqueColumnsOccupiedByShape[j].toString() in highestRowInEachPlacedShapesColumn)) {
               //Create a new key-item pair (column: row) for the unique column in the temp object
               highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]] = parseInt(rowsOccupiedByPlacedShapes[i]);
             } else {
-              //Compare if the new row is larger than the existing row for that unique column in the temp object
+              //Compare if the new row is higher than the existing row for that unique column in the temp object
               if (parseInt(rowsOccupiedByPlacedShapes[i]) > highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]]) {
-                //If the new row is larger, replace the old row with it
+                //If the new row is higher, replace the old row with it
                 highestRowInEachPlacedShapesColumn[uniqueColumnsOccupiedByShape[j]] = parseInt(rowsOccupiedByPlacedShapes[i]);
               }
             }

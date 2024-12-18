@@ -69,7 +69,7 @@ function generateShape(isFirstShape) {
         displayShape(currentShape);
       } else {
         //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-        let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+        let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
         let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
         let heightOfShape = 2;
         let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -131,7 +131,7 @@ function generateShape(isFirstShape) {
           return;
         } else {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 4;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -221,7 +221,7 @@ function generateShape(isFirstShape) {
       } else {
         if (generateShapesHorizontally) {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 2;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -248,7 +248,7 @@ function generateShape(isFirstShape) {
           }
         } else {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 3;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -323,7 +323,7 @@ function generateShape(isFirstShape) {
       } else {
         if (generateShapesHorizontally) {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 2;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -350,7 +350,7 @@ function generateShape(isFirstShape) {
           }
         } else { 
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 3;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -425,7 +425,7 @@ function generateShape(isFirstShape) {
       } else {
         if (generateShapesHorizontally) { 
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 2;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -453,7 +453,7 @@ function generateShape(isFirstShape) {
           }
         } else {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 3;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -529,7 +529,7 @@ function generateShape(isFirstShape) {
       } else {
         if (generateShapesHorizontally) {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 2;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -557,7 +557,7 @@ function generateShape(isFirstShape) {
           }
         } else {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 3;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -633,7 +633,7 @@ function generateShape(isFirstShape) {
       } else {
         if (generateShapesHorizontally) {
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 2;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;
@@ -659,7 +659,7 @@ function generateShape(isFirstShape) {
           }
         } else { 
           //The smallestDistanceBetweenShapeAndPlacedShapes returned here should be negative, since the shapes overlap
-          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates);
+          let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(trialCoordinates, true);
           let numberOfOverlappingCoordinates = Math.abs(smallestDistanceBetweenShapeAndPlacedShapes);
           let heightOfShape = 3;
           let numberOfRowsToGenerate = heightOfShape - numberOfOverlappingCoordinates;

@@ -702,7 +702,7 @@ function populateGameControlsForm() {
   gamepadDetectionInterval = setInterval(() => {
     //Detect gamepad
     let gamepads = navigator.getGamepads();
-    console.log(gamepads)
+    // console.log("gamepads", gamepads)
     let gamepadFound = false;
     for (let i = 0; i < gamepads.length; ++i) {
       if (gamepads[i] != null) {

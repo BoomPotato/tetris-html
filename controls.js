@@ -59,7 +59,7 @@ var action = {
 
   triggerPlaceShape() {
     clearTimeout(timeout);
-    let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(currentShape.coordinates);
+    let smallestDistanceBetweenShapeAndPlacedShapes = calculateDistanceBetweenShapeAndPlacedShapes(currentShape.coordinates, false);
     clearShape(currentShape);
     for (let i = 0; i < currentShape.coordinates.length; i++) {
       currentShape.coordinates[i].row -= smallestDistanceBetweenShapeAndPlacedShapes;
