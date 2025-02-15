@@ -1,6 +1,6 @@
 # tetris-html
 
-Tetris built with html, css, and js.
+Tetris built with HTML, CSS, and plain JavaScript. No game development guides or frameworks used.
 
 Project started on 7 June 2024.
 
