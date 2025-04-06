@@ -68,7 +68,7 @@ Project started on 7 June 2024.
   </li>
   <li>
     Nature of setInterval() <br>
-    it takes a fixed interval value that value can't be changed dynamically <br>
+    it takes a fixed interval value that can't be changed dynamically <br>
     https://stackoverflow.com/questions/30725455/change-setinterval-value-dynamically
   </li>
   <li>
